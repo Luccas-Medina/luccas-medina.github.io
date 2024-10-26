@@ -18,9 +18,9 @@ body {
 }
 
 .gradient {
-    background: #F0F2F0; 
-background: -webkit-linear-gradient(to right, #84828f, #000C40);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #84828f, #000C40); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: white;
+background: -webkit-linear-gradient(to right, steelblue, darkblue);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, steelblue, darkblue); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .page-header{
@@ -44,10 +44,19 @@ background: linear-gradient(to right, #84828f, #000C40); /* W3C, IE 10+/ Edge, F
     
 h1{
     font-size: 3rem;
-    padding: 30px;
+    margin-bottom: 30px;
+}
+
+h3 {
+    margin: 3% 0 -5%;
+    text-align: center;
 }
 
 p {
-    padding: 30px;
+    margin: 5% 10% 0 10%;
 }
 
+
+#about-me, #timeline {
+    margin-top: 5%;
+}
