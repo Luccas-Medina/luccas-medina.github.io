@@ -38,22 +38,23 @@ background: linear-gradient(to right, steelblue, darkblue); /* W3C, IE 10+/ Edge
 }
 
 .content{
-    color: white;
-    font-size: 1.25rem;
 }
     
 h1{
     font-size: 3rem;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 h3 {
     margin: 3% 0 -5%;
-    text-align: center;
 }
 
 p {
     margin: 5% 10% 0 10%;
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-align: justify;
 }
 
 
