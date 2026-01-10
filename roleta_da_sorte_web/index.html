@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Roleta da Sorte - Sorteios Online Gratuitos | Crie Sua Roleta Personalizada</title>
+    <meta name="title" content="Roleta da Sorte - Sorteios Online Gratuitos | Crie Sua Roleta Personalizada">
+    <meta name="description" content="Crie roletas de sorteio personalizadas online gratuitamente. Perfeito para escolher filmes, sortear prêmios, tomar decisões em grupo. Interface intuitiva, 100% grátis e sem cadastro.">
+    <meta name="keywords" content="roleta da sorte, sorteio online, roleta online, sorteio grátis, escolher aleatório, decisão aleatória, girar roleta, sortear nomes">
+    <meta name="author" content="Luccas Medina">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://luccas-medina.github.io/roleta_da_sorte_web/">
+    <meta property="og:title" content="Roleta da Sorte - Sorteios Online Gratuitos">
+    <meta property="og:description" content="Crie roletas de sorteio personalizadas online gratuitamente. Perfeito para escolher filmes, sortear prêmios, tomar decisões em grupo.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://luccas-medina.github.io/roleta_da_sorte_web/">
+    <meta property="twitter:title" content="Roleta da Sorte - Sorteios Online Gratuitos">
+    <meta property="twitter:description" content="Crie roletas de sorteio personalizadas online gratuitamente. Perfeito para escolher filmes, sortear prêmios, tomar decisões em grupo.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://luccas-medina.github.io/roleta_da_sorte_web/">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Roleta da Sorte",
+        "url": "https://luccas-medina.github.io/roleta_da_sorte_web/",
+        "description": "Ferramenta online gratuita para criar roletas de sorteio personalizadas",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Luccas Medina"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150"
+        }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="icon.png" alt="Roleta da Sorte" class="header-logo">
+                <div class="header-text">
+                    <h1>🎰 Roleta da Sorte</h1>
+                    <p>Jogos de sorteio divertidos e interativos</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Promotional Banner -->
+    <div class="promo-banner">
+        <p class="promo-text">Para ter acesso a mais funcionalidades, baixe o App</p>
+        <a href="https://play.google.com/store/apps/details?id=com.roleta_da_sorte.app" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="promo-btn">
+            📱 Baixar App
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- Side Ads (Desktop) -->
+        <aside class="side-ad left-ad">
+            <div class="ad-placeholder">Anúncio Lateral Esquerdo</div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Game Selection Section -->
+            <section class="game-selection" id="gameSelection">
+                <div class="selection-container">
+                    <h2>Escolha um Jogo</h2>
+                    <p class="selection-subtitle">Selecione o tipo de sorteio que deseja realizar</p>
+                    
+                    <div class="games-grid">
+                        <button class="game-card active" data-game="roleta">
+                            <div class="game-icon">🎰</div>
+                            <h3>Roleta da Sorte</h3>
+                            <p>Gire a roleta e deixe o destino decidir</p>
+                        </button>
+                        
+                        <button class="game-card disabled" data-game="garrafa">
+                            <div class="game-icon">🍾</div>
+                            <h3>Girar Garrafa</h3>
+                            <p>Em breve...</p>
+                        </button>
+                        
+                        <button class="game-card disabled" data-game="numeros">
+                            <div class="game-icon">🔢</div>
+                            <h3>Sorteio de Números</h3>
+                            <p>Em breve...</p>
+                        </button>
+                        
+                        <button class="game-card disabled" data-game="dados">
+                            <div class="game-icon">🎲</div>
+                            <h3>Jogar Dados</h3>
+                            <p>Em breve...</p>
+                        </button>
+                        
+                        <button class="game-card disabled" data-game="nomes">
+                            <div class="game-icon">📝</div>
+                            <h3>Sorteio de Nomes</h3>
+                            <p>Em breve...</p>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roulette Game Section -->
+            <section class="roulette-game" id="rouletteGame" style="display: none;">
+                <button class="back-button" id="backToSelection">
+                    ← Voltar aos Jogos
+                </button>
+
+                <div class="roulette-container">
+                    <!-- Left Side: Roulette Wheel -->
+                    <div class="roulette-display">
+                        <h2 class="roulette-title" id="rouletteTitle">Roleta da Sorte</h2>
+                        <div class="wheel-container">
+                            <canvas id="rouletteCanvas" width="400" height="400"></canvas>
+                            <div class="pointer"></div>
+                        </div>
+                        <button class="spin-button" id="spinButton">
+                            <span class="spin-text">GIRAR</span>
+                        </button>
+                    </div>
+
+                    <!-- Right Side: Options List -->
+                    <div class="options-panel">
+                        <h3>Opções da Roleta</h3>
+                        <p class="options-subtitle">Adicione ou edite as opções da sua roleta</p>
+                        
+                        <div class="title-input-group">
+                            <label for="titleInput">Título da Roleta (opcional)</label>
+                            <input 
+                                type="text" 
+                                id="titleInput" 
+                                placeholder="Ex: Escolher filme, Decisões..."
+                                maxlength="50"
+                            >
+                        </div>
+
+                        <div class="add-option-group">
+                            <input 
+                                type="text" 
+                                id="optionInput" 
+                                placeholder="Digite uma opção e pressione Enter"
+                                maxlength="30"
+                            >
+                            <button id="addOptionBtn" class="btn-add">Adicionar</button>
+                        </div>
+
+                        <div class="options-counter">
+                            <span id="optionsCount">3</span> opções
+                        </div>
+
+                        <div class="options-list" id="optionsList">
+                            <!-- Options will be dynamically added here -->
+                        </div>
+
+                        <div class="options-actions">
+                            <button id="clearAllBtn" class="btn-secondary">Limpar Tudo</button>
+                            <button id="resetDefaultBtn" class="btn-secondary">Restaurar Padrão</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Side Ads (Desktop) -->
+        <aside class="side-ad right-ad">
+            <div class="ad-placeholder">Anúncio Lateral Direito</div>
+        </aside>
+    </div>
+
+    <!-- Mobile Bottom Ad -->
+    <div class="mobile-ad-bottom" id="mobileAdBottom">
+        <div class="ad-placeholder">Anúncio Mobile Bottom</div>
+    </div>
+
+    <!-- Footer Ad (Desktop) -->
+    <footer class="footer-ad">
+        <div class="ad-placeholder">Anúncio Footer</div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Ranking Monitor - Google Play</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="icon.png" alt="SEO Ranking Monitor" class="header-logo">
+                <div class="header-text">
+                    <h1 data-i18n="app-title">📱 SEO Ranking Monitor</h1>
+                    <p data-i18n="app-subtitle">Monitore o ranking do seu app na Google Play Store</p>
+                </div>
+            </div>
+            <div class="language-switcher">
+                <label for="languageSelect" class="lang-label" data-i18n="change-language">Alterar Idioma:</label>
+                <select id="languageSelect" class="lang-select">
+                    <option value="pt">🇧🇷 Português</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="ko">🇰🇷 한국어</option>
+                    <option value="el">🇬🇷 Ελληνικά</option>
+                    <option value="fi">🇫🇮 Suomi</option>
+                    <option value="pl">🇵🇱 Polski</option>
+                    <option value="it">🇮🇹 Italiano</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Promotional Banner -->
+    <div class="promo-banner">
+        <p class="promo-text" data-i18n="promo-text">Para registrar e realizar buscas mais rápidas, baixe o App</p>
+        <a href="https://play.google.com/store/apps/details?id=com.seo_ranking_monitor.app" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="promo-btn"
+           data-i18n="promo-btn">
+            📱 Baixar App
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- Side Ads (Desktop) -->
+        <aside class="side-ad left-ad">
+            <div class="ad-placeholder">Anúncio Lateral Esquerdo</div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Form Section -->
+            <section class="form-section" id="formSection">
+                <div class="form-container">
+                    <h2 data-i18n="form-title">Informações do App</h2>
+                    
+                    <div class="form-group">
+                        <label for="packageName" data-i18n="label-package">Package Name do App *</label>
+                        <input 
+                            type="text" 
+                            id="packageName" 
+                            data-i18n="placeholder-package"
+                            placeholder="Ex: com.exemplo.meuapp"
+                            required
+                        >
+                        <small data-i18n="help-package">Digite o identificador único do seu app (package name)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location" data-i18n="label-location">Localização *</label>
+                        <select id="location" required>
+                            <option value="" data-i18n="select-country">Selecione um país</option>
+                            <optgroup label="América Latina">
+                                <option value="br">Brasil</option>
+                                <option value="ar">Argentina</option>
+                                <option value="bo">Bolívia</option>
+                                <option value="cl">Chile</option>
+                                <option value="co">Colômbia</option>
+                                <option value="cr">Costa Rica</option>
+                                <option value="cu">Cuba</option>
+                                <option value="do">República Dominicana</option>
+                                <option value="ec">Equador</option>
+                                <option value="sv">El Salvador</option>
+                                <option value="gt">Guatemala</option>
+                                <option value="hn">Honduras</option>
+                                <option value="mx">México</option>
+                                <option value="ni">Nicarágua</option>
+                                <option value="pa">Panamá</option>
+                                <option value="py">Paraguai</option>
+                                <option value="pe">Peru</option>
+                                <option value="uy">Uruguai</option>
+                                <option value="ve">Venezuela</option>
+                            </optgroup>
+                            <optgroup label="América do Norte">
+                                <option value="us">Estados Unidos</option>
+                                <option value="ca">Canadá</option>
+                            </optgroup>
+                            <optgroup label="Europa">
+                                <option value="de">Alemanha</option>
+                                <option value="at">Áustria</option>
+                                <option value="be">Bélgica</option>
+                                <option value="dk">Dinamarca</option>
+                                <option value="es">Espanha</option>
+                                <option value="fi">Finlândia</option>
+                                <option value="fr">França</option>
+                                <option value="gr">Grécia</option>
+                                <option value="nl">Holanda</option>
+                                <option value="hu">Hungria</option>
+                                <option value="ie">Irlanda</option>
+                                <option value="it">Itália</option>
+                                <option value="no">Noruega</option>
+                                <option value="pl">Polônia</option>
+                                <option value="pt">Portugal</option>
+                                <option value="gb">Reino Unido</option>
+                                <option value="cz">Tchéquia</option>
+                                <option value="ro">Romênia</option>
+                                <option value="ru">Rússia</option>
+                                <option value="se">Suécia</option>
+                                <option value="ch">Suíça</option>
+                                <option value="ua">Ucrânia</option>
+                            </optgroup>
+                            <optgroup label="Ásia">
+                                <option value="cn">China</option>
+                                <option value="kr">Coreia do Sul</option>
+                                <option value="ph">Filipinas</option>
+                                <option value="hk">Hong Kong</option>
+                                <option value="in">Índia</option>
+                                <option value="id">Indonésia</option>
+                                <option value="jp">Japão</option>
+                                <option value="my">Malásia</option>
+                                <option value="sg">Singapura</option>
+                                <option value="tw">Taiwan</option>
+                                <option value="th">Tailândia</option>
+                                <option value="vn">Vietnã</option>
+                            </optgroup>
+                            <optgroup label="Oriente Médio">
+                                <option value="sa">Arábia Saudita</option>
+                                <option value="ae">Emirados Árabes Unidos</option>
+                                <option value="il">Israel</option>
+                                <option value="kw">Kuwait</option>
+                                <option value="qa">Catar</option>
+                                <option value="tr">Turquia</option>
+                            </optgroup>
+                            <optgroup label="África">
+                                <option value="za">África do Sul</option>
+                                <option value="eg">Egito</option>
+                                <option value="ke">Quênia</option>
+                                <option value="ma">Marrocos</option>
+                                <option value="ng">Nigéria</option>
+                            </optgroup>
+                            <optgroup label="Oceania">
+                                <option value="au">Austrália</option>
+                                <option value="nz">Nova Zelândia</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="searchTerms" data-i18n="label-search-terms">Termos de Busca *</label>
+                        <div class="search-terms-input">
+                            <input 
+                                type="text" 
+                                id="searchTermInput" 
+                                data-i18n="placeholder-search"
+                                placeholder="Digite um termo e pressione Enter"
+                            >
+                            <button type="button" id="addTermBtn" class="btn-secondary" data-i18n="btn-add-term">Adicionar</button>
+                        </div>
+                        <small data-i18n="help-search-terms">Adicione até 10 termos de busca (pressione Enter ou clique em Adicionar)</small>
+                        
+                        <div id="termsList" class="terms-list"></div>
+                        <div id="termsCounter" class="terms-counter">0/10 termos adicionados</div>
+                    </div>
+
+                    <button type="button" id="searchBtn" class="btn-primary" data-i18n="btn-search" disabled>
+                        🔍 Realizar Buscas
+                    </button>
+
+                    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                        <div class="spinner"></div>
+                        <p id="loadingStatus">Processando...</p>
+                    </div>
+
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <!-- Form Toggle Button (Mobile and Desktop) -->
+                <button class="mobile-form-toggle" id="mobileFormToggle">
+                    🔄 Realizar Nova Busca
+                </button>
+
+                <!-- App Info -->
+                <div class="app-info" id="appInfo">
+                    <div class="app-photo-container">
+                        <img id="appIcon" src="" alt="App Icon" class="app-icon">
+                    </div>
+                    <div class="app-details">
+                        <h2 id="appTitle">Carregando...</h2>
+                        <p id="appDescription">Carregando descrição...</p>
+                    </div>
+                </div>
+
+                <!-- Rankings Table -->
+                <div class="rankings-container">
+                    <h3 data-i18n="results-title">Resultados da Busca</h3>
+                    <div id="rankingsTable" class="rankings-table"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Side Ads (Desktop) -->
+        <aside class="side-ad right-ad">
+            <div class="ad-placeholder">Anúncio Lateral Direito</div>
+        </aside>
+    </div>
+
+    <!-- Mobile Bottom Ad -->
+    <div class="mobile-ad-bottom" id="mobileAdBottom">
+        <div class="ad-placeholder">Anúncio Mobile Bottom</div>
+    </div>
+
+    <!-- Footer Ad (Desktop) -->
+    <footer class="footer-ad">
+        <div class="ad-placeholder">Anúncio Footer</div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
