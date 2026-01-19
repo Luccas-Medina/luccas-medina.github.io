@@ -115,6 +115,17 @@
             line-height: 1.8;
         }
         
+        .section-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        
+        .tools-section {
+            margin-bottom: 40px;
+        }
+        
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -232,6 +243,114 @@
             font-size: 0.95em;
         }
         
+        /* How To Section */
+        .how-to-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .how-to-section h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+            text-align: center;
+        }
+        
+        .how-to-tool {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .how-to-tool:last-child {
+            margin-bottom: 0;
+        }
+        
+        .how-to-tool h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .how-to-tool ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .how-to-tool li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        .how-to-tool p {
+            color: #666;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 0;
+            font-style: italic;
+        }
+        
+        /* Use Cases Section */
+        .use-cases-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .use-cases-section h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+            text-align: center;
+        }
+        
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        
+        .use-case-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #e0e7ff;
+            transition: all 0.3s ease;
+        }
+        
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .use-case-card h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        .use-case-card p {
+            color: #666;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         footer {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px 0;
@@ -290,10 +409,11 @@
         </div>
     </header>
     
+    <main>
     <div class="container">
         <!-- Introduction Section -->
         <section class="intro-section">
-            <h2>Bem-vindo às Nossas Ferramentas Web</h2>
+            <h2>Bem-vindo às Nossas Ferramentas Web Profissionais</h2>
             <p>
                 Oferecemos uma coleção de ferramentas web gratuitas e profissionais, desenvolvidas para facilitar 
                 sua vida digital. Seja você um desenvolvedor de apps buscando monitorar seu posicionamento na 
@@ -309,7 +429,9 @@
             </p>
         </section>
         
-        <!-- Tools Grid -->
+        <!-- Tools Section -->
+        <section class="tools-section">
+            <h2 class="section-title">🛠️ Nossas Ferramentas</h2>
         <div class="tools-grid">
             <!-- SEO Ranking Monitor Tool -->
             <article class="tool-card">
@@ -345,7 +467,7 @@
                     terá um relatório completo com a posição do seu app para cada termo pesquisado.
                 </p>
                 
-                <a href="seo_ranking_monitor_web/index.html" class="btn">🔍 Acessar Ferramenta</a>
+                <a href="seo_ranking_monitor_web/index.html" class="btn">🔍 Buscar App Ranking</a>
             </article>
             
             <!-- Roleta da Sorte Tool -->
@@ -384,9 +506,78 @@
                     e selecionará aleatoriamente uma das opções. Simples, rápido e justo!
                 </p>
                 
-                <a href="roleta_da_sorte_web/index.html" class="btn">🎰 Acessar Ferramenta</a>
+                <a href="roleta_da_sorte_web/index.html" class="btn">🎰 Girar Roleta</a>
             </article>
         </div>
+        </section>
+        
+        <!-- How to Use Section -->
+        <section class="how-to-section">
+            <h2>📖 Como Usar Nossas Ferramentas</h2>
+            
+            <article class="how-to-tool">
+                <h3>🔍 SEO Ranking Monitor - Guia Rápido</h3>
+                <ol>
+                    <li><strong>Acesse a ferramenta</strong> clicando no botão "Buscar App Ranking"</li>
+                    <li><strong>Insira o Package Name</strong> do seu app (ex: com.exemplo.meuapp)</li>
+                    <li><strong>Selecione o país</strong> onde deseja verificar o ranking</li>
+                    <li><strong>Adicione termos de busca</strong> (até 10 palavras-chave)</li>
+                    <li><strong>Clique em Buscar</strong> e aguarde os resultados</li>
+                    <li><strong>Analise o relatório</strong> com posições e métricas do seu app</li>
+                </ol>
+                <p><strong>Dica profissional:</strong> Monitore regularmente seus principais termos de busca para identificar oportunidades de otimização e acompanhar o impacto de suas estratégias de ASO.</p>
+            </article>
+            
+            <article class="how-to-tool">
+                <h3>🎰 Roleta da Sorte - Guia Rápido</h3>
+                <ol>
+                    <li><strong>Acesse a ferramenta</strong> clicando no botão "Girar Roleta"</li>
+                    <li><strong>Escolha uma opção pré-configurada</strong> ou crie sua própria roleta</li>
+                    <li><strong>Adicione suas opções</strong> digitando e clicando em "Adicionar"</li>
+                    <li><strong>Personalize as cores</strong> clicando no círculo colorido de cada opção</li>
+                    <li><strong>Clique em GIRAR</strong> e aguarde o resultado</li>
+                    <li><strong>Use o resultado</strong> para sua decisão ou sorteio</li>
+                </ol>
+                <p><strong>Dica criativa:</strong> Use as opções pré-configuradas para começar rapidamente, incluindo listas de filmes populares, comidas, tarefas domésticas e muito mais!</p>
+            </article>
+        </section>
+        
+        <!-- Use Cases Section -->
+        <section class="use-cases-section">
+            <h2>💼 Casos de Uso e Aplicações</h2>
+            
+            <div class="use-cases-grid">
+                <article class="use-case-card">
+                    <h3>👨‍💻 Para Desenvolvedores</h3>
+                    <p>Monitore o posicionamento de seus aplicativos na Play Store, identifique palavras-chave efetivas, acompanhe concorrentes e otimize sua estratégia de App Store Optimization (ASO).</p>
+                </article>
+                
+                <article class="use-case-card">
+                    <h3>📊 Para Profissionais de Marketing</h3>
+                    <p>Obtenha dados precisos sobre o ranking de apps, crie relatórios para clientes, acompanhe o desempenho de campanhas e tome decisões baseadas em dados reais de posicionamento.</p>
+                </article>
+                
+                <article class="use-case-card">
+                    <h3>🎉 Para Eventos e Festas</h3>
+                    <p>Realize sorteios justos e transparentes em festas, eventos corporativos, lives ou promoções. A Roleta da Sorte torna qualquer sorteio mais divertido e envolvente.</p>
+                </article>
+                
+                <article class="use-case-card">
+                    <h3>👨‍👩‍👧‍👦 Para Famílias</h3>
+                    <p>Decida de forma justa quem faz cada tarefa doméstica, escolha o filme para assistir, o restaurante para jantar ou qualquer decisão que precise ser imparcial e divertida.</p>
+                </article>
+                
+                <article class="use-case-card">
+                    <h3>🏫 Para Educadores</h3>
+                    <p>Sorteie alunos para apresentações, crie dinâmicas de grupo, escolha temas de trabalho ou adicione elementos de gamificação às suas aulas de forma simples e interativa.</p>
+                </article>
+                
+                <article class="use-case-card">
+                    <h3>🎮 Para Comunidades Online</h3>
+                    <p>Realize sorteios de prêmios em streams, escolha jogos para jogar com a comunidade, crie desafios aleatórios ou adicione elementos de sorte em suas transmissões ao vivo.</p>
+                </article>
+            </div>
+        </section>
         
         <!-- Features Section -->
         <section class="features-section">
@@ -431,6 +622,7 @@
             </p>
         </section>
     </div>
+    </main>
     
     <footer>
         <div class="container">

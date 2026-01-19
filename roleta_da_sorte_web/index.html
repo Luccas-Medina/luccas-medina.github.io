@@ -80,6 +80,7 @@
         </a>
     </div>
 
+    <main>
     <div class="container">
         <!-- Side Ads (Desktop) -->
         <aside class="side-ad left-ad">
@@ -87,14 +88,15 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <section class="main-content">
             <!-- Game Selection Section -->
             <section class="game-selection" id="gameSelection">
                 <div class="selection-container">
-                    <h2>Escolha um Jogo</h2>
-                    <p class="selection-subtitle">Selecione o tipo de sorteio que deseja realizar</p>
+                    <h2>Escolha um Jogo de Sorteio</h2>
+                    <p class="selection-subtitle">Selecione o tipo de sorteio que deseja realizar e divirta-se com nossas ferramentas interativas</p>
                     
-                    <div class="games-grid">
+                    
+                    <div class="games-grid" style="margin-bottom: 30px;">
                         <button class="game-card active" data-game="roleta">
                             <div class="game-icon">🎰</div>
                             <h3>Roleta da Sorte</h3>
@@ -125,6 +127,30 @@
                             <p>Em breve...</p>
                         </button>
                     </div>
+                    
+                    <!-- Information Section -->
+                    <article class="info-content">
+                        <h3>🎯 Como Funciona a Roleta da Sorte</h3>
+                        <p>Nossa Roleta da Sorte é uma ferramenta online gratuita que permite criar sorteios personalizados de forma rápida e divertida. Você pode adicionar suas próprias opções ou usar nossas listas pré-configuradas com exemplos populares de filmes, comidas, tarefas, séries e muito mais!</p>
+                        
+                        <h3>✨ Recursos Principais</h3>
+                        <ul>
+                            <li><strong>Opções Pré-Configuradas:</strong> 8 categorias prontas com exemplos famosos (Filmes, Comidas, Tarefas, Séries, Jogos, Música, Exercícios, Viagens)</li>
+                            <li><strong>Personalização Total:</strong> Adicione quantas opções quiser e personalize cores</li>
+                            <li><strong>Animação Realista:</strong> Giro suave com efeitos visuais envolventes</li>
+                            <li><strong>100% Gratuito:</strong> Sem limites de uso ou funcionalidades pagas</li>
+                        </ul>
+                        
+                        <h3>💡 Exemplos de Uso</h3>
+                        <ul>
+                            <li>Decidir qual filme assistir com amigos ou família</li>
+                            <li>Escolher o que comer no almoço ou jantar</li>
+                            <li>Sortear tarefas domésticas de forma justa</li>
+                            <li>Selecionar qual série maratonar no fim de semana</li>
+                            <li>Escolher jogos para jogar em grupo</li>
+                            <li>Definir atividades físicas do dia</li>
+                        </ul>
+                    </article>
                 </div>
             </section>
 
@@ -186,14 +212,29 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Preset Options Section -->
+                <section class="preset-section style=margin-top: 30px;">
+                    <h2>📋 Opções Pré-Configuradas</h2>
+                    <p class="preset-subtitle">Comece rapidamente com opções prontas para uso</p>
+                    
+                    <div class="preset-carousel">
+                        <button class="carousel-btn prev-btn" id="prevPreset">‹</button>
+                        <div class="preset-container" id="presetContainer">
+                            <!-- Preset cards will be dynamically added here -->
+                        </div>
+                        <button class="carousel-btn next-btn" id="nextPreset">›</button>
+                    </div>
+                </section>
             </section>
-        </main>
+        </section>
 
         <!-- Side Ads (Desktop) -->
         <aside class="side-ad right-ad">
             <div class="ad-placeholder">Anúncio Lateral Direito</div>
         </aside>
     </div>
+    </main>
 
     <!-- Mobile Bottom Ad -->
     <div class="mobile-ad-bottom" id="mobileAdBottom">

@@ -739,3 +739,193 @@ header p {
 .options-list::-webkit-scrollbar-thumb:hover {
     background: #5568d3;
 }
+/* ========================================
+   PRESET SECTION
+   ======================================== */
+.preset-section {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.preset-section h2 {
+    color: #667eea;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.preset-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.preset-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.carousel-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+.preset-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0.5rem;
+    flex: 1;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.preset-container::-webkit-scrollbar {
+    display: none;
+}
+
+.preset-card {
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+    border: 2px solid #e0e7ff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    min-width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.preset-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+}
+
+.preset-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.preset-card h3 {
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.preset-card p {
+    color: #666;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.preset-badge {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+/* Mobile preset carousel adjustments */
+@media (max-width: 768px) {
+    .preset-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .preset-section h2 {
+        font-size: 1.25rem;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.25rem;
+    }
+    
+    .preset-card {
+        min-width: 160px;
+        padding: 1rem;
+    }
+    
+    .preset-icon {
+        font-size: 2rem;
+    }
+    
+    .preset-card h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Info Content Section */
+.info-content {
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 2px solid #e0e7ff;
+    text-align: left;
+}
+
+.info-content h3 {
+    color: #667eea;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-content h3:first-child {
+    margin-top: 0;
+}
+
+.info-content p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.info-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-content li {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+.info-content strong {
+    color: #764ba2;
+}

@@ -22,6 +22,136 @@ const DEFAULT_COLORS = [
     '#EC7063', '#5DADE2', '#F39C12', '#9B59B6', '#1ABC9C'
 ];
 
+// Preset options for quick start
+const PRESET_OPTIONS = [
+    {
+        icon: '🎬',
+        title: 'Filmes Populares',
+        description: '8 filmes famosos',
+        options: [
+            'Star Wars',
+            'Titanic',
+            'Avatar',
+            'Vingadores',
+            'Harry Potter',
+            'Senhor dos Anéis',
+            'Jurassic Park',
+            'Matrix'
+        ]
+    },
+    {
+        icon: '🍕',
+        title: 'O Que Comer?',
+        description: '10 opções de comida',
+        options: [
+            'Pizza',
+            'Hambúrguer',
+            'Sushi',
+            'Macarrão',
+            'Churrasco',
+            'Comida Mexicana',
+            'Comida Chinesa',
+            'Salada',
+            'Sanduíche',
+            'Comida Italiana'
+        ]
+    },
+    {
+        icon: '🧹',
+        title: 'Tarefas Domésticas',
+        description: '8 tarefas comuns',
+        options: [
+            'Lavar Louça',
+            'Varrer Casa',
+            'Passar Roupa',
+            'Limpar Banheiro',
+            'Cozinhar',
+            'Lavar Roupa',
+            'Tirar Lixo',
+            'Aspirar Carpete'
+        ]
+    },
+    {
+        icon: '📺',
+        title: 'Séries Populares',
+        description: '10 séries famosas',
+        options: [
+            'Breaking Bad',
+            'Game of Thrones',
+            'Stranger Things',
+            'The Office',
+            'Friends',
+            'La Casa de Papel',
+            'The Crown',
+            'Black Mirror',
+            'Peaky Blinders',
+            'Dark'
+        ]
+    },
+    {
+        icon: '🎮',
+        title: 'Jogos Populares',
+        description: '8 jogos famosos',
+        options: [
+            'Minecraft',
+            'Fortnite',
+            'League of Legends',
+            'GTA V',
+            'Among Us',
+            'Valorant',
+            'Call of Duty',
+            'FIFA'
+        ]
+    },
+    {
+        icon: '🎵',
+        title: 'Gêneros Musicais',
+        description: '8 estilos de música',
+        options: [
+            'Rock',
+            'Pop',
+            'Hip Hop',
+            'Jazz',
+            'Eletrônica',
+            'Sertanejo',
+            'Funk',
+            'MPB'
+        ]
+    },
+    {
+        icon: '🏃',
+        title: 'Atividades Físicas',
+        description: '8 exercícios',
+        options: [
+            'Corrida',
+            'Caminhada',
+            'Natação',
+            'Ciclismo',
+            'Yoga',
+            'Musculação',
+            'Dança',
+            'Futebol'
+        ]
+    },
+    {
+        icon: '🌍',
+        title: 'Destinos de Viagem',
+        description: '10 lugares famosos',
+        options: [
+            'Paris',
+            'Nova York',
+            'Tóquio',
+            'Londres',
+            'Rio de Janeiro',
+            'Barcelona',
+            'Dubai',
+            'Roma',
+            'Bali',
+            'Maldivas'
+        ]
+    }
+];
+
 let colorIndex = 3; // Start after initial 3 colors
 
 // ========================================
@@ -38,6 +168,9 @@ function initializeApp() {
     
     // Setup event listeners
     setupEventListeners();
+    
+    // Initialize preset carousel
+    initializePresets();
     
     // Initial render
     renderOptionsPanel();
@@ -81,6 +214,10 @@ function setupEventListeners() {
     
     // Spin button
     document.getElementById('spinButton').addEventListener('click', spinRoulette);
+    
+    // Preset carousel navigation
+    document.getElementById('prevPreset').addEventListener('click', scrollPresetLeft);
+    document.getElementById('nextPreset').addEventListener('click', scrollPresetRight);
 }
 
 // ========================================
@@ -101,6 +238,70 @@ function showRouletteGame() {
     setTimeout(() => {
         drawRoulette();
     }, 100);
+}
+
+// ========================================
+// PRESET OPTIONS CAROUSEL
+// ========================================
+function initializePresets() {
+    const container = document.getElementById('presetContainer');
+    
+    PRESET_OPTIONS.forEach((preset, index) => {
+        const card = document.createElement('div');
+        card.className = 'preset-card';
+        card.innerHTML = `
+            <div class="preset-icon">${preset.icon}</div>
+            <h3>${preset.title}</h3>
+            <p>${preset.description}</p>
+            <span class="preset-badge">${preset.options.length} opções</span>
+        `;
+        
+        card.addEventListener('click', () => loadPreset(index));
+        container.appendChild(card);
+    });
+}
+
+function loadPreset(presetIndex) {
+    const preset = PRESET_OPTIONS[presetIndex];
+    
+    // Reset color index
+    colorIndex = 0;
+    
+    // Create new options array with colors
+    state.rouletteOptions = preset.options.map((optionText, index) => ({
+        text: optionText,
+        color: DEFAULT_COLORS[index % DEFAULT_COLORS.length]
+    }));
+    
+    // Update color index
+    colorIndex = preset.options.length;
+    
+    // Update title
+    state.rouletteTitle = preset.title;
+    document.getElementById('rouletteTitle').textContent = preset.title;
+    document.getElementById('titleInput').value = preset.title;
+    
+    // Re-render
+    renderOptionsPanel();
+    drawRoulette();
+    
+    // Scroll to roulette
+    setTimeout(() => {
+        document.querySelector('.roulette-container').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }, 100);
+}
+
+function scrollPresetLeft() {
+    const container = document.getElementById('presetContainer');
+    container.scrollBy({ left: -220, behavior: 'smooth' });
+}
+
+function scrollPresetRight() {
+    const container = document.getElementById('presetContainer');
+    container.scrollBy({ left: 220, behavior: 'smooth' });
 }
 
 // ========================================
