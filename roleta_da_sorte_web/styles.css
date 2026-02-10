@@ -119,43 +119,10 @@ header p {
 }
 
 /* ========================================
-   SIDE ADS (DESKTOP)
-   ======================================== */
-.side-ad {
-    flex-shrink: 0;
-    width: 160px;
-    position: sticky;
-    top: 2rem;
-}
-
-.left-ad {
-    order: 1;
-}
-
-.right-ad {
-    order: 3;
-}
-
-.ad-placeholder {
-    background: #e0e0e0;
-    padding: 2rem 1rem;
-    text-align: center;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    color: #666;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ========================================
    MAIN CONTENT
    ======================================== */
 .main-content {
-    flex: 1;
-    order: 2;
-    min-width: 0;
+    width: 100%;
 }
 
 /* ========================================
@@ -268,10 +235,12 @@ header p {
 }
 
 .roulette-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
-    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* ========================================
@@ -392,6 +361,8 @@ header p {
     padding: 1.5rem;
     border-radius: 12px;
     border: 2px solid #e0e0e0;
+    width: 100%;
+    max-width: 600px;
 }
 
 .options-panel h3 {
@@ -566,45 +537,15 @@ header p {
 }
 
 /* ========================================
-   MOBILE BOTTOM AD
-   ======================================== */
-.mobile-ad-bottom {
-    display: none;
-    background: #f5f5f5;
-    padding: 1rem;
-    text-align: center;
-    border-top: 1px solid #ddd;
-}
-
-/* ========================================
-   FOOTER AD
-   ======================================== */
-.footer-ad {
-    background: #f5f5f5;
-    padding: 1rem;
-    text-align: center;
-    border-top: 1px solid #ddd;
-    margin-top: 2rem;
-}
-
-/* ========================================
    RESPONSIVE DESIGN
    ======================================== */
 @media (max-width: 1024px) {
-    .side-ad {
-        display: none;
-    }
-    
-    .mobile-ad-bottom {
-        display: block;
-    }
-    
     .container {
         padding: 0 1rem;
     }
     
     .roulette-container {
-        grid-template-columns: 1fr;
+        padding: 0 1rem;
     }
     
     .wheel-container {
