@@ -1,0 +1,272 @@
+/* Index page specific styles */
+
+/* Tools Grid */
+.tools-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    text-align: center;
+    color: #667eea;
+    font-size: 2em;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tool-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.tool-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tool-card h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.tool-card h3 {
+    color: #764ba2;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.tool-card p {
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.tool-card ul {
+    margin-left: 25px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.tool-card li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Features Section */
+.features-section {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.features-section h2 {
+    color: #667eea;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.feature-item {
+    padding: 20px;
+    border-left: 4px solid #667eea;
+    background: #f8f9ff;
+    border-radius: 8px;
+}
+
+.feature-item h3 {
+    color: #764ba2;
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    color: #666;
+    font-size: 0.95em;
+}
+
+/* How To Section */
+.how-to-section {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.how-to-section h2 {
+    color: #667eea;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.how-to-tool {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: #f8f9ff;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.how-to-tool:last-child {
+    margin-bottom: 0;
+}
+
+.how-to-tool h3 {
+    color: #764ba2;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.how-to-tool ol {
+    margin-left: 25px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.how-to-tool li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+}
+
+.how-to-tool p {
+    color: #666;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Use Cases Section */
+.use-cases-section {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.use-cases-section h2 {
+    color: #667eea;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.use-case-card {
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #e0e7ff;
+    transition: all 0.3s ease;
+}
+
+.use-case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+}
+
+.use-case-card h3 {
+    color: #667eea;
+    margin-bottom: 12px;
+    font-size: 1.2em;
+}
+
+.use-case-card p {
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .use-cases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    border-radius: 15px;
+    padding: 50px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.cta-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.cta-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.cta-section .btn {
+    background: white;
+    color: #667eea;
+}
+
+.cta-section a {
+    color: white;
+    text-decoration: underline;
+}

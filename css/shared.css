@@ -1,0 +1,358 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container layout */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+.app-header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Navigation Menu */
+.main-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.main-menu a {
+    background: rgba(102, 126, 234, 0.1);
+    color: #5568d3;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    font-size: 0.9rem;
+}
+
+.main-menu a:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.main-menu a.active {
+    background: linear-gradient(135deg, #667eea, #5568d3);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.hero-section h1 {
+    color: #667eea;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Main Content */
+.main-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+.app-footer {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: #333;
+    font-weight: 500;
+}
+
+.app-footer p {
+    margin-bottom: 10px;
+}
+
+.app-footer a {
+    color: #667eea;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.app-footer a:hover {
+    color: #5568d3;
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.intro-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.intro-section h2 {
+    color: #667eea;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.intro-section p {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 15px;
+    }
+    
+    .app-header {
+        padding: 20px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .main-content {
+        padding: 25px;
+    }
+    
+    .main-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .main-menu a {
+        width: 100%;
+        text-align: center;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .intro-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+}
+
+/* Floating Coffee Button */
+.floating-coffee-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #FFDD44, #FF6B35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 3px solid white;
+}
+
+.floating-coffee-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+}
+
+.floating-coffee-btn i {
+    font-size: 24px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Tooltip */
+.floating-coffee-btn::before {
+    content: "Apoie o projeto!";
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(51, 51, 51, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+}
+
+.floating-coffee-btn::after {
+    content: "";
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: rgba(51, 51, 51, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.floating-coffee-btn:hover::before,
+.floating-coffee-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Auto-show tooltip on mobile for 3 seconds */
+.floating-coffee-btn.mobile-show::before,
+.floating-coffee-btn.mobile-show::after {
+    opacity: 1;
+    visibility: visible;
+    animation: mobileTooltipShow 3s ease-in-out;
+}
+
+@keyframes mobileTooltipShow {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    10% {
+        opacity: 1;
+        visibility: visible;
+    }
+    90% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .floating-coffee-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .floating-coffee-btn i {
+        font-size: 20px;
+    }
+    
+    .floating-coffee-btn::before {
+        right: 60px;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    .floating-coffee-btn::after {
+        right: 50px;
+        border-width: 5px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-section {
+    animation: fadeIn 1s ease-out;
+}
+
+.main-menu {
+    animation: slideDown 0.6s ease-out;
+}
+
+.main-content {
+    animation: fadeInUp 0.8s ease-out;
+}

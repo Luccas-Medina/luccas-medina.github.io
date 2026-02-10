@@ -50,367 +50,28 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2243080862412586" crossorigin="anonymous"></script>
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-        
-        header .container {
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #667eea;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        
-        .intro-section {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .intro-section h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-        
-        .intro-section p {
-            font-size: 1.1em;
-            color: #555;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-        
-        .section-title {
-            text-align: center;
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 30px;
-        }
-        
-        .tools-section {
-            margin-bottom: 40px;
-        }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        @media (max-width: 768px) {
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .tool-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .tool-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
-        
-        .tool-card h2 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.8em;
-        }
-        
-        .tool-card h3 {
-            color: #764ba2;
-            margin-top: 25px;
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-        
-        .tool-card p {
-            color: #555;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-        
-        .tool-card ul {
-            margin-left: 25px;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .tool-card li {
-            margin-bottom: 8px;
-            line-height: 1.6;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 15px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-        
-        .features-section {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .features-section h2 {
-            color: #667eea;
-            margin-bottom: 30px;
-            font-size: 2em;
-            text-align: center;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .feature-item {
-            padding: 20px;
-            border-left: 4px solid #667eea;
-            background: #f8f9ff;
-            border-radius: 8px;
-        }
-        
-        .feature-item h3 {
-            color: #764ba2;
-            margin-bottom: 10px;
-        }
-        
-        .feature-item p {
-            color: #666;
-            font-size: 0.95em;
-        }
-        
-        /* How To Section */
-        .how-to-section {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .how-to-section h2 {
-            color: #667eea;
-            margin-bottom: 30px;
-            font-size: 2em;
-            text-align: center;
-        }
-        
-        .how-to-tool {
-            margin-bottom: 35px;
-            padding: 25px;
-            background: #f8f9ff;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .how-to-tool:last-child {
-            margin-bottom: 0;
-        }
-        
-        .how-to-tool h3 {
-            color: #764ba2;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-        
-        .how-to-tool ol {
-            margin-left: 25px;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .how-to-tool li {
-            margin-bottom: 10px;
-            line-height: 1.7;
-        }
-        
-        .how-to-tool p {
-            color: #666;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 0;
-            font-style: italic;
-        }
-        
-        /* Use Cases Section */
-        .use-cases-section {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .use-cases-section h2 {
-            color: #667eea;
-            margin-bottom: 30px;
-            font-size: 2em;
-            text-align: center;
-        }
-        
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-        
-        .use-case-card {
-            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-            padding: 25px;
-            border-radius: 12px;
-            border: 2px solid #e0e7ff;
-            transition: all 0.3s ease;
-        }
-        
-        .use-case-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-        }
-        
-        .use-case-card h3 {
-            color: #667eea;
-            margin-bottom: 12px;
-            font-size: 1.2em;
-        }
-        
-        .use-case-card p {
-            color: #666;
-            line-height: 1.7;
-            margin: 0;
-        }
-        
-        @media (max-width: 768px) {
-            .use-cases-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        footer {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px 0;
-            margin-top: 60px;
-            text-align: center;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        }
-        
-        footer p {
-            color: #666;
-            margin-bottom: 10px;
-        }
-        
-        footer a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-        }
-        
-        footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .cta-section {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            border-radius: 15px;
-            padding: 50px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-        
-        .cta-section h2 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-        }
-        
-        .cta-section p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-section .btn {
-            background: white;
-            color: #667eea;
-        }
-    </style>
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>🚀 Ferramentas Web Gratuitas</h1>
-            <p class="subtitle">Soluções profissionais para desenvolvedores e usuários</p>
-        </div>
-    </header>
-    
-    <main>
-    <div class="container">
+    <div class="app-container">
+        <header class="app-header">
+            <nav class="main-menu">
+                <a href="index.html" class="active">Home</a>
+                <a href="seo_ranking_monitor_web/index.html">SEO Ranking Monitor</a>
+                <a href="roleta_da_sorte_web/index.html">Roleta da Sorte</a>
+                <a href="about.html">Sobre</a>
+                <a href="contact.html">Contato</a>
+            </nav>
+            <div class="hero-section">
+                <h1><i class="fas fa-rocket"></i> Ferramentas Web Gratuitas</h1>
+                <p class="hero-subtitle">Soluções profissionais para desenvolvedores e usuários</p>
+            </div>
+        </header>
+        
+        <main class="main-content">
         <!-- Introduction Section -->
         <section class="intro-section">
             <h2>Bem-vindo às Nossas Ferramentas Web Profissionais</h2>
@@ -621,11 +282,9 @@
                 <a href="contact.html" style="color: white; text-decoration: underline;">Contato</a>
             </p>
         </section>
-    </div>
-    </main>
-    
-    <footer>
-        <div class="container">
+        </main>
+        
+        <footer class="app-footer">
             <p>&copy; 2026 Luccas Medina. Todos os direitos reservados.</p>
             <p>
                 <a href="about.html">Sobre</a> | 
@@ -633,7 +292,37 @@
                 <a href="contact.html">Contato</a> | 
                 <a href="terms.html">Termos de Uso</a>
             </p>
-        </div>
-    </footer>
+        </footer>
+    </div>
+    
+    <!-- Floating Coffee Button -->
+    <!-- <a href="https://buymeacoffee.com/luccasmedina" target="_blank" class="floating-coffee-btn">
+        <i class="fas fa-coffee"></i>
+    </a> -->
+    
+    <!-- <script>
+        // Auto-show tooltip on mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            function isMobile() {
+                return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+            
+            if (isMobile()) {
+                const coffeeBtn = document.querySelector('.floating-coffee-btn');
+                if (coffeeBtn) {
+                    // Add mobile-show class after a small delay
+                    setTimeout(() => {
+                        coffeeBtn.classList.add('mobile-show');
+                        
+                        // Remove the class after 3 seconds
+                        setTimeout(() => {
+                            coffeeBtn.classList.remove('mobile-show');
+                        }, 3000);
+                    }, 500);
+                }
+            }
+        });
+    </script> -->
+
 </body>
 </html>
