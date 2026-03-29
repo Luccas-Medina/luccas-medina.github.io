@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta da Sorte - Crie Sorteios Personalizados</title>
+    <meta name="description" content="Crie roletas de sorteio personalizadas, justas e divertidas. Ideal para decisões, sorteios em eventos, escolhas aleatórias e muito mais.">
+    
+    <link rel="stylesheet" href="../css/grid-system.css">
+    <link rel="stylesheet" href="../css/modern-style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-primary: #561490;
+            --app-light: rgba(86, 20, 144, 0.1);
+            --app-dark: #3d0f66;
+        }
+        
+        .app-tag {
+            display: inline-block;
+            background-color: var(--app-light);
+            color: var(--app-primary);
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            border: 1px solid var(--app-primary);
+            margin-bottom: var(--spacing-3);
+        }
+        
+        .hero-app {
+            background: linear-gradient(135deg, rgba(86, 20, 144, 0.1) 0%, rgba(86, 20, 144, 0.05) 100%),
+                        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .feature-item-app {
+            border-left: 4px solid var(--app-primary);
+            padding-left: var(--spacing-4);
+        }
+        
+        .btn-download {
+            background-color: var(--app-primary);
+        }
+        
+        .btn-download:hover {
+            background-color: var(--app-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header>
+        <nav class="container-max flex justify-between items-center main-nav">
+            <a href="../index_new.html" class="logo">
+                <i class="fas fa-rocket"></i> Luccas Tools
+            </a>
+            <div class="flex items-center gap" style="gap: var(--spacing-4);">
+                <a href="../index_new.html">Home</a>
+                <a href="../about.html">Sobre</a>
+                <a href="../contact.html">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class=\"hero hero-app\">
+        <div class="container-max hero-content">
+            <div class=\"app-tag\">🎰 Entretenimento</div>
+            <h1>Roleta da Sorte Personalizada</h1>
+            <p>Crie roletas de sorteio personalizadas para decisões justas e divertidas.</p>
+            <div class="cta-group">
+                <a href=\"../roleta_da_sorte_web/index.html\" class=\"btn btn-primary btn-download btn-large\">Usar Ferramenta</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         MAIN CONTENT
+         ============================================ -->
+    <main class="container-max">
+        <!-- Key Features -->
+        <section class="section">
+            <h2 class="section-title">Principais Funcionalidades</h2>
+            <div class="grid grid-cols-2">
+                <div class="feature-card feature-item-app">
+                    <h3>Personalização Total</h3>
+                    <p>Adicione quantas opções quiser à sua roleta, sem limites de quantidade.</p>
+                </div>
+                <div class="feature-card feature-item-app">
+                    <h3>Títulos Customizáveis</h3>
+                    <p>Dê um nome especial para cada roleta que você criar.</p>
+                </div>
+                <div class="feature-card feature-item-app">
+                    <h3>Animação Realista</h3>
+                    <p>Efeitos visuais e sonoros envolventes durante o giro da roleta.</p>
+                </div>
+                <div class="feature-card feature-item-app">
+                    <h3>Cores Vibrantes</h3>
+                    <p>Cada opção recebe automaticamente uma cor única e chamativa.</p>
+                </div>
+                <div class="feature-card feature-item-app">
+                    <h3>Edição Rápida</h3>
+                    <p>Adicione, remova ou edite opções a qualquer momento durante o uso.</p>
+                </div>
+                <div class="feature-card feature-item-app">
+                    <h3>Opções Padrão</h3>
+                    <p>Comece rapidamente com exemplos pré-configurados prontos para usar.</p>
+                        <div class="feature-icon">📋</div>
+                    <p>Comece rapidamente com exemplos pré-configurados prontos para usar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="section">
+            <h2 class="section-title">Como Funciona</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="p-6 p-4" style="margin-bottom: var(--spacing-6);">
+                    <div style="background: #f3f4f6; border-radius: var(--radius-lg); padding: var(--spacing-8); text-align: center; margin-bottom: var(--spacing-6);">
+                        <p style="color: #666; margin: 0; font-size: var(--font-size-lg);">🎡</p>
+                        <p style="margin: var(--spacing-2) 0 0 0; color: #999;">Imagem da Roleta</p>
+                    </div>
+                </div>
+                
+                <ol style="list-style: decimal; padding-left: var(--spacing-6);">
+                    <li style="margin-bottom: var(--spacing-4);">
+                        <strong>Escolha um template</strong> ou comece do zero
+                    </li>
+                    <li style="margin-bottom: var(--spacing-4);">
+                        <strong>Digite suas opções</strong> (ex: filme 1, filme 2, etc.)
+                    </li>
+                    <li style="margin-bottom: var(--spacing-4);">
+                        <strong>Personalize cores</strong> clicando no círculo colorido de cada opção
+                    </li>
+                    <li style="margin-bottom: var(--spacing-4);">
+                        <strong>Clique em GIRAR</strong> e aproveite o sorteio
+                    </li>
+                    <li>
+                        <strong>Use o resultado</strong> para sua decisão ou sorteio
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="section">
+            <h2 class="section-title">Ideal Para</h2>
+            <div class="grid grid-cols-3">
+                <div class="card">
+                    <h3>🎉 Eventos e Festas</h3>
+                    <p>Realize sorteios justos e transparentes em festas, eventos corporativos e promoções.</p>
+                </div>
+                <div class="card">
+                    <h3>👨‍👩‍👧 Famílias</h3>
+                    <p>Decida de forma justa e divertida: tarefas, filmes, restaurantes e muito mais.</p>
+                </div>
+                <div class="card">
+                    <h3>🏫 Educadores</h3>
+                    <p>Sorteie alunos, crie dinâmicas de grupo e adicione gamificação às aulas.</p>
+                </div>
+                <div class="card">
+                    <h3>🎮 Comunidades Online</h3>
+                    <p>Realize sorteios de prêmios em streams, escolha jogos e desafios aleatórios.</p>
+                </div>
+                <div class="card">
+                    <h3>💼 Empresas</h3>
+                    <p>Use para apresentações, escolhas de equipes, sorteios internos e muito mais.</p>
+                </div>
+                <div class="card">
+                    <h3>🎲 Jogadores</h3>
+                    <p>Adicione elemento de sorte em jogos caseiros e competições entre amigos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section class="section">
+            <h2 class="section-title">Exemplos de Uso</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="card mb-4">
+                    <h3>🎬 Noite de Cinema</h3>
+                    <p>Crie uma roleta com seus filmes favoritos e deixe a sorte decidir qual assistir.</p>
+                </div>
+                <div class="card mb-4">
+                    <h3>🍽️ Noite de Jantar</h3>
+                    <p>Liste seus restaurantes preferidos e deixe a roleta escolher para você.</p>
+                </div>
+                <div class="card mb-4">
+                    <h3>🏠 Tarefas Domésticas</h3>
+                    <p>Distribua tarefas de forma justa entre os membros da família.</p>
+                </div>
+                <div class="card">
+                    <h3>🎁 Sorteios</h3>
+                    <p>Realize sorteios transparentes de prêmios em eventos e promoções.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" style="text-align: center;">
+            <h2>Crie Sua Roleta Agora</h2>
+            <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-6);">
+                Sem cadastro, sem complicações. Comece a usar imediatamente.
+            </p>
+            <a href="../roleta_da_sorte_web/index.html" class="btn btn-primary btn-large">Criar Roleta</a>
+        </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="container-max">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ferramentas</h4>
+                    <ul>
+                        <li><a href="seo-ranking-monitor.html">SEO Ranking Monitor</a></li>
+                        <li><a href="roleta-da-sorte.html">Roleta da Sorte</a></li>
+                        <li><a href="biblia-sagrada.html">Bíblia Sagrada</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sobre</h4>
+                    <ul>
+                        <li><a href="../about.html">Sobre Nós</a></li>
+                        <li><a href="../contact.html">Contato</a></li>
+                        <li><a href="../privacy-policy.html">Privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Luccas Medina. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
