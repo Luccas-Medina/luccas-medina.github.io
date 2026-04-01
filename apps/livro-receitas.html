@@ -1,231 +1,610 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Livro de Receitas - Receitas Offline</title>
-    <meta name="description" content="Organize suas receitas favoritas em um livro digital. Acesse offline, sem internet, com modo escuro e busca rápida.">
-    
-    <link rel="stylesheet" href="../css/grid-system.css">
-    <link rel="stylesheet" href="../css/modern-style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --app-primary: #C14442;
-            --app-light: rgba(193, 68, 66, 0.1);
-            --app-dark: #8a3130;
-        }
-        
-        .app-tag {
-            display: inline-block;
-            background-color: var(--app-light);
-            color: var(--app-primary);
-            padding: var(--spacing-1) var(--spacing-3);
-            border-radius: var(--radius-lg);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            border: 1px solid var(--app-primary);
-            margin-bottom: var(--spacing-3);
-        }
-        
-        .hero-app {
-            background: linear-gradient(135deg, rgba(193, 68, 66, 0.1) 0%, rgba(193, 68, 66, 0.05) 100%),
-                        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .feature-item-app {
-            border-left: 4px solid var(--app-primary);
-            padding-left: var(--spacing-4);
-        }
-        
-        .btn-download {
-            background-color: var(--app-primary);
-        }
-        
-        .btn-download:hover {
-            background-color: var(--app-dark);
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Meu Livro de Receitas | Versao Alpha</title>
+	<meta name="description" content="Meu Livro de Receitas: salve receitas offline, organize por categorias e encontre tudo rapido na cozinha.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--bg-deep: #12352f;
+			--bg-soft: #2e6a5f;
+			--paper: #efe2cc;
+			--leaf: #9ebc87;
+			--wood: #78533f;
+			--mint: #d7efdc;
+			--card-dark: #224f47;
+			--card-brown: #664232;
+			--text-main: #f3efe7;
+			--text-dark: #18302b;
+			--shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.25);
+			--shadow-card: 0 12px 26px rgba(0, 0, 0, 0.3);
+			--radius-xl: 34px;
+			--radius-lg: 24px;
+			--radius-md: 18px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			font-family: 'Manrope', sans-serif;
+			color: var(--text-main);
+			background: radial-gradient(circle at 12% 4%, #4f9b87 0%, #2a6a5d 32%, #13443c 68%, #0c2825 100%);
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.page-wrap {
+			width: 92%;
+			max-width: 1120px;
+			margin: 0 auto;
+			padding: 24px 0 70px;
+		}
+
+		.top-nav {
+			margin-bottom: 20px;
+			border-radius: 999px;
+			background: rgba(9, 29, 26, 0.42);
+			border: 1px solid rgba(226, 236, 230, 0.25);
+			padding: 12px 22px;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.brand {
+			display: inline-block;
+			font-family: 'Nunito', sans-serif;
+			font-weight: 800;
+			font-size: 22px;
+			color: #f2e4ca;
+			letter-spacing: 0.5px;
+		}
+
+		.top-links {
+			float: right;
+			margin-top: 4px;
+		}
+
+		.top-links a {
+			display: inline-block;
+			margin-left: 18px;
+			color: #f3efe8;
+			font-size: 14px;
+			font-weight: 600;
+			opacity: 0.9;
+		}
+
+		.top-links a:hover {
+			opacity: 1;
+			color: #ffe8bd;
+		}
+
+		.clear {
+			clear: both;
+		}
+
+		.hero {
+			border-radius: var(--radius-xl);
+			overflow: hidden;
+			background:
+				linear-gradient(124deg, rgba(27, 93, 81, 0.95) 0%, rgba(40, 130, 112, 0.9) 45%, rgba(121, 82, 62, 0.86) 100%),
+				url('https://play-lh.googleusercontent.com/LEg4-fuwkYSr8pHTxARvcwoWd6Fl5xRKqVPnthRgM3LSuMMnVWg36We0l93AZcDDnooSEqcy-F2va90xwsJusDs=w526-h296-rw') center/cover no-repeat;
+			box-shadow: var(--shadow-soft);
+			padding: 68px 56px 68px;
+			position: relative;
+		}
+
+		.hero:before {
+			content: '';
+			position: absolute;
+			right: -80px;
+			top: -40px;
+			width: 320px;
+			height: 320px;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(255, 233, 189, 0.25) 0%, rgba(255, 233, 189, 0) 72%);
+		}
+
+		.hero-content {
+			position: relative;
+			width: 52%;
+			max-width: 560px;
+		}
+
+		.label {
+			display: inline-block;
+			padding: 7px 16px;
+			border-radius: 999px;
+			margin-bottom: 14px;
+			color: var(--text-dark);
+			background: linear-gradient(180deg, #f5dfb5 0%, #ebc995 100%);
+			font-size: 13px;
+			font-weight: 800;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		h1 {
+			margin: 0;
+			font-family: 'Nunito', sans-serif;
+			font-size: 62px;
+			line-height: 0.96;
+			color: #fff3dd;
+			letter-spacing: -1px;
+		}
+
+		.hero p {
+			margin: 24px 0 34px;
+			max-width: 520px;
+			line-height: 1.75;
+			font-size: 18px;
+			color: rgba(248, 246, 240, 0.94);
+		}
+
+		.btn-main {
+			display: inline-block;
+			background: linear-gradient(180deg, #f5ddb5 0%, #dfbd88 100%);
+			color: #442f21;
+			font-size: 17px;
+			font-weight: 800;
+			padding: 16px 34px;
+			border-radius: 999px;
+			box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+		}
+
+		.section-panel {
+			margin-top: 34px;
+			border-radius: var(--radius-xl);
+			padding: 30px 34px;
+			background: linear-gradient(135deg, rgba(35, 102, 89, 0.94) 0%, rgba(28, 80, 72, 0.96) 100%);
+			border: 1px solid rgba(218, 234, 225, 0.18);
+			box-shadow: var(--shadow-soft);
+		}
+
+		.feature-box {
+			width: 24%;
+			display: inline-block;
+			vertical-align: top;
+			padding: 12px 14px;
+		}
+
+		.feature-icon {
+			width: 56px;
+			height: 56px;
+			border-radius: 50%;
+			line-height: 56px;
+			text-align: center;
+			font-size: 24px;
+			font-weight: 700;
+			background: rgba(228, 243, 236, 0.14);
+			border: 1px solid rgba(233, 241, 235, 0.34);
+			margin-bottom: 12px;
+		}
+
+		.feature-box h3 {
+			margin: 0 0 6px;
+			font-size: 20px;
+			color: #f4ecd8;
+		}
+
+		.feature-box p {
+			margin: 0;
+			font-size: 14px;
+			line-height: 1.6;
+			color: #d7e2db;
+		}
+
+		.cards-area {
+			margin-top: 34px;
+		}
+
+		.recipe-card {
+			width: 31.2%;
+			margin: 0 1.6% 18px 0;
+			display: inline-block;
+			vertical-align: top;
+			border-radius: var(--radius-lg);
+			overflow: hidden;
+			background: #204940;
+			box-shadow: var(--shadow-card);
+			border: 1px solid rgba(236, 239, 231, 0.12);
+		}
+
+		.recipe-card.last {
+			margin-right: 0;
+		}
+
+		.recipe-thumb {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			display: block;
+		}
+
+		.recipe-content {
+			padding: 18px 18px 20px;
+		}
+
+		.recipe-content h4 {
+			margin: 0 0 9px;
+			font-size: 19px;
+			color: #f8efd8;
+		}
+
+		.recipe-content p {
+			margin: 0;
+			font-size: 14px;
+			line-height: 1.6;
+			color: #d9e6de;
+		}
+
+		.recipe-card.wood {
+			background: linear-gradient(140deg, #7b4b38 0%, #583627 100%);
+		}
+
+		.recipe-card.paper {
+			background: linear-gradient(140deg, #e8d5b5 0%, #cbb08b 100%);
+		}
+
+		.recipe-card.paper .recipe-content h4,
+		.recipe-card.paper .recipe-content p {
+			color: #413022;
+		}
+
+		.steps {
+			margin-top: 34px;
+			border-radius: var(--radius-xl);
+			padding: 30px 34px;
+			background: linear-gradient(130deg, rgba(120, 82, 62, 0.92) 0%, rgba(60, 36, 29, 0.92) 100%);
+			border: 1px solid rgba(242, 226, 196, 0.18);
+			box-shadow: var(--shadow-soft);
+		}
+
+		.steps h2,
+		.gallery-title {
+			margin: 0 0 14px;
+			font-family: 'Nunito', sans-serif;
+			font-size: 34px;
+			color: #faedcf;
+		}
+
+		.step {
+			width: 19.1%;
+			margin-right: 1%;
+			display: inline-block;
+			vertical-align: top;
+			background: rgba(252, 240, 214, 0.1);
+			border: 1px solid rgba(253, 235, 199, 0.28);
+			border-radius: var(--radius-md);
+			padding: 14px 12px;
+			min-height: 146px;
+		}
+
+		.step.last {
+			margin-right: 0;
+		}
+
+		.step-number {
+			display: inline-block;
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 32px;
+			margin-bottom: 8px;
+			font-size: 15px;
+			font-weight: 800;
+			color: #3f2c1f;
+			background: #f4dab0;
+		}
+
+		.step h4 {
+			margin: 0 0 6px;
+			font-size: 16px;
+			color: #f8eacc;
+		}
+
+		.step p {
+			margin: 0;
+			font-size: 13px;
+			line-height: 1.55;
+			color: #e5d8be;
+		}
+
+		.gallery-title {
+			margin-top: 38px;
+			margin-bottom: 14px;
+			text-align: center;
+			font-size: 30px;
+		}
+
+		.gallery-frame {
+			background: rgba(10, 31, 28, 0.35);
+			border-radius: var(--radius-xl);
+			padding: 14px;
+			border: 1px solid rgba(229, 239, 231, 0.16);
+			box-shadow: var(--shadow-soft);
+		}
+
+		.gallery-shot {
+			width: 24.25%;
+			margin-right: 1%;
+			display: inline-block;
+			vertical-align: top;
+			border-radius: 16px;
+			overflow: hidden;
+		}
+
+		.gallery-shot.last {
+			margin-right: 0;
+		}
+
+		.gallery-shot img {
+			width: 100%;
+			height: 180px;
+			object-fit: cover;
+			display: block;
+		}
+
+		.footer-note {
+			margin-top: 22px;
+			text-align: center;
+			color: #d7e5de;
+			font-size: 14px;
+			opacity: 0.95;
+		}
+
+		@media (max-width: 980px) {
+			.hero {
+				padding: 52px 34px;
+			}
+
+			.hero-content {
+				width: 100%;
+			}
+
+			h1 {
+				font-size: 52px;
+			}
+
+			.feature-box {
+				width: 49%;
+				margin-bottom: 12px;
+			}
+
+			.recipe-card {
+				width: 48.8%;
+				margin-right: 2%;
+			}
+
+			.recipe-card:nth-child(2n) {
+				margin-right: 0;
+			}
+
+			.step {
+				width: 48.7%;
+				margin-right: 2%;
+				margin-bottom: 10px;
+				min-height: 120px;
+			}
+
+			.step:nth-child(2n) {
+				margin-right: 0;
+			}
+
+			.gallery-shot {
+				width: 49.3%;
+				margin-right: 1.4%;
+				margin-bottom: 8px;
+			}
+
+			.gallery-shot:nth-child(2n) {
+				margin-right: 0;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.page-wrap {
+				width: 94%;
+				padding-top: 18px;
+			}
+
+			.brand {
+				font-size: 19px;
+			}
+
+			.top-links {
+				float: none;
+				margin-top: 8px;
+			}
+
+			.top-links a {
+				margin: 0 10px 8px 0;
+			}
+
+			.hero {
+				padding: 38px 24px;
+			}
+
+			h1 {
+				font-size: 40px;
+			}
+
+			.hero p {
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+			.feature-box,
+			.recipe-card,
+			.step,
+			.gallery-shot {
+				width: 100%;
+				margin-right: 0;
+			}
+
+			.recipe-thumb {
+				height: 210px;
+			}
+
+			.section-panel,
+			.steps {
+				padding: 24px 18px;
+			}
+
+			.steps h2,
+			.gallery-title {
+				font-size: 28px;
+			}
+		}
+	</style>
 </head>
 <body>
-    <!-- ============================================
-         HEADER & NAVIGATION
-         ============================================ -->
-    <header>
-        <nav class="container-max flex justify-between items-center main-nav">
-            <a href="../index_new.html" class="logo">
-                <i class="fas fa-rocket"></i> Luccas Tools
-            </a>
-            <div class="flex items-center gap" style="gap: var(--spacing-4);">
-                <a href="../index_new.html">Home</a>
-                <a href="../about.html">Sobre</a>
-                <a href="../contact.html">Contato</a>
-            </div>
-        </nav>
-    </header>
+	<div class="page-wrap">
+		<div class="top-nav">
+			<a class="brand" href="index_new.html">Luccas Tools</a>
+			<div class="top-links">
+				<a href="index_new.html">Home</a>
+				<a href="about.html">Sobre</a>
+				<a href="contact.html">Contato</a>
+			</div>
+			<div class="clear"></div>
+		</div>
 
-    <!-- ============================================
-         HERO SECTION
-         ============================================ -->
-    <section class=\"hero hero-app\">
-        <div class="container-max hero-content">
-            <div class=\"app-tag\">👨‍🍳 Culinária</div>
-            <h1>Meu Livro de Receitas</h1>
-            <p>Suas receitas guardadas offline para usar a qualquer hora na cozinha.</p>
-            <div class="cta-group">
-                <a href=\"https://play.google.com/store/apps/details?id=com.livro_de_receitas.app\" target=\"_blank\" rel=\"noopener\" class=\"btn btn-primary btn-download btn-large\"><i class=\"fab fa-google-play\"></i> Baixar App</a>
-            </div>
-        </div>
-    </section>
+		<section class="hero">
+			<div class="hero-content">
+				<span class="label">Aplicativo de Culinaria</span>
+				<h1>Meu Livro<br>de Receitas</h1>
+				<p>
+					Suas receitas favoritas sempre com voce: acesse offline, busque em segundos,
+					organize por categorias e cozinhe com praticidade em qualquer momento.
+				</p>
+				<a class="btn-main" href="https://play.google.com/store/apps/details?id=com.livro_de_receitas.app" target="_blank" rel="noopener">Baixar na Google Play</a>
+			</div>
+		</section>
 
-    <!-- ============================================
-         MAIN CONTENT
-         ============================================ -->
-    <main class="container-max">
-        <!-- Key Features -->
-        <section class="section">
-            <h2 class="section-title">Por Que Usar</h2>
-            <div class="grid grid-cols-2">
-                <div class="feature-card feature-item-app">
-                    <h3>Acesso Offline</h3>
-                    <p>Acesse suas receitas sem precisar de conexão com a internet.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>Organização Prática</h3>
-                    <p>Organize suas receitas por categoria ou como preferir.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>Fácil Busca</h3>
-                    <p>Encontre uma receita rapidamente usando a busca inteligente.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>Modo Escuro</h3>
-                    <p>Use o aplicativo com conforto a noite com o modo escuro.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>Para Toda Família</h3>
-                    <p>Compartilhe suas receitas favoritas com amigos e família.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>Na Cozinha</h3>
-                    <p>Use enquanto cozinha, sem preocupações com internet ou bateria.</p>
-                </div>
-            </div>
-        </section>
+		<section class="section-panel">
+			<div class="feature-box">
+				<div class="feature-icon">1</div>
+				<h3>Acesso Offline</h3>
+				<p>Consulte receitas sem internet durante o preparo, mesmo em sinal fraco.</p>
+			</div>
+			<div class="feature-box">
+				<div class="feature-icon">2</div>
+				<h3>Busca Rapida</h3>
+				<p>Encontre pratos por nome e ingredientes com poucos toques na tela.</p>
+			</div>
+			<div class="feature-box">
+				<div class="feature-icon">3</div>
+				<h3>Categorias</h3>
+				<p>Organize cafe da manha, almoço, jantar e sobremesas no seu estilo.</p>
+			</div>
+			<div class="feature-box">
+				<div class="feature-icon">4</div>
+				<h3>Modo Escuro</h3>
+				<p>Visual confortavel para usar a noite e em cozinhas com pouca luz.</p>
+			</div>
+		</section>
 
-        <!-- Content -->
-        <section class="section">
-            <h2 class="section-title">O Que Você Encontra</h2>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div style="background: #f3f4f6; border-radius: var(--radius-lg); padding: var(--spacing-8); text-align: center; margin-bottom: var(--spacing-6);">
-                    <p style="color: #666; margin: 0; font-size: var(--font-size-lg);">👨‍🍳</p>
-                    <p style="margin: var(--spacing-2) 0 0 0; color: #999;">Imagem do App</p>
-                </div>
-                
-                <h3 style="margin-bottom: var(--spacing-4);">Recursos Principais:</h3>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: var(--spacing-3) 0; padding-left: var(--spacing-6); position: relative; border-bottom: 1px solid #e5e7eb;">
-                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
-                        <strong>Adicionar Receitas</strong> - Crie suas próprias receitas
-                    </li>
-                    <li style="padding: var(--spacing-3) 0; padding-left: var(--spacing-6); position: relative; border-bottom: 1px solid #e5e7eb;">
-                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
-                        <strong>Ingredientes e Modo de Preparo</strong> - Organize tudo claramente
-                    </li>
-                    <li style="padding: var(--spacing-3) 0; padding-left: var(--spacing-6); position: relative; border-bottom: 1px solid #e5e7eb;">
-                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
-                        <strong>Categorias</strong> - Organize por tipo de prato
-                    </li>
-                    <li style="padding: var(--spacing-3) 0; padding-left: var(--spacing-6); position: relative;">
-                        <span style="position: absolute; left: 0; color: #10b981; font-weight: bold;">✓</span>
-                        <strong>Notas e Dicas</strong> - Adicione suas dicas especiais
-                    </li>
-                </ul>
-            </div>
-        </section>
+		<section class="cards-area">
+			<div class="recipe-card">
+				<img class="recipe-thumb" src="https://play-lh.googleusercontent.com/0t_s2-AEDtATZebn8sICNCbLzEwqKJ-AGLX1oYLYbQhgrw0UvVWREgvz2016JnmxMXHb6r9nFGFzcEGziHnvUA=w526-h296-rw" alt="Tela inicial do app Meu Livro de Receitas">
+				<div class="recipe-content">
+					<h4>Organizacao Pratica</h4>
+					<p>Crie seu livro pessoal de receitas com estrutura simples e intuitiva.</p>
+				</div>
+			</div>
+			<div class="recipe-card wood">
+				<img class="recipe-thumb" src="https://play-lh.googleusercontent.com/4zOY7vSL7d2W0AEMaUbmSd2d_00VySnQOSqrVwrfQOzio3hsq2PR5dkjHkpbb_JCvaoZcT8d68j5jDzzPuW93Q=w526-h296-rw" alt="Tela de lista de receitas do aplicativo">
+				<div class="recipe-content">
+					<h4>Receitas Favoritas</h4>
+					<p>Salve receitas de familia e mantenha tudo organizado no mesmo lugar.</p>
+				</div>
+			</div>
+			<div class="recipe-card paper last">
+				<img class="recipe-thumb" src="https://play-lh.googleusercontent.com/KjjwkMe-5iyjQLt5mUB1958yiEGSdyHT4VC8a5z4isGYYM15jQlQumsnSKlyzyWjmTJgp8LtPwH88H1H5z16Pw=w526-h296-rw" alt="Tela de detalhes de receita com ingredientes e preparo">
+				<div class="recipe-content">
+					<h4>Detalhes Claros</h4>
+					<p>Registre ingredientes, modo de preparo, notas e dicas especiais.</p>
+				</div>
+			</div>
 
-        <!-- How to Use -->
-        <section class="section">
-            <h2 class="section-title">Como Usar</h2>
-            <div style="max-width: 600px; margin: 0 auto;">
-                <ol style="list-style: decimal; padding-left: var(--spacing-6);">
-                    <li style="margin-bottom: var(--spacing-4);">
-                        Baixe o app na Google Play Store
-                    </li>
-                    <li style="margin-bottom: var(--spacing-4);">
-                        Abra o app e clique em "Adicionar Receita"
-                    </li>
-                    <li style="margin-bottom: var(--spacing-4);">
-                        Preencha o nome, ingredientes e modo de preparo
-                    </li>
-                    <li style="margin-bottom: var(--spacing-4);">
-                        Escolha uma categoria para organizar melhor
-                    </li>
-                    <li>
-                        Acesse sua receita na cozinha sem necessidade de internet
-                    </li>
-                </ol>
-            </div>
-        </section>
+			<div class="recipe-card">
+				<img class="recipe-thumb" src="https://play-lh.googleusercontent.com/Tm9jO8wNWfglirtbp67Q4bqgHplfSDS1Jks42y8cD18h3-hHtYtKns_FhNUj22zqilVWIX35gocmKllePZlY=w526-h296-rw" alt="Busca de receitas no app">
+				<div class="recipe-content">
+					<h4>Busca Inteligente</h4>
+					<p>Localize rapidamente qualquer prato durante sua rotina na cozinha.</p>
+				</div>
+			</div>
+			<div class="recipe-card wood">
+				<img class="recipe-thumb" src="https://play-lh.googleusercontent.com/haMArrhUrWklLWIJlvWoDTPU25XT1M2yUuJ_64b-LpUCvKTJUJt1hNKepoY5eJvsd28687wOn9-70ELGQQ07Fw=w526-h296-rw" alt="Categorias de pratos no aplicativo">
+				<div class="recipe-content">
+					<h4>Categorias Visuais</h4>
+					<p>Classifique receitas por tipo para manter seu cardapio sempre pronto.</p>
+				</div>
+			</div>
+			<div class="recipe-card paper last">
+				<img class="recipe-thumb" src="https://play-lh.googleusercontent.com/UHtMOHPDFTVZHHQ_eRmrebFb0JX-zypdt7aUZ0lyujnbrYPBML5Zzxb0SFJoRRN898KOZv3RIVduWV_4i6MK=w526-h296-rw" alt="Modo escuro no app Meu Livro de Receitas">
+				<div class="recipe-content">
+					<h4>Modo Escuro</h4>
+					<p>Mais conforto visual para cozinhar de noite com leitura facilitada.</p>
+				</div>
+			</div>
+		</section>
 
-        <!-- Use Cases -->
-        <section class="section">
-            <h2 class="section-title">Ideal Para</h2>
-            <div class="grid grid-cols-3">
-                <div class="card">
-                    <h3>👩‍🍳 Chefs de Casa</h3>
-                    <p>Organize suas receitas e técnicas de cozinha favoritas.</p>
-                </div>
-                <div class="card">
-                    <h3>📚 Colecionadores</h3>
-                    <p>Crie seu próprio livro de receitas digital e pessoal.</p>
-                </div>
-                <div class="card">
-                    <h3>👥 Famílias</h3>
-                    <p>Compartilhe receitas de família e crie tradições culinárias.</p>
-                </div>
-            </div>
-        </section>
+		<section class="steps">
+			<h2>Como usar em 5 passos</h2>
+			<div class="step">
+				<span class="step-number">1</span>
+				<h4>Instale o app</h4>
+				<p>Baixe gratuitamente na Google Play Store.</p>
+			</div>
+			<div class="step">
+				<span class="step-number">2</span>
+				<h4>Adicione receitas</h4>
+				<p>Crie suas receitas com titulo, ingredientes e preparo.</p>
+			</div>
+			<div class="step">
+				<span class="step-number">3</span>
+				<h4>Escolha categorias</h4>
+				<p>Organize por tipo de prato ou ocasiao.</p>
+			</div>
+			<div class="step">
+				<span class="step-number">4</span>
+				<h4>Inclua notas</h4>
+				<p>Guarde truques e adaptacoes da sua cozinha.</p>
+			</div>
+			<div class="step last">
+				<span class="step-number">5</span>
+				<h4>Cozinhe offline</h4>
+				<p>Acesse tudo sem internet quando precisar.</p>
+			</div>
+		</section>
 
-        <!-- CTA Section -->
-        <section class="section" style="text-align: center;">
-            <h2>Baixe Agora</h2>
-            <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-6);">
-                Gratuitamente na Google Play Store. Suas receitas sempre à mão.
-            </p>
-            <a href="https://play.google.com/store/apps/details?id=com.livro_de_receitas.app" target="_blank" class="btn btn-primary btn-large">Baixar Agora</a>
-        </section>
-    </main>
+		<h2 class="gallery-title">Mais telas do aplicativo</h2>
+		<section class="gallery-frame">
+			<div class="gallery-shot">
+				<img src="https://play-lh.googleusercontent.com/CqyUTcmbGhuWNRS8QZiecOI6Fpd6_-J6gCyULZqhVm6-q9w-xkKFtfiiTPRQ2uDTKJ5rrzOS1NrbbTKfKTf8=w526-h296-rw" alt="Tela adicional do Meu Livro de Receitas">
+			</div>
+			<div class="gallery-shot">
+				<img src="https://play-lh.googleusercontent.com/LEg4-fuwkYSr8pHTxARvcwoWd6Fl5xRKqVPnthRgM3LSuMMnVWg36We0l93AZcDDnooSEqcy-F2va90xwsJusDs=w526-h296-rw" alt="Tela com destaque de recurso no app">
+			</div>
+			<div class="gallery-shot">
+				<img src="https://play-lh.googleusercontent.com/4zOY7vSL7d2W0AEMaUbmSd2d_00VySnQOSqrVwrfQOzio3hsq2PR5dkjHkpbb_JCvaoZcT8d68j5jDzzPuW93Q=w526-h296-rw" alt="Tela de colecao de receitas">
+			</div>
+			<div class="gallery-shot last">
+				<img src="https://play-lh.googleusercontent.com/KjjwkMe-5iyjQLt5mUB1958yiEGSdyHT4VC8a5z4isGYYM15jQlQumsnSKlyzyWjmTJgp8LtPwH88H1H5z16Pw=w526-h296-rw" alt="Tela final de detalhes de receita">
+			</div>
+		</section>
 
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
-    <footer>
-        <div class="container-max">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Ferramentas</h4>
-                    <ul>
-                        <li><a href="seo-ranking-monitor.html">SEO Ranking Monitor</a></li>
-                        <li><a href="roleta-da-sorte.html">Roleta da Sorte</a></li>
-                        <li><a href="biblia-sagrada.html">Bíblia Sagrada</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Sobre</h4>
-                    <ul>
-                        <li><a href="../about.html">Sobre Nós</a></li>
-                        <li><a href="../contact.html">Contato</a></li>
-                        <li><a href="../privacy-policy.html">Privacidade</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Luccas Medina. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
+		<p class="footer-note">Ideal para chefs de casa, familias e apaixonados por culinaria.</p>
+	</div>
 </body>
 </html>
