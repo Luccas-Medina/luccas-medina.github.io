@@ -3,13 +3,915 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chaveiro Pix - Organized Wallet</title>
-    <link rel="stylesheet" href="../css/grid-system.css"><link rel="stylesheet" href="../css/modern-style.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"><style>:root { --app-primary: #2ABBAB; --app-light: rgba(42, 187, 171, 0.1); --app-dark: #1f8880; }.app-tag { display: inline-block; background-color: var(--app-light); color: var(--app-primary); padding: var(--spacing-1) var(--spacing-3); border-radius: var(--radius-lg); font-size: var(--font-size-sm); font-weight: 600; border: 1px solid var(--app-primary); margin-bottom: var(--spacing-3); }.hero-app { background: linear-gradient(135deg, rgba(42, 187, 171, 0.1) 0%, rgba(42, 187, 171, 0.05) 100%), linear-gradient(135deg, #667eea 0%, #764ba2 100%); }.btn-download { background-color: var(--app-primary); }.btn-download:hover { background-color: var(--app-dark); }</style>
+    <title>Carteira de Chaves Pix | Versão Alpha</title>
+    <meta name="description" content="Carteira de Chaves Pix: organize suas chaves, copie rápido e compartilhe com segurança em um só app.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f3f6f8;
+            --ink: #1b2b3b;
+            --ink-soft: #5f6c79;
+            --primary: #73cde3;
+            --primary-deep: #43afcc;
+            --card-dark: #4f5970;
+            --line: #e2e8ee;
+            --white: #ffffff;
+            --radius-xl: 34px;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow-soft: 0 16px 32px rgba(22, 45, 74, 0.11);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: var(--ink);
+            background-color: var(--bg-main);
+            background-image:
+                radial-gradient(circle at 25px 22px, rgba(115, 205, 227, 0.11) 0 2px, transparent 2px),
+                radial-gradient(circle at 8px 8px, rgba(72, 88, 113, 0.09) 0 1.5px, transparent 1.5px);
+            background-size: 64px 64px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: 0 auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 0 8px;
+        }
+
+        .logo {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            line-height: 1;
+            color: #253449;
+            font-size: 29px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            display: block;
+            color: var(--primary-deep);
+            font-size: 16px;
+            letter-spacing: 1.6px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            color: #4f5d6d;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .menu a:hover {
+            color: #1d2633;
+        }
+
+        .menu .contact {
+            background: #273244;
+            color: #f4f8ff;
+            border-radius: 999px;
+            padding: 9px 16px;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 36px 0 18px;
+        }
+
+        .hero-copy {
+            width: 48%;
+            max-width: 520px;
+        }
+
+        .hero-copy h1 {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(42px, 5vw, 66px);
+            line-height: 0.95;
+            letter-spacing: -1px;
+        }
+
+        .hero-copy h1 .accent {
+            color: var(--primary-deep);
+        }
+
+        .hero-copy p {
+            margin: 22px 0;
+            color: var(--ink-soft);
+            line-height: 1.75;
+            max-width: 470px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #8ad7ea 0%, #58bfd8 100%);
+            color: #123547;
+            font-weight: 700;
+            box-shadow: 0 10px 18px rgba(59, 141, 165, 0.24);
+        }
+
+        .btn-alt {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 1px solid #c8d7e2;
+            color: #334457;
+            font-weight: 600;
+            background: #f9fcff;
+        }
+
+        .hero-art {
+            width: 44%;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-bubble {
+            background: #a6e6f5;
+            border-radius: 56% 44% 55% 45% / 46% 60% 40% 54%;
+            padding: 40px 18px 30px;
+            border: 2px dashed rgba(80, 97, 119, 0.18);
+        }
+
+        .hero-art img {
+            width: min(320px, 100%);
+            border-radius: 28px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 42px 0 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(32px, 4vw, 44px);
+            letter-spacing: -0.6px;
+        }
+
+        .section-text {
+            text-align: center;
+            margin: 0 auto 24px;
+            max-width: 760px;
+            color: var(--ink-soft);
+            line-height: 1.7;
+        }
+
+        .services {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .service {
+            width: 320px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 26px 22px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .service-icon {
+            width: 86px;
+            height: 86px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            background: #59647a;
+            color: #f8fbff;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            font-size: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service h3 {
+            margin: 0 0 8px;
+            font-size: 22px;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .service p {
+            margin: 0;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        .mensagens-prontas {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-top: 28px;
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--line);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8fc 100%);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .mensagens-copy {
+            width: 46%;
+        }
+
+        .mensagens-copy h3 {
+            margin: 0 0 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 30px;
+            line-height: 1.05;
+        }
+
+        .mensagens-copy p {
+            margin: 0 0 12px;
+            color: var(--ink-soft);
+            line-height: 1.65;
+        }
+
+        .mensagens-copy ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--ink-soft);
+        }
+
+        .mensagens-copy li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .mensagens-copy strong {
+            color: #273649;
+        }
+
+        .mensagens-art {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #9fe1f2;
+            border: 2px dashed rgba(80, 97, 119, 0.22);
+            border-radius: 58% 42% 47% 53% / 46% 56% 44% 54%;
+            padding: 18px;
+        }
+
+        .mensagens-frame {
+            border-radius: 35%;
+            overflow: hidden;
+            border: 1px solid #26B4B2;
+            box-shadow: var(--shadow-soft);
+            aspect-ratio: 1 / 1;
+            width: min(420px, 100%);
+        }
+
+        .mensagens-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 35%;
+            display: block;
+        }
+
+        .vantagens-section {
+            margin-top: 34px;
+        }
+
+        .carousel-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .carousel-title {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(28px, 3.6vw, 40px);
+            letter-spacing: -0.4px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #c9d8e4;
+            background: #ffffff;
+            color: #2b3a4c;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .carousel-btn:hover {
+            background: #edf7fb;
+        }
+
+        .vantagens-carousel {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: #9acddd #dbe9f1;
+        }
+
+        .vantagens-card {
+            width: 320px;
+            flex: 0 0 320px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 22px 18px;
+            box-shadow: var(--shadow-soft);
+            scroll-snap-align: start;
+        }
+
+        .vantagens-emoji {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #ecf8fd;
+            border: 1px solid #cfe5ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .vantagens-card h4 {
+            margin: 0 0 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 22px;
+        }
+
+        .vantagens-card p {
+            margin: 0;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        .benefits {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-top: 14px;
+        }
+
+        .benefit-col {
+            width: 28%;
+        }
+
+        .benefit {
+            background: #ffffff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 16px 14px;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .benefit h4 {
+            margin: 0 0 5px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 18px;
+        }
+
+        .benefit p {
+            margin: 0;
+            color: var(--ink-soft);
+            line-height: 1.55;
+            font-size: 13px;
+        }
+
+        .benefit-center {
+            width: 40%;
+            text-align: center;
+        }
+
+        .benefit-center .bubble {
+            background: #a6e6f5;
+            border-radius: 58% 42% 48% 52% / 50% 46% 54% 50%;
+            border: 2px dashed rgba(80, 97, 119, 0.2);
+            padding: 24px 14px;
+        }
+
+        .benefit-center img {
+            width: min(320px, 100%);
+            border-radius: 22px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .how {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            margin-top: 40px;
+            margin-bottom: 22px;
+        }
+
+        .how-art {
+            width: 45%;
+        }
+
+        .how-art .blob {
+            background: #a6e6f5;
+            border-radius: 64% 36% 53% 47% / 42% 58% 42% 58%;
+            border: 2px dashed rgba(80, 97, 119, 0.2);
+            text-align: center;
+            padding: 26px 16px;
+        }
+
+        .how-art img {
+            width: min(330px, 100%);
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .how-steps {
+            width: 49%;
+        }
+
+        .how-steps h2 {
+            margin: 0 0 12px;
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(30px, 3.8vw, 46px);
+            letter-spacing: -0.5px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            background: #ffffff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .step-number {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #4f5970;
+            color: #f6fbff;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .step p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+            margin-bottom: 36px;
+        }
+
+        .shot {
+            width: calc(25% - 9px);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #d6e2eb;
+            background: #fff;
+        }
+
+        .shot img {
+            width: 100%;
+            height: 148px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cta {
+            text-align: center;
+            margin: 18px 0 40px;
+            padding: 30px 18px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(130deg, #7dd3e8 0%, #4fb5cf 100%);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .cta h2 {
+            margin: 0 0 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(30px, 4vw, 42px);
+            color: #163445;
+        }
+
+        .cta p {
+            margin: 0 0 16px;
+            color: #1f4356;
+        }
+
+        .footer {
+            border-top: 1px solid #dce6ee;
+            padding: 26px 0 32px;
+            text-align: center;
+        }
+
+        .footer .brand-small {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            color: #273649;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .footer .brand-small span {
+            display: block;
+            color: var(--primary-deep);
+            font-size: 14px;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .footer-nav a {
+            color: #536173;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .copy {
+            color: #6c7885;
+            margin: 0;
+            font-size: 12px;
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .benefits,
+            .how {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-copy,
+            .hero-art,
+            .mensagens-copy,
+            .mensagens-art,
+            .benefit-col,
+            .benefit-center,
+            .how-art,
+            .how-steps {
+                width: 100%;
+                max-width: 760px;
+            }
+
+            .mensagens-prontas {
+                flex-direction: column;
+                text-align: left;
+            }
+
+            .how-steps .step {
+                text-align: left;
+            }
+
+            .shot {
+                width: calc(50% - 6px);
+            }
+        }
+
+        @media (max-width: 620px) {
+            .menu {
+                justify-content: center;
+            }
+
+            .carousel-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .service {
+                width: 100%;
+            }
+
+            .vantagens-card {
+                width: min(86vw, 320px);
+                flex-basis: min(86vw, 320px);
+            }
+
+            .shot {
+                width: 100%;
+            }
+
+            .hero-copy h1 {
+                line-height: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header><nav class="container-max flex justify-between items-center main-nav"><a href="../index_new.html" class="logo"><i class="fas fa-rocket"></i> Luccas Tools</a><div class="flex items-center gap" style="gap: var(--spacing-4);"><a href="../index_new.html">Home</a><a href="../about.html">Sobre</a><a href="../contact.html">Contato</a></div></nav></header>
-    <section class="hero hero-app"><div class="container-max hero-content"><div class="app-tag">💳 Pix Wallet</div><h1>Chaveiro Pix</h1><p>Organize e gerencie suas chaves Pix com facilidade.</p><div class="cta-group"><a href="https://play.google.com/store/apps/details?id=com.chaveiro_pix_chaves_pix.app" target="_blank" rel="noopener" class="btn btn-primary btn-download btn-large"><i class="fab fa-google-play"></i> Baixar no Play Store</a></div></div></section>
-    <main class="container-max"><section class="section" style="text-align: center;"><a href="https://play.google.com/store/apps/details?id=com.chaveiro_pix_chaves_pix.app" target="_blank" rel="noopener" class="btn btn-primary btn-download btn-large"><i class="fab fa-google-play"></i> Baixar Agora</a></section></main>
-    <footer><div class="container-max"><div class="footer-bottom" style="text-align: center; border-top: none;"><p>&copy; 2026 Luccas Medina.</p></div></div></footer>
+    <header class="container topbar">
+        <a href="../index_new.html" class="logo">Carteira Pix</a>
+        <nav class="menu">
+            <a href="../index_new.html">Home</a>
+            <a href="../about.html">Sobre</a>
+            <a href="../contact.html">Contato</a>
+            <a href="https://play.google.com/store/apps/details?id=com.chaveiro_pix_chaves_pix.app" target="_blank" rel="noopener" class="contact">Google Play</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-copy">
+                <h1>Guarde Suas<br><span class="accent">Chaves Pix</span></h1>
+                <p>
+                    Mantenha suas chaves bem organizadas, com acesso rápido para copiar, consultar e compartilhar quando precisar.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn-main" href="https://play.google.com/store/apps/details?id=com.chaveiro_pix_chaves_pix.app" target="_blank" rel="noopener">Baixar App</a>
+                    <a class="btn-alt" href="#como-usar">Como funciona</a>
+                </div>
+            </div>
+            <div class="hero-art">
+                <div class="hero-bubble">
+                    <img src="https://play-lh.googleusercontent.com/ERBNQ8X77qwTWaMoe0SL9N142hPXDVMchuIXlN_JsYf7HNYXE9yI75gy-yqRrm42678UawfQcNa2JirMsLczzQ=w240-h480-rw" alt="Tela principal do app Carteira de Chaves Pix">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Funcionalidades Básicas</h2>
+            <p class="section-text">
+                Organização, velocidade e praticidade para o seu dia a dia com Pix.
+            </p>
+            <div class="services">
+                <article class="service">
+                    <div class="service-icon">1</div>
+                    <h3>Guardar Chaves</h3>
+                    <p>Salve diferentes tipos de chave Pix em um so lugar com visual simples e direto.</p>
+                </article>
+                <article class="service">
+                    <div class="service-icon">2</div>
+                    <h3>Copiar e Compartilhar</h3>
+                    <p>Copie em segundos e compartilhe com contatos sem digitar novamente.</p>
+                </article>
+                <article class="service">
+                    <div class="service-icon">3</div>
+                    <h3>Controle Rápido</h3>
+                    <p>Mantenha sua lista organizada para encontrar a chave certa na hora certa.</p>
+                </article>
+            </div>
+
+            <div class="mensagens-prontas">
+                <div class="mensagens-copy">
+                    <h3>Mensagens Prontas</h3>
+                    <p>
+                        Crie e reutilize mensagens inteligentes com variáveis dinâmicas, como chave Pix e valor, para agilizar cobranças do dia a dia.
+                        Em vez de digitar tudo manualmente a cada atendimento, você padroniza sua comunicação, reduz erros e ganha tempo — tudo com poucos toques.
+                    </p>
+                </div>
+                <div class="mensagens-art">
+                    <div class="mensagens-frame">
+                        <img src="https://play-lh.googleusercontent.com/7sRqPtJ0PfGbEpfdkYbsd5zsklrrM6DEKfTHFOCYCmF6a3kq2RibJmPxVzMNrCSShNVH74oZDktdunDPgTDKhA=w2560-h1440-rw" alt="Tela de mensagens prontas para compartilhamento de cobrança Pix">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vantagens-section" aria-label="Vantagens do recurso Mensagens Prontas">
+            <div class="carousel-top">
+                <h2 class="carousel-title">Vantagens no Cotidiano</h2>
+                <div class="carousel-controls">
+                    <button type="button" class="carousel-btn" id="vantagens-prev" aria-label="Ver vantagem anterior">&#8249;</button>
+                    <button type="button" class="carousel-btn" id="vantagens-next" aria-label="Ver próxima vantagem">&#8250;</button>
+                </div>
+            </div>
+
+            <div class="vantagens-carousel" id="vantagens-carousel">
+                <article class="vantagens-card">
+                    <div class="vantagens-emoji">💈</div>
+                    <h4>Atendimento Recorrente</h4>
+                    <p>Barbearia com corte a R$ 40: use uma mensagem pronta com chave fixa e cobre em segundos sem reescrever tudo.</p>
+                </article>
+
+                <article class="vantagens-card">
+                    <div class="vantagens-emoji">🐶</div>
+                    <h4>Preço Variável, Texto Fixo</h4>
+                    <p>Pet shop: banho R$ 45 e tosa R$ 70. A mensagem e a chave continuam iguais, mudando apenas o valor.</p>
+                </article>
+
+                <article class="vantagens-card">
+                    <div class="vantagens-emoji">📋</div>
+                    <h4>Padrão Profissional</h4>
+                    <p>Evite erros de digitação e dados incompletos. Todas as cobranças saem claras, objetivas e com o mesmo padrão.</p>
+                </article>
+
+                <article class="vantagens-card">
+                    <div class="vantagens-emoji">⏱️</div>
+                    <h4>Agilidade no Pico</h4>
+                    <p>Em horário movimentado, enviar cobranças prontas reduz interrupções e acelera o atendimento ao cliente.</p>
+                </article>
+
+                <article class="vantagens-card">
+                    <div class="vantagens-emoji">🧾</div>
+                    <h4>Mais Clareza para o Cliente</h4>
+                    <p>Mensagem com serviço + valor + chave Pix deixa o cliente seguro e diminui dúvidas na hora do pagamento.</p>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Benefícios</h2>
+            <p class="section-text">
+                Tudo pensado para evitar confusão na hora de receber ou enviar sua chave Pix.
+            </p>
+            <div class="benefits">
+                <div class="benefit-col">
+                    <div class="benefit">
+                        <h4>Centralizado</h4>
+                        <p>Todas as chaves em uma carteira única e fácil de consultar.</p>
+                    </div>
+                    <div class="benefit">
+                        <h4>Seguro no Uso</h4>
+                        <p>Interface clara para reduzir erros de cópia no momento do pagamento.</p>
+                    </div>
+                </div>
+                <div class="benefit-center">
+                    <div class="bubble">
+                        <img src="https://play-lh.googleusercontent.com/VVXKbrMqOgqZunpIJ_-O3X6-wZ4Cw5R30EgHCNQ1Txu6DmBxOn5Pntdi0q8-rK9hDxYPckiw-uarHthFoSNKWBA=w416-h235-rw" alt="Visão geral das telas do aplicativo">
+                    </div>
+                </div>
+                <div class="benefit-col">
+                    <div class="benefit">
+                        <h4>Rápido</h4>
+                        <p>Acesso imediato para copiar uma chave e enviar para quem pediu.</p>
+                    </div>
+                    <div class="benefit">
+                        <h4>Leve e Objetivo</h4>
+                        <p>Foco no essencial para simplificar seu fluxo com Pix.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-usar" class="how">
+            <div class="how-art">
+                <div class="blob">
+                    <img src="https://play-lh.googleusercontent.com/6QDaDeaZCh3rQTjyyxQZcBu9c3VC_eTdRAaocDXd1qLpWV9fol-prW10VzS4eQxfzDoqiAYG5ffNU2sziAAj=w2560-h1440-rw" alt="Interface de cadastro de chave Pix">
+                </div>
+            </div>
+            <div class="how-steps">
+                <h2>Como Utilizar</h2>
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div>
+                        <strong>Instale o app</strong>
+                        <p>Baixe na Google Play e abra a Carteira de Chaves Pix.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div>
+                        <strong>Cadastre sua chave</strong>
+                        <p>Adicione as informações principais para guardar na carteira.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div>
+                        <strong>Organize sua lista</strong>
+                        <p>Mantenha as chaves por nome para encontrar sem demora.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div>
+                        <strong>Copie e compartilhe</strong>
+                        <p>Use os atalhos da tela para enviar sua chave em segundos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Telas do App</h2>
+            <p class="section-text">Algumas telas da versão Android para mostrar o fluxo do aplicativo.</p>
+            <div class="gallery">
+                <figure class="shot"><img src="https://play-lh.googleusercontent.com/bIDf0jr8vuO_q7KWrPm30IAhPZy7LGQJzUu2Lp-BThH0lXNoWnIysTgSMo1YOh2caizWmKSQ_gOIJ2grxsct9Og=w2560-h1440-rw" alt="Tela da lista de chaves cadastradas"></figure>
+                <figure class="shot"><img src="https://play-lh.googleusercontent.com/7sRqPtJ0PfGbEpfdkYbsd5zsklrrM6DEKfTHFOCYCmF6a3kq2RibJmPxVzMNrCSShNVH74oZDktdunDPgTDKhA=w2560-h1440-rw" alt="Tela de gerenciamento de chave Pix"></figure>
+                <figure class="shot"><img src="https://play-lh.googleusercontent.com/0R0uHHVRFHJhboy5YbZsge-HZ42xRsiEp4w6i2h0VU9TZziaDOBghCrfDO2JsB7_vpQZVYNj0_KWh3OPeJGV=w2560-h1440-rw" alt="Tela com detalhes de chave no aplicativo"></figure>
+                <figure class="shot"><img src="https://play-lh.googleusercontent.com/xA2xAd_WqiAXczfb_jxGJJqHwVDIJgQwZzov3xV4qlfnt25vFJfDe7QlE9bJrzFmfWrPoZi4al6ml4yZflFiAg=w2560-h1440-rw" alt="Tela adicional com opções de chave Pix"></figure>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Pronto para organizar suas chaves?</h2>
+            <p>Use a Carteira de Chaves Pix para deixar seu Pix mais ágil no dia a dia.</p>
+            <a class="btn-main" href="https://play.google.com/store/apps/details?id=com.chaveiro_pix_chaves_pix.app" target="_blank" rel="noopener">Instalar Agora</a>
+        </section>
+    </main>
+
+    <footer class="footer container">
+        <div class="brand-small">Carteira Pix<span>ALTERNATE EXPERIENCE</span></div>
+        <nav class="footer-nav">
+            <a href="../index_new.html">Home</a>
+            <a href="../about.html">Sobre</a>
+            <a href="../contact.html">Contato</a>
+            <a href="../privacy-policy.html">Privacidade</a>
+        </nav>
+        <p class="copy">&copy; 2026 Luccas Medina. Página alternativa para apresentação do app.</p>
+    </footer>
+
+    <script>
+        (function () {
+            var carousel = document.getElementById('vantagens-carousel');
+            var prev = document.getElementById('vantagens-prev');
+            var next = document.getElementById('vantagens-next');
+
+            if (!carousel || !prev || !next) {
+                return;
+            }
+
+            function getStep() {
+                return Math.max(260, Math.floor(carousel.clientWidth * 0.72));
+            }
+
+            prev.addEventListener('click', function () {
+                carousel.scrollBy({ left: -getStep(), behavior: 'smooth' });
+            });
+
+            next.addEventListener('click', function () {
+                carousel.scrollBy({ left: getStep(), behavior: 'smooth' });
+            });
+        })();
+    </script>
 </body>
 </html>
