@@ -3,23 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Meu Livro de Receitas | Versao Alpha</title>
-	<meta name="description" content="Meu Livro de Receitas: salve receitas offline, organize por categorias e encontre tudo rapido na cozinha.">
+	<title>App Meu Livro de Receitas</title>
+	<meta name="description" content="Meu Livro de Receitas: salve receitas offline, organize por categorias e encontre tudo rápido na cozinha.">
+	<link rel="icon" type="image/png" href="../assets/favicon/receitas-favicon.png">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 	<style>
 		:root {
-			--bg-deep: #12352f;
-			--bg-soft: #2e6a5f;
-			--paper: #efe2cc;
-			--leaf: #9ebc87;
-			--wood: #78533f;
-			--mint: #d7efdc;
-			--card-dark: #224f47;
-			--card-brown: #664232;
-			--text-main: #f3efe7;
-			--text-dark: #18302b;
+			--bg-deep: #3d0d14;
+			--bg-soft: #7f1f28;
+			--paper: #fff2de;
+			--leaf: #ffcf6d;
+			--wood: #8f3f23;
+			--mint: #ffd995;
+			--card-dark: #7a1f27;
+			--card-brown: #8f3f23;
+			--text-main: #fff5e9;
+			--text-dark: #401b10;
+			--brand-red: #c63237;
+			--brand-gold: #ffb300;
 			--shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.25);
 			--shadow-card: 0 12px 26px rgba(0, 0, 0, 0.3);
 			--radius-xl: 34px;
@@ -35,7 +38,7 @@
 			margin: 0;
 			font-family: 'Manrope', sans-serif;
 			color: var(--text-main);
-			background: radial-gradient(circle at 12% 4%, #4f9b87 0%, #2a6a5d 32%, #13443c 68%, #0c2825 100%);
+			background: radial-gradient(circle at 12% 4%, #ffd35f 0%, #ffb300 6%, #c63237 45%, #450f17 100%);
 		}
 
 		a {
@@ -52,8 +55,8 @@
 		.top-nav {
 			margin-bottom: 20px;
 			border-radius: 999px;
-			background: rgba(9, 29, 26, 0.42);
-			border: 1px solid rgba(226, 236, 230, 0.25);
+			background: rgba(70, 16, 23, 0.48);
+			border: 1px solid rgba(255, 221, 160, 0.35);
 			padding: 12px 22px;
 			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 		}
@@ -63,7 +66,7 @@
 			font-family: 'Nunito', sans-serif;
 			font-weight: 800;
 			font-size: 22px;
-			color: #f2e4ca;
+			color: #ffe8b7;
 			letter-spacing: 0.5px;
 		}
 
@@ -83,7 +86,7 @@
 
 		.top-links a:hover {
 			opacity: 1;
-			color: #ffe8bd;
+			color: var(--brand-gold);
 		}
 
 		.clear {
@@ -93,9 +96,7 @@
 		.hero {
 			border-radius: var(--radius-xl);
 			overflow: hidden;
-			background:
-				linear-gradient(124deg, rgba(27, 93, 81, 0.95) 0%, rgba(40, 130, 112, 0.9) 45%, rgba(121, 82, 62, 0.86) 100%),
-				url('https://play-lh.googleusercontent.com/bcnN7ZnuiA2t3GYs75MIbWk9bHXW2RK_OddRBtNm4pT37xN28MqE-iqKKUs_zXEmBO6XpxsoVY_fzth-p9jBHQ=w416-h235-rw') center/cover no-repeat;
+			background: url('https://play-lh.googleusercontent.com/bcnN7ZnuiA2t3GYs75MIbWk9bHXW2RK_OddRBtNm4pT37xN28MqE-iqKKUs_zXEmBO6XpxsoVY_fzth-p9jBHQ=w416-h235-rw') center/cover no-repeat;
 			box-shadow: var(--shadow-soft);
 			padding: 68px 56px 68px;
 			position: relative;
@@ -104,18 +105,17 @@
 		.hero:before {
 			content: '';
 			position: absolute;
-			right: -80px;
-			top: -40px;
-			width: 320px;
-			height: 320px;
-			border-radius: 50%;
-			background: radial-gradient(circle, rgba(255, 233, 189, 0.25) 0%, rgba(255, 233, 189, 0) 72%);
+			inset: 0;
+			background: #000;
+			opacity: 0.55;
+			z-index: 0;
 		}
 
 		.hero-content {
 			position: relative;
 			width: 52%;
 			max-width: 560px;
+			z-index: 1;
 		}
 
 		.label {
@@ -124,7 +124,7 @@
 			border-radius: 999px;
 			margin-bottom: 14px;
 			color: var(--text-dark);
-			background: linear-gradient(180deg, #f5dfb5 0%, #ebc995 100%);
+			background: linear-gradient(180deg, #ffd56f 0%, #ffb300 100%);
 			font-size: 13px;
 			font-weight: 800;
 			text-transform: uppercase;
@@ -150,8 +150,8 @@
 
 		.btn-main {
 			display: inline-block;
-			background: linear-gradient(180deg, #f5ddb5 0%, #dfbd88 100%);
-			color: #442f21;
+			background: linear-gradient(180deg, #ffd05a 0%, #ffb300 100%);
+			color: #5c1b14;
 			font-size: 17px;
 			font-weight: 800;
 			padding: 16px 34px;
@@ -163,9 +163,188 @@
 			margin-top: 34px;
 			border-radius: var(--radius-xl);
 			padding: 30px 34px;
-			background: linear-gradient(135deg, rgba(35, 102, 89, 0.94) 0%, rgba(28, 80, 72, 0.96) 100%);
-			border: 1px solid rgba(218, 234, 225, 0.18);
+			background: linear-gradient(135deg, rgba(148, 28, 37, 0.94) 0%, rgba(97, 18, 27, 0.96) 100%);
+			border: 1px solid rgba(255, 209, 122, 0.22);
 			box-shadow: var(--shadow-soft);
+		}
+
+		.recipe-notepad {
+			margin-top: 34px;
+			border-radius: var(--radius-xl);
+			padding: 28px;
+			background: linear-gradient(140deg, rgba(145, 27, 36, 0.92) 0%, rgba(92, 17, 26, 0.95) 100%);
+			border: 1px solid rgba(255, 208, 121, 0.24);
+			box-shadow: var(--shadow-soft);
+		}
+
+		.recipe-notepad h2 {
+			margin: 0 0 16px;
+			font-family: 'Nunito', sans-serif;
+			font-size: 32px;
+			color: #ffe7b5;
+		}
+
+		.notepad-shell {
+			display: flex;
+			border-radius: 26px;
+			overflow: hidden;
+			background: #fff3df;
+			box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+		}
+
+		.notepad-binding {
+			position: relative;
+			width: 56px;
+			flex: 0 0 56px;
+			background: linear-gradient(180deg, #d6b073 0%, #b1844d 100%);
+			border-right: 2px solid rgba(86, 40, 24, 0.34);
+		}
+
+		.notepad-binding:before {
+			content: '';
+			position: absolute;
+			top: 14px;
+			bottom: 14px;
+			left: 50%;
+			width: 22px;
+			transform: translateX(-50%);
+			border-radius: 999px;
+			background: radial-gradient(circle, rgba(72, 33, 18, 0.7) 34%, rgba(72, 33, 18, 0) 36%) center top/20px 30px repeat-y;
+		}
+
+		.notepad-paper {
+			flex: 1;
+			display: grid;
+			grid-template-columns: 290px 1fr;
+			min-height: 460px;
+			/* background:
+				repeating-linear-gradient(to bottom, rgba(255, 243, 222, 0) 0, rgba(255, 243, 222, 0) 37px, rgba(198, 50, 55, 0.22) 37px, rgba(198, 50, 55, 0.22) 38px),
+				#fff3df; */
+		}
+
+		.recipe-notepad #left,
+		.recipe-notepad #right {
+			position: relative;
+			padding: 17px 20px 20px 36px;
+		}
+
+		.recipe-notepad #left:before,
+		.recipe-notepad #right:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 20px;
+			width: 2px;
+			background: rgba(198, 50, 55, 0.38);
+		}
+
+		.recipe-notepad #left {
+			border-right: 2px solid rgba(198, 50, 55, 0.2);
+			overflow-y: auto;
+			max-height: 460px;
+			min-height: 518px;
+		}
+
+		.recipe-notepad #cards {
+			padding-right: 6px;
+		}
+
+		.recipe-notepad .card {
+			padding: 10px 12px;
+			margin-bottom: 10px;
+			background: rgba(198, 50, 55, 0.08);
+			color: #5e2616;
+			border: 1px solid rgba(198, 50, 55, 0.2);
+			border-radius: 10px;
+			cursor: pointer;
+			font-weight: 700;
+			transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+		}
+
+		.recipe-notepad .card:hover {
+			background: rgba(198, 50, 55, 0.14);
+			transform: translateX(2px);
+		}
+
+		.recipe-notepad .card.active {
+			background: rgba(198, 50, 55, 0.2);
+			border-color: #c63237;
+			box-shadow: 0 8px 18px rgba(198, 50, 55, 0.2);
+		}
+
+		.recipe-notepad #addBtn {
+			width: 100%;
+			margin-top: 8px;
+			padding: 12px 14px;
+			font-size: 15px;
+			font-weight: 800;
+			color: #5c1b14;
+			background: linear-gradient(180deg, #ffd86c 0%, #ffb300 100%);
+			border: 1px solid rgba(146, 75, 22, 0.35);
+			border-radius: 12px;
+			cursor: pointer;
+		}
+
+		.recipe-notepad #addBtn:hover {
+			filter: brightness(1.02);
+		}
+
+		.recipe-notepad #right {
+			display: none;
+		}
+
+		.recipe-notepad #right h3,
+		.recipe-notepad #right h4 {
+			margin: 0 0 8px;
+			color: #602214;
+			font-family: 'Nunito', sans-serif;
+		}
+
+		.recipe-notepad #right h4 {
+			margin-top: 10px;
+			font-size: 16px;
+		}
+
+		.recipe-notepad #title,
+		.recipe-notepad #ingredients,
+		.recipe-notepad #preparation {
+			width: 100%;
+			border: 1px solid rgba(198, 50, 55, 0.24);
+			border-radius: 10px;
+			padding: 8px 12px;
+			color: #4f1b12;
+			font-size: 15px;
+			background:
+				repeating-linear-gradient(to bottom, rgba(255, 247, 233, 0.92) 0, rgba(255, 247, 233, 0.92) 31px, rgba(198, 50, 55, 0.2) 31px, rgba(198, 50, 55, 0.2) 32px);
+		}
+
+		.recipe-notepad #title {
+			height: 44px;
+			line-height: 28px;
+			font-weight: 700;
+		}
+
+		.recipe-notepad #ingredients,
+		.recipe-notepad #preparation {
+			min-height: 132px;
+			line-height: 32px;
+			resize: vertical;
+		}
+
+		.recipe-notepad #deleteBtn {
+			margin-top: 12px;
+			padding: 10px 16px;
+			font-weight: 700;
+			color: #fff1e1;
+			background: linear-gradient(180deg, #cb3b40 0%, #a8292f 100%);
+			border: 1px solid rgba(83, 16, 21, 0.45);
+			border-radius: 10px;
+			cursor: pointer;
+		}
+
+		.recipe-notepad #deleteBtn:hover {
+			filter: brightness(1.05);
 		}
 
 		.feature-box {
@@ -183,22 +362,22 @@
 			text-align: center;
 			font-size: 24px;
 			font-weight: 700;
-			background: rgba(228, 243, 236, 0.14);
-			border: 1px solid rgba(233, 241, 235, 0.34);
+			background: rgba(255, 194, 70, 0.18);
+			border: 1px solid rgba(255, 216, 136, 0.42);
 			margin-bottom: 12px;
 		}
 
 		.feature-box h3 {
 			margin: 0 0 6px;
 			font-size: 20px;
-			color: #f4ecd8;
+			color: #ffe6b0;
 		}
 
 		.feature-box p {
 			margin: 0;
 			font-size: 14px;
 			line-height: 1.6;
-			color: #d7e2db;
+			color: #f5d8ca;
 		}
 
 		.cards-area {
@@ -212,9 +391,9 @@
 			vertical-align: top;
 			border-radius: var(--radius-lg);
 			overflow: hidden;
-			background: #204940;
+			background: #7b1f27;
 			box-shadow: var(--shadow-card);
-			border: 1px solid rgba(236, 239, 231, 0.12);
+			border: 1px solid rgba(255, 231, 191, 0.18);
 		}
 
 		.recipe-card.last {
@@ -242,28 +421,28 @@
 			margin: 0;
 			font-size: 14px;
 			line-height: 1.6;
-			color: #d9e6de;
+			color: #f8ddd0;
 		}
 
 		.recipe-card.wood {
-			background: linear-gradient(140deg, #7b4b38 0%, #583627 100%);
+			background: linear-gradient(140deg, #c63237 0%, #7e1f25 100%);
 		}
 
 		.recipe-card.paper {
-			background: linear-gradient(140deg, #e8d5b5 0%, #cbb08b 100%);
+			background: linear-gradient(140deg, #ffd773 0%, #ffb300 100%);
 		}
 
 		.recipe-card.paper .recipe-content h4,
 		.recipe-card.paper .recipe-content p {
-			color: #413022;
+			color: #4c1f10;
 		}
 
 		.steps {
 			margin-top: 34px;
 			border-radius: var(--radius-xl);
 			padding: 30px 34px;
-			background: linear-gradient(130deg, rgba(120, 82, 62, 0.92) 0%, rgba(60, 36, 29, 0.92) 100%);
-			border: 1px solid rgba(242, 226, 196, 0.18);
+			background: linear-gradient(130deg, rgba(150, 30, 39, 0.94) 0%, rgba(75, 14, 22, 0.94) 100%);
+			border: 1px solid rgba(255, 205, 105, 0.24);
 			box-shadow: var(--shadow-soft);
 		}
 
@@ -272,7 +451,7 @@
 			margin: 0 0 14px;
 			font-family: 'Nunito', sans-serif;
 			font-size: 34px;
-			color: #faedcf;
+			color: #ffe7b5;
 		}
 
 		.step {
@@ -281,8 +460,8 @@
 			margin-bottom: 8px;
 			display: inline-block;
 			vertical-align: top;
-			background: rgba(252, 240, 214, 0.1);
-			border: 1px solid rgba(253, 235, 199, 0.28);
+			background: rgba(255, 179, 0, 0.12);
+			border: 1px solid rgba(255, 214, 126, 0.38);
 			border-radius: var(--radius-md);
 			padding: 14px 12px;
 			min-height: 146px;
@@ -302,21 +481,21 @@
 			margin-bottom: 8px;
 			font-size: 15px;
 			font-weight: 800;
-			color: #3f2c1f;
-			background: #f4dab0;
+			color: #5d200f;
+			background: var(--brand-gold);
 		}
 
 		.step h4 {
 			margin: 0 0 6px;
 			font-size: 16px;
-			color: #f8eacc;
+			color: #ffe4b6;
 		}
 
 		.step p {
 			margin: 0;
 			font-size: 13px;
 			line-height: 1.55;
-			color: #e5d8be;
+			color: #f8ddbf;
 		}
 
 		.gallery-title {
@@ -327,11 +506,29 @@
 		}
 
 		.gallery-frame {
-			background: rgba(10, 31, 28, 0.35);
+			background: rgba(76, 15, 22, 0.42);
 			border-radius: var(--radius-xl);
 			padding: 14px;
-			border: 1px solid rgba(229, 239, 231, 0.16);
+			border: 1px solid rgba(255, 214, 137, 0.2);
 			box-shadow: var(--shadow-soft);
+		}
+
+		.hero,
+		.section-panel,
+		.recipe-notepad,
+		.steps,
+		.gallery-frame {
+			transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+		}
+
+		.hero:hover,
+		.section-panel:hover,
+		.recipe-notepad:hover,
+		.steps:hover,
+		.gallery-frame:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 20px 44px rgba(0, 0, 0, 0.33);
+			border-color: rgba(255, 214, 137, 0.34);
 		}
 
 		.gallery-shot {
@@ -358,7 +555,7 @@
 		.footer-note {
 			margin-top: 22px;
 			text-align: center;
-			color: #d7e5de;
+			color: #f7ddca;
 			font-size: 14px;
 			opacity: 0.95;
 		}
@@ -379,6 +576,21 @@
 			.feature-box {
 				width: 49%;
 				margin-bottom: 12px;
+			}
+
+			.recipe-notepad {
+				padding: 22px;
+			}
+
+			.notepad-paper {
+				grid-template-columns: 1fr;
+				min-height: 0;
+			}
+
+			.recipe-notepad #left {
+				max-height: 230px;
+				border-right: 0;
+				border-bottom: 2px solid rgba(198, 50, 55, 0.2);
 			}
 
 			.recipe-card {
@@ -435,6 +647,30 @@
 				padding: 38px 24px;
 			}
 
+			.recipe-notepad {
+				padding: 18px;
+			}
+
+			.notepad-binding {
+				width: 44px;
+				flex-basis: 44px;
+			}
+
+			.recipe-notepad #left,
+			.recipe-notepad #right {
+				padding: 16px 12px 14px 26px;
+			}
+
+			.recipe-notepad #left:before,
+			.recipe-notepad #right:before {
+				left: 14px;
+			}
+
+			.recipe-notepad #ingredients,
+			.recipe-notepad #preparation {
+				min-height: 110px;
+			}
+
 			h1 {
 				font-size: 40px;
 			}
@@ -471,7 +707,7 @@
 <body>
 	<div class="page-wrap">
 		<div class="top-nav">
-			<a class="brand" href="index_new.html">Luccas Tools</a>
+			<a class="brand" href="index_new.html">Next World Apps</a>
 			<div class="top-links">
 				<a href="index_new.html">Home</a>
 				<a href="about.html">Sobre</a>
@@ -482,7 +718,7 @@
 
 		<section class="hero">
 			<div class="hero-content">
-				<span class="label">Aplicativo de Culinaria</span>
+				<span class="label">Aplicativo de Culinária</span>
 				<h1>Meu Livro<br>de Receitas</h1>
 				<p>
 					Suas receitas favoritas sempre com voce: acesse offline, busque em segundos,
@@ -500,7 +736,7 @@
 			</div>
 			<div class="feature-box">
 				<div class="feature-icon">2</div>
-				<h3>Busca Rapida</h3>
+				<h3>Busca Rápida</h3>
 				<p>Encontre pratos por nome e ingredientes com poucos toques na tela.</p>
 			</div>
 			<div class="feature-box">
@@ -512,6 +748,31 @@
 				<div class="feature-icon">4</div>
 				<h3>Modo Escuro</h3>
 				<p>Visual confortavel para usar a noite e em cozinhas com pouca luz.</p>
+			</div>
+		</section>
+
+		<section class="recipe-notepad">
+			<h2>Meu Bloco de Receitas</h2>
+			<div class="notepad-shell">
+				<div class="notepad-binding" aria-hidden="true"></div>
+				<div class="notepad-paper">
+					<div id="left">
+						<div id="cards"></div>
+						<button id="addBtn" type="button">+ Nova receita</button>
+					</div>
+					<div id="right">
+						<h3>Editar Receita</h3>
+						<input id="title" value="Sem título" />
+
+						<h4>Ingredientes</h4>
+						<textarea id="ingredients"></textarea>
+
+						<h4>Modo de preparo</h4>
+						<textarea id="preparation"></textarea>
+
+						<button id="deleteBtn" type="button">Deletar</button>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -608,5 +869,129 @@
 
 		<p class="footer-note">Ideal para chefs de casa, familias e apaixonados por culinaria.</p>
 	</div>
+	<script>
+		
+		let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+		let currentRecipeIndex = null;
+
+		const cardsContainer = document.getElementById("cards");
+		const rightPanel = document.getElementById("right");
+
+		const titleInput = document.getElementById("title");
+		const ingInput = document.getElementById("ingredients");
+		const prepInput = document.getElementById("preparation");
+
+		/* =========================
+			SALVAR
+		========================== */
+		function save() {
+		localStorage.setItem("recipes", JSON.stringify(recipes));
+		}
+
+		/* =========================
+			RENDER DOS CARDS
+		========================== */
+		function renderCards() {
+		cardsContainer.innerHTML = "";
+
+		recipes.forEach((r, index) => {
+			const div = document.createElement("div");
+			div.classList.add("card");
+			div.textContent = r.title || "Sem Título";
+			div.setAttribute("data-index", index);
+
+			if (index === currentRecipeIndex) {
+			div.classList.add("active");
+			}
+
+			div.addEventListener("click", () => openRecipe(index));
+
+			cardsContainer.appendChild(div);
+		});
+		}
+
+		/* =========================
+			ABRIR EDIÇÃO
+		========================== */
+		function openRecipe(index) {
+		currentRecipeIndex = index;
+
+		const recipe = recipes[index];
+
+		titleInput.value = recipe.title;
+		ingInput.value = recipe.ingredients;
+		prepInput.value = recipe.preparation;
+
+		rightPanel.style.display = "block";
+
+		renderCards();
+		}
+
+		/* =========================
+			ATUALIZAR CAMPOS
+		========================== */
+		titleInput.addEventListener("input", () => {
+		if (currentRecipeIndex === null) return;
+
+		recipes[currentRecipeIndex].title = titleInput.value;
+		save();
+		renderCards();
+		});
+
+		ingInput.addEventListener("input", () => {
+		if (currentRecipeIndex === null) return;
+
+		recipes[currentRecipeIndex].ingredients = ingInput.value;
+		save();
+		});
+
+		prepInput.addEventListener("input", () => {
+		if (currentRecipeIndex === null) return;
+
+		recipes[currentRecipeIndex].preparation = prepInput.value;
+		save();
+		});
+
+		/* =========================
+			ADICIONAR RECEITA
+		========================== */
+		document.getElementById("addBtn").addEventListener("click", () => {
+		const newRecipe = {
+			title: "Sem Título",
+			ingredients: "",
+			preparation: ""
+		};
+
+		recipes.push(newRecipe);
+		save();
+
+		renderCards();
+		});
+
+		/* =========================
+			DELETAR RECEITA
+		========================== */
+		document.getElementById("deleteBtn").addEventListener("click", () => {
+		if (currentRecipeIndex === null) return;
+
+		recipes.splice(currentRecipeIndex, 1);
+
+		if (recipes.length === 0) {
+			currentRecipeIndex = null;
+			rightPanel.style.display = "none";
+		} else {
+			currentRecipeIndex = Math.max(0, currentRecipeIndex - 1);
+			openRecipe(currentRecipeIndex);
+		}
+
+		save();
+		renderCards();
+		});
+
+		/* =========================
+			INIT
+		========================== */
+		renderCards();
+	</script>
 </body>
 </html>
