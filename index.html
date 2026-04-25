@@ -59,489 +59,280 @@
     <link rel="stylesheet" href="css/grid-system.css">
     <link rel="stylesheet" href="css/modern-style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        .app-showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: var(--spacing-6);
-            margin-bottom: var(--spacing-12);
-        }
-        
-        .app-showcase-card {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            background: white;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .app-showcase-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-        
-        .app-card-color-header {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .app-card-content {
-            padding: var(--spacing-4);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .app-card-content h3 {
-            margin-bottom: var(--spacing-2);
-            font-size: var(--font-size-lg);
-            color: var(--color-gray-900);
-        }
-        
-        .app-card-content p {
-            margin-bottom: var(--spacing-4);
-            font-size: var(--font-size-sm);
-            color: var(--color-gray-600);
-            flex: 1;
-        }
-        
-        .app-card-footer {
-            display: flex;
-            gap: var(--spacing-2);
-        }
-        
-        .app-card-footer a {
-            flex: 1;
-            padding: var(--spacing-2) var(--spacing-3);
-            border-radius: var(--radius-md);
-            text-align: center;
-            font-weight: 600;
-            font-size: var(--font-size-sm);
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-        
-        .btn-details {
-            background-color: var(--color-gray-100);
-            color: var(--color-gray-900);
-        }
-        
-        .btn-details:hover {
-            background-color: var(--color-gray-200);
-        }
-    </style>
 </head>
 <body>
     <!-- ============================================
          HEADER & NAVIGATION
          ============================================ -->
-    <header>
-        <nav class="container-max flex justify-between items-center main-nav">
-            <a href="index.html" class="logo">
-                <i class="fas fa-rocket"></i> Next World Apps
-            </a>
-            <div class="flex items-center gap" style="gap: var(--spacing-4);">
-                <a href="index.html">Home</a>
-                <a href="about.html">Sobre</a>
-                <a href="contact.html">Contato</a>
-            </div>
+    <header class="site-nav">
+        <a href="#home" class="site-nav__brand">Next World Apps</a>
+
+        <nav class="site-nav__links">
+            <a href="#apps-mobile" class="site-nav__link">Apps Mobile</a>
+            <a href="#web-apps" class="site-nav__link">Web Apps</a>
+            <a href="#games" class="site-nav__link">Games</a>
+            <a href="#contato" class="site-nav__link">Contato</a>
         </nav>
     </header>
 
     <!-- ============================================
          HERO SECTION
          ============================================ -->
-    <section class="hero">
-        <div class="container-max hero-content">
-            <h1>Todos os Nossos Aplicativos</h1>
-            <p>27 aplicativos gratuitos para mensagens, diversão, educação e muito mais.</p>
-        </div>
-    </section>
+    <div class="principal-shell" id="home">
+        <section class="principal-hero">
+            <div class="container-max principal-hero__content">
+                <div class="orbit-menu" data-reveal>
+                    <article class="orbit-menu__core">
+                        <p class="eyebrow">Next World Apps</p>
+                        <h1 class="orbit-menu__headline">Todos os nossos aplicativos em um hub vivo</h1>
+                        <p class="orbit-menu__lead">
+                            Explore apps mobile, ferramentas web e games com navegacao por secoes e layout em movimento.
+                        </p>
+                        <a href="#apps-mobile" class="cta-button">Comecar exploracao</a>
+                    </article>
+
+                    <a href="#apps-mobile" class="orbit-menu__item orbit-menu__item--1">
+                        <span class="orbit-menu__title">Apps Mobile</span>
+                        <span class="orbit-menu__detail">Mensagens, frases, utilitarios e estudos biblicos</span>
+                    </a>
+
+                    <a href="#web-apps" class="orbit-menu__item orbit-menu__item--2">
+                        <span class="orbit-menu__title">Web Apps</span>
+                        <span class="orbit-menu__detail">Ferramentas online para sorteio e monitoramento</span>
+                    </a>
+
+                    <a href="#games" class="orbit-menu__item orbit-menu__item--3">
+                        <span class="orbit-menu__title">Games</span>
+                        <span class="orbit-menu__detail">Apps de diversao e interacoes para grupo</span>
+                    </a>
+
+                    <a href="#apps-mobile" class="orbit-menu__item orbit-menu__item--4">
+                        <span class="orbit-menu__title">Destaques</span>
+                        <span class="orbit-menu__detail">Conheca os apps mais procurados da colecao</span>
+                    </a>
+
+                    <a href="#sobre-next" class="orbit-menu__item orbit-menu__item--5">
+                        <span class="orbit-menu__title">Proxima parada</span>
+                        <span class="orbit-menu__detail">Veja o que estamos construindo em seguida</span>
+                    </a>
+
+                    <a href="#contato" class="orbit-menu__item orbit-menu__item--6">
+                        <span class="orbit-menu__title">Contato</span>
+                        <span class="orbit-menu__detail">Fale com a equipe e envie seu feedback</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="principal-highlights container-max">
+            <div class="principal-highlights__grid">
+                <article class="highlight-card" data-reveal>
+                    <h2>Arquitetura modular</h2>
+                    <p>Catalogo organizado para evoluir com novos apps e paginas dedicadas.</p>
+                </article>
+                <article class="highlight-card" data-reveal>
+                    <h2>Animacoes com proposito</h2>
+                    <p>Botoes flutuantes e reveals orientam o olhar para os blocos mais importantes.</p>
+                </article>
+                <article class="highlight-card" data-reveal>
+                    <h2>Experiencia responsiva</h2>
+                    <p>Layout adaptado para desktop e mobile com navegacao por ancora suave.</p>
+                </article>
+            </div>
+        </section>
+    </div>
 
     <!-- ============================================
          APPS SHOWCASE
          ============================================ -->
-    <main class="container-max">
-        <section class="section">
-            <div class="app-showcase-grid">
-                <!-- 1. Mensagens Bom Dia -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #1E9C2E;">☀️</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens Bom Dia</h3>
-                        <p>Mensagens inspiradoras para começar o dia com energia.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/mensagens-bom-dia.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagensbomdia.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
+    <div class="page-sections">
+        <section class="apps-mobile-showcase" id="apps-mobile">
+            <section class="brigadeiros-hero">
+                <div class="container-max brigadeiros-hero__inner" data-reveal>
+                    <p class="eyebrow">Mobile Apps</p>
+                    <h1>Conheça nossos Apps Mobile</h1>
+                    <p>
+                        Explore os mais de 30 apps disponíveis para download na Play Store.
+                    </p>
+                </div>
+            </section>
+
+            <div class="slider-ribbon" id="web-apps">
+                <div class="slider-ribbon__track">
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/mensagens-bom-dia.html">Mensagens Bom Dia</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/biblia-sagrada.html">Biblia Sagrada</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/mensagens-natal.html">Mensagens de Natal</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/mensagens-aniversario.html">Mensagens Aniversario</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/livro-receitas.html">Livro de Receitas</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/frases-tudo.html">Frases de Tudo</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/gerador-senhas.html">Gerador de Senhas</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/versos-biblicos.html">Versos Biblicos</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/mensagens-bom-dia.html">Mensagens Bom Dia</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/biblia-sagrada.html">Biblia Sagrada</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/mensagens-natal.html">Mensagens de Natal</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/mensagens-aniversario.html">Mensagens Aniversario</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/livro-receitas.html">Livro de Receitas</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/frases-tudo.html">Frases de Tudo</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/gerador-senhas.html">Gerador de Senhas</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/versos-biblicos.html">Versos Biblicos</a>
+                </div>
+            </div>
+
+            <div class="slider-ribbon slider-ribbon--reverse" id="games">
+                <div class="slider-ribbon__track">
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/frases-motivacionais.html">Frases Motivacionais</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/trechos-musicas.html">Trechos de Musicas</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/frases-animes.html">Frases de Animes</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/horoscopo-dia.html">Horoscopo do Dia</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/bom-dia-tarde-noite.html">Bom Dia Boa Tarde Boa Noite</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/boa-tarde.html">Mensagens Boa Tarde</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/boa-noite.html">Mensagens Boa Noite</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/chaveiro-pix.html">Chaveiro Pix</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/frases-motivacionais.html">Frases Motivacionais</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/trechos-musicas.html">Trechos de Musicas</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/frases-animes.html">Frases de Animes</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/horoscopo-dia.html">Horoscopo do Dia</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/bom-dia-tarde-noite.html">Bom Dia Boa Tarde Boa Noite</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/boa-tarde.html">Mensagens Boa Tarde</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/boa-noite.html">Mensagens Boa Noite</a>
+                    <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/chaveiro-pix.html">Chaveiro Pix</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-apps-flow" id="featured-apps">
+            <!-- <div class="container small" data-reveal>
+                <div class="flex-center">
+                    <div class="text-wrapper-relative">
+                        <h2 class="text-align-center heading-xlarge text-weight-thin title-pillars">Featured Apps</h2>
+                    </div>
+                    <p class="main-paragraph text-align-center _w-medium margin-top-small pillars-description">
+                        Três destaques que conectam utilidade, leitura e organização em uma sequência visual inspirada no fluxo do Brigadeiros.
+                    </p>
+                </div>
+            </div> -->
+
+            <div class="wide-wrapper bg-light-gray" data-featured-panel>
+                <!-- <h2 class="tag-pill absolute-top black">featured apps</h2> -->
+                <div class="container small">
+                    <div class="flex-center">
+                        <div class="text-wrapper-relative">
+                            <h3 class="text-align-center heading-xlarge text-weight-thin title-pillars">Chaveiro<br>Pix</h3>
+                            <div class="featured-thumb-stack" data-featured-image aria-label="Carteira de Chaves Pix com organização rápida">
+                                <div class="featured-thumb featured-thumb--left" style="background-image: url('https://play-lh.googleusercontent.com/0R0uHHVRFHJhboy5YbZsge-HZ42xRsiEp4w6i2h0VU9TZziaDOBghCrfDO2JsB7_vpQZVYNj0_KWh3OPeJGV=w2560-h1440-rw')"></div>
+                                <div class="featured-thumb featured-thumb--main" style="background-image: url('https://play-lh.googleusercontent.com/ERBNQ8X77qwTWaMoe0SL9N142hPXDVMchuIXlN_JsYf7HNYXE9yI75gy-yqRrm42678UawfQcNa2JirMsLczzQ=w240-h480-rw')"></div>
+                                <div class="featured-thumb featured-thumb--right" style="background-image: url('https://play-lh.googleusercontent.com/7sRqPtJ0PfGbEpfdkYbsd5zsklrrM6DEKfTHFOCYCmF6a3kq2RibJmPxVzMNrCSShNVH74oZDktdunDPgTDKhA=w2560-h1440-rw')"></div>
+                            </div>
+                        </div>
+                        <div class="featured-copy text-align-center">
+                            <p class="main-paragraph text-align-center _w-medium margin-top-small pillars-description">
+                                Organize suas chaves Pix em um só lugar, copie rápido e compartilhe com segurança quando precisar.
+                            </p>
+                            <a href="apps/chaveiro-pix.html" class="featured-cta featured-cta--chaveiro">Ver página do app</a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 2. Bíblia Sagrada -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #62361E;">📖</div>
-                    <div class="app-card-content">
-                        <h3>Bíblia Sagrada</h3>
-                        <p>Leia a Bíblia com conforto e facilidade, offline.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/biblia-sagrada.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.medinabibliasagrada.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
+            <div class="wide-wrapper bg-white" data-featured-panel>
+                <!-- <h2 class="tag-pill absolute-top black">featured apps</h2> -->
+                <div class="container small">
+                    <div class="flex-center">
+                        <div class="text-wrapper-relative">
+                            <h3 class="text-align-center heading-xlarge text-weight-thin title-pillars">Bíblia<br>Sagrada</h3>
+                            <div class="featured-thumb-stack" data-featured-image aria-label="Bíblia Sagrada com leitura clara e recursos diários">
+                                <div class="featured-thumb featured-thumb--left" style="background-image: url('https://play-lh.googleusercontent.com/rck0Bfpvmy7C_bW5rmGEbbBk9OCOAopkUTbEnj_5on1w8AYG_YGDx2LV7tp5AmEmsLzKRj-Q_og6-Pqbmrlmqw=w2560-h1440-rw')"></div>
+                                <div class="featured-thumb featured-thumb--main" style="background-image: url('https://play-lh.googleusercontent.com/8MmsfGmKZgMqbaLa5KQq9xI4J_Ly9CcSumPjxvcriGhxWvsRRIFtucBRAFp2J5Tgr7GXWZJ_6JYavOCEeUWU=w240-h480-rw')"></div>
+                                <div class="featured-thumb featured-thumb--right" style="background-image: url('https://play-lh.googleusercontent.com/C_6DrKaHRJsnLsLobSopAQyZ2m7yCQPjTs0NbANv9sL0T-OCHk02JNe-HY5Bq5_qAupzJ20egG-V-EnYt_J4PA=w2560-h1440-rw')"></div>
+                            </div>
+                        </div>
+                        <div class="featured-copy text-align-center">
+                            <p class="main-paragraph text-align-center _w-medium margin-top-small pillars-description">
+                                Leia com conforto, acompanhe versículo diário e salmo do dia para fortalecer sua rotina de fé.
+                            </p>
+                            <a href="apps/biblia-sagrada.html" class="featured-cta featured-cta--biblia">Ver página do app</a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 3. Mensagens de Natal -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #AF261C;">🎄</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens de Natal</h3>
-                        <p>Celebrate o natal com mensagens de amor e alegria.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/mensagens-natal.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagens_de_natal.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
+            <div class="wide-wrapper bg-light-gray" data-featured-panel>
+                <!-- <h2 class="tag-pill absolute-top black">featured apps</h2> -->
+                <div class="container small">
+                    <div class="flex-center">
+                        <div class="text-wrapper-relative">
+                            <h3 class="text-align-center heading-xlarge text-weight-thin title-pillars">Meu Livro<br>de Receitas</h3>
+                            <div class="featured-thumb-stack" data-featured-image aria-label="Meu Livro de Receitas com organização offline de receitas">
+                                <div class="featured-thumb featured-thumb--left" style="background-image: url('https://play-lh.googleusercontent.com/0t_s2-AEDtATZebn8sICNCbLzEwqKJ-AGLX1oYLYbQhgrw0UvVWREgvz2016JnmxMXHb6r9nFGFzcEGziHnvUA=w526-h296-rw')"></div>
+                                <div class="featured-thumb featured-thumb--main" style="background-image: url('https://play-lh.googleusercontent.com/haMArrhUrWklLWIJlvWoDTPU25XT1M2yUuJ_64b-LpUCvKTJUJt1hNKepoY5eJvsd28687wOn9-70ELGQQ07Fw=w526-h296-rw')"></div>
+                                <div class="featured-thumb featured-thumb--right" style="background-image: url('https://play-lh.googleusercontent.com/KjjwkMe-5iyjQLt5mUB1958yiEGSdyHT4VC8a5z4isGYYM15jQlQumsnSKlyzyWjmTJgp8LtPwH88H1H5z16Pw=w526-h296-rw')"></div>
+                            </div>
+                        </div>
+                        <div class="featured-copy text-align-center">
+                            <p class="main-paragraph text-align-center _w-medium margin-top-small pillars-description">
+                                Salve receitas offline, organize por categorias e encontre tudo rápido na cozinha sem perder tempo.
+                            </p>
+                            <a href="apps/livro-receitas.html" class="featured-cta featured-cta--receitas">Ver página do app</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- 4. Mensagens Aniversário -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #536834;">🎂</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens Aniversário</h3>
-                        <p>Deixe o aniversário de alguém especial ainda mais feliz.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/mensagens-aniversario.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Livro de Receitas -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #C14442;">👨‍🍳</div>
-                    <div class="app-card-content">
-                        <h3>Livro de Receitas</h3>
-                        <p>Organize suas receitas favoritas offline.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/livro-receitas.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.livro_de_receitas.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. Roleta da Sorte -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #561490;">🎰</div>
-                    <div class="app-card-content">
-                        <h3>Roleta da Sorte</h3>
-                        <p>Crie sorteios e decisões aleatórias divertidas.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/roleta-da-sorte.html" class="btn-details">Detalhes</a>
-                            <a href="roleta_da_sorte_web/index.html" class="btn btn-primary" style="flex: 1;">Usar</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. Frases de Tudo -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #D55AC1;">💬</div>
-                    <div class="app-card-content">
-                        <h3>Frases de Tudo</h3>
-                        <p>Frases para qualquer momento e ocasião.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/frases-tudo.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagens_frases_de_tudo.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. Gerador de Senhas -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #36AB23;">🔐</div>
-                    <div class="app-card-content">
-                        <h3>Gerador de Senhas</h3>
-                        <p>Crie senhas fortes e seguras facilmente.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/gerador-senhas.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.gerador_de_senhas.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 9. Versos Bíblicos -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #2196F3;">📕</div>
-                    <div class="app-card-content">
-                        <h3>Versos Bíblicos</h3>
-                        <p>Estude versos bíblicos para reflexão espiritual.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/versos-biblicos.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.versosbiblicos.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 10. Frases Motivacionais -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #FF6F00;">💪</div>
-                    <div class="app-card-content">
-                        <h3>Frases Motivacionais</h3>
-                        <p>Inspiração para superar desafios e alcançar objetivos.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/frases-motivacionais.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.frasesmotivacionais.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 11. Trechos de Músicas -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #FF2C26;">🎵</div>
-                    <div class="app-card-content">
-                        <h3>Trechos de Músicas</h3>
-                        <p>Compartilhe suas letras de músicas favoritas.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/trechos-musicas.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.trechosmusicas.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12. Frases de Animes -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #000000; color: white;">🍙</div>
-                    <div class="app-card-content">
-                        <h3>Frases de Animes</h3>
-                        <p>Citações memoráveis de seus animes favoritos.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/frases-animes.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.frasesanimes.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 13. Horóscopo do Dia -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #510482;">✨</div>
-                    <div class="app-card-content">
-                        <h3>Horóscopo do Dia</h3>
-                        <p>Descubra o que as estrelas reservam para você.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/horoscopo-dia.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.horoscopo.dia.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 14. Bom Dia, Boa Tarde, Boa Noite -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #003A7C;">🌅</div>
-                    <div class="app-card-content">
-                        <h3>Bom Dia, Boa Tarde...</h3>
-                        <p>Mensagens inspiradoras para todo o dia.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/bom-dia-tarde-noite.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.bomdia_boatarde_boanoite.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 15. Mensagens Boa Tarde -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #43221F;">☕</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens Boa Tarde</h3>
-                        <p>Boas energias para o meio do dia.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/boa-tarde.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagensboatarde.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 16. Mensagens Boa Noite -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #120F46;">🌙</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens Boa Noite</h3>
-                        <p>Mensagens relaxantes para encerrar o dia com paz.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/boa-noite.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagensboanoite.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 17. Frases de Games -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #546E7A;">🎮</div>
-                    <div class="app-card-content">
-                        <h3>Frases de Games</h3>
-                        <p>Citações de seus videogames favoritos.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.frasesdegames.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 18. Frases da Semana -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #FA6147;">📅</div>
-                    <div class="app-card-content">
-                        <h3>Frases da Semana</h3>
-                        <p>Frases para cada dia da semana.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.frases_dias_da_semana.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 19. Mensagens Carnaval -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #127FFA;">🎉</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens Carnaval</h3>
-                        <p>Festas e celebrações com estilo.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagens_de_carnaval.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 20. Chaveiro Pix -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #2ABBAB;">💳</div>
-                    <div class="app-card-content">
-                        <h3>Chaveiro Pix</h3>
-                        <p>Organize suas chaves Pix facilmente.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/chaveiro-pix.html" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.chaveiro_pix_chaves_pix.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 21. Mensagens Dia da Mulher -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #4404A3;">👩</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens Dia da Mulher</h3>
-                        <p>Celebre as mulheres importantes na sua vida.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagens_dia_da_mulher.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 22. Salmo do Dia -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #715820;">📖</div>
-                    <div class="app-card-content">
-                        <h3>Salmo do Dia</h3>
-                        <p>Um novo Salmo diário para reflexão.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.salmo_do_dia_estudar_biblia.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 23. Sorteio de Números -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #FDE21E; color: #333;">🎲</div>
-                    <div class="app-card-content">
-                        <h3>Sorteio de Números</h3>
-                        <p>Realize sorteios e rifas com números.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.sorteio_numeros_number_raffle.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 24. Quiz Bíblico -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #2196F3;">❓</div>
-                    <div class="app-card-content">
-                        <h3>Quiz Bíblico</h3>
-                        <p>Teste seus conhecimentos bíblicos.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.quiz_biblico_estudar_biblia.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 25. Jogo da Garrafa -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #561490;">🔄</div>
-                    <div class="app-card-content">
-                        <h3>Jogo da Garrafa</h3>
-                        <p>Diversão garantida com o clássico jogo.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.girar_garrafa_spin_bottle.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 26. Mensagens de Páscoa -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #8DBEBF;">🐣</div>
-                    <div class="app-card-content">
-                        <h3>Mensagens de Páscoa</h3>
-                        <p>Celebre a Páscoa com mensagens especiais.</p>
-                        <div class="app-card-footer">
-                            <a href="#" class="btn-details">Detalhes</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mensagens_de_pascoa.app" target="_blank" class="btn btn-primary" style="flex: 1;">Play Store</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 27. SEO Ranking Monitor (Web) -->
-                <div class="app-showcase-card">
-                    <div class="app-card-color-header" style="background-color: #667eea;">📱</div>
-                    <div class="app-card-content">
-                        <h3>SEO Ranking Monitor</h3>
-                        <p>Monitore seu app na Google Play Store.</p>
-                        <div class="app-card-footer">
-                            <a href="apps/seo-ranking-monitor.html" class="btn-details">Detalhes</a>
-                            <a href="seo_ranking_monitor_web/index.html" class="btn btn-primary" style="flex: 1;">Usar</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="section" style="text-align: center;">
-            <h2>Estamos sempre criando novos aplicativos</h2>
-            <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-6);">
-                Volte sempre para descobrir nossas novas ferramentas e aplicativos!
-            </p>
-            <a href="about.html" class="btn btn-primary btn-large">Conhecer Nosso Time</a>
+        <section class="section" style="text-align: center;" id="sobre-next">
+            <div class="container-max">
+                <h2>Estamos sempre criando novos aplicativos</h2>
+                <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-6);">
+                    Volte sempre para descobrir nossas novas ferramentas e aplicativos!
+                </p>
+                <a href="about.html" class="btn btn-primary btn-large">Conhecer Nosso Time</a>
+            </div>
         </section>
-    </main>
+    </div>
+
+    <script>
+        (function wireFeaturedMotion(scope) {
+            var panels = Array.prototype.slice.call(scope.querySelectorAll("[data-featured-panel]"));
+
+            if (!panels.length) {
+                return;
+            }
+
+            function update() {
+                var viewportCenter = window.innerHeight * 0.5;
+
+                panels.forEach(function (panel) {
+                    var media = panel.querySelector("[data-featured-image]");
+
+                    if (!media) {
+                        return;
+                    }
+
+                    var rect = panel.getBoundingClientRect();
+                    var panelCenter = rect.top + rect.height / 2;
+                    var distance = Math.min(Math.abs(viewportCenter - panelCenter), window.innerHeight);
+                    var ratio = 1 - distance / window.innerHeight;
+                    var lift = Math.round((0.5 - ratio) * 26);
+                    var blur = Math.max(0, (1 - ratio) * 10);
+                    var scale = 0.95 + ratio * 0.09;
+
+                    media.style.transform = "translate3d(0, " + lift + "px, 0) scale(" + scale.toFixed(3) + ")";
+                    media.style.filter = "blur(" + blur.toFixed(2) + "px)";
+                    panel.classList.toggle("is-active", ratio > 0.62);
+                });
+            }
+
+            window.addEventListener("scroll", update, { passive: true });
+            window.addEventListener("resize", update);
+            update();
+        })(document);
+    </script>
 
     <!-- ============================================
          FOOTER
          ============================================ -->
-    <footer>
+    <footer id="contato">
         <div class="container-max">
             <div class="footer-content">
                 <div class="footer-section">
@@ -572,6 +363,44 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (function enableReveal(selector) {
+            var items = Array.prototype.slice.call(document.querySelectorAll(selector));
+
+            if (!items.length) {
+                return;
+            }
+
+            if (!("IntersectionObserver" in window)) {
+                items.forEach(function (item) {
+                    item.classList.add("is-visible");
+                });
+                return;
+            }
+
+            var observer = new IntersectionObserver(
+                function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    });
+                },
+                {
+                    threshold: 0.2,
+                    rootMargin: "0px 0px -6%"
+                }
+            );
+
+            items.forEach(function (item) {
+                observer.observe(item);
+            });
+        })("[data-reveal]");
+    </script>
 
 </body>
 </html>
