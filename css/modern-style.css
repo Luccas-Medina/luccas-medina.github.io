@@ -1285,6 +1285,11 @@ footer a:hover {
     margin-bottom: var(--spacing-4);
 }
 
+.footer-section {
+  margin: 0 auto;
+  width: fit-content;
+}
+
 .footer-section h4 {
     /* margin-bottom: var(--spacing-4); */
     color: white;
