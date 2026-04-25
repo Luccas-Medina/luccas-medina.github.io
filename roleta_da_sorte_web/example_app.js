@@ -15,7 +15,7 @@ const state = {
 // ========================================
 const translations = {
     pt: {
-        'app-title': '📱 SEO Ranking Monitor',
+        'app-title': '📱 ASO Ranking Monitor',
         'app-subtitle': 'Monitore o ranking do seu app na Google Play Store',
         'change-language': 'Alterar Idioma:',
         'form-title': 'Informações do App',
@@ -42,7 +42,7 @@ const translations = {
         'rank-error': 'Erro na busca'
     },
     es: {
-        'app-title': '📱 Monitor de Ranking SEO',
+        'app-title': '📱 Monitor de Ranking ASO',
         'app-subtitle': 'Monitorea el ranking de tu app en Google Play Store',
         'change-language': 'Cambiar Idioma:',
         'form-title': 'Información de la App',
@@ -69,7 +69,7 @@ const translations = {
         'rank-error': 'Error en búsqueda'
     },
     en: {
-        'app-title': '📱 SEO Ranking Monitor',
+        'app-title': '📱 ASO Ranking Monitor',
         'app-subtitle': 'Monitor your app ranking on Google Play Store',
         'change-language': 'Change Language:',
         'form-title': 'App Information',
@@ -96,7 +96,7 @@ const translations = {
         'rank-error': 'Search error'
     },
     de: {
-        'app-title': '📱 SEO Ranking Monitor',
+        'app-title': '📱 ASO Ranking Monitor',
         'app-subtitle': 'Überwachen Sie Ihr App-Ranking im Google Play Store',
         'change-language': 'Sprache ändern:',
         'form-title': 'App-Informationen',
@@ -123,7 +123,7 @@ const translations = {
         'rank-error': 'Suchfehler'
     },
     fr: {
-        'app-title': '📱 Moniteur de Classement SEO',
+        'app-title': '📱 Moniteur de Classement ASO',
         'app-subtitle': 'Surveillez le classement de votre application sur Google Play Store',
         'change-language': 'Changer de langue:',
         'form-title': 'Informations sur l\'application',
@@ -150,7 +150,7 @@ const translations = {
         'rank-error': 'Erreur de recherche'
     },
     ko: {
-        'app-title': '📱 SEO 순위 모니터',
+        'app-title': '📱 ASO 순위 모니터',
         'app-subtitle': 'Google Play 스토어에서 앱 순위를 모니터링하세요',
         'change-language': '언어 변경:',
         'form-title': '앱 정보',
@@ -177,7 +177,7 @@ const translations = {
         'rank-error': '검색 오류'
     },
     el: {
-        'app-title': '📱 Παρακολούθηση Κατάταξης SEO',
+        'app-title': '📱 Παρακολούθηση Κατάταξης ASO',
         'app-subtitle': 'Παρακολουθήστε την κατάταξη της εφαρμογής σας στο Google Play Store',
         'change-language': 'Αλλαγή γλώσσας:',
         'form-title': 'Πληροφορίες Εφαρμογής',
@@ -204,7 +204,7 @@ const translations = {
         'rank-error': 'Σφάλμα αναζήτησης'
     },
     fi: {
-        'app-title': '📱 SEO-sijoitusten seuranta',
+        'app-title': '📱 ASO-sijoitusten seuranta',
         'app-subtitle': 'Seuraa sovelluksesi sijoitusta Google Play Storessa',
         'change-language': 'Vaihda kieli:',
         'form-title': 'Sovelluksen tiedot',
@@ -231,7 +231,7 @@ const translations = {
         'rank-error': 'Hakuvirhe'
     },
     pl: {
-        'app-title': '📱 Monitor Rankingu SEO',
+        'app-title': '📱 Monitor Rankingu ASO',
         'app-subtitle': 'Monitoruj ranking swojej aplikacji w Google Play Store',
         'change-language': 'Zmień język:',
         'form-title': 'Informacje o aplikacji',
@@ -258,7 +258,7 @@ const translations = {
         'rank-error': 'Błąd wyszukiwania'
     },
     it: {
-        'app-title': '📱 Monitor Ranking SEO',
+        'app-title': '📱 Monitor Ranking ASO',
         'app-subtitle': 'Monitora il posizionamento della tua app su Google Play Store',
         'change-language': 'Cambia lingua:',
         'form-title': 'Informazioni App',

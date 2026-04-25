@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../../assets/favicon/controller.png">
+  <title>Cowboy Vs Mage</title>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Luckiest+Guy&display=swap");
+
+    :root {
+      --sky-1: #8ad8ff;
+      --sky-2: #c0edff;
+      --sand: #ffe9b3;
+      --ink: #1f2b37;
+      --ink-soft: #4f6579;
+      --panel-bg: rgba(255, 255, 255, 0.74);
+      --panel-border: rgba(255, 255, 255, 0.82);
+      --blue: #2f77d1;
+      --warn: #d95c2a;
+      --danger: #b83030;
+      --tile: rgba(231, 246, 255, 0.8);
+      --tile-border: rgba(68, 127, 180, 0.25);
+      --shadow: 0 14px 32px rgba(24, 51, 79, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(255, 255, 255, 0.8), transparent 36%),
+        radial-gradient(circle at 85% 18%, rgba(255, 213, 110, 0.6), transparent 24%),
+        linear-gradient(160deg, var(--sky-1) 0%, var(--sky-2) 54%, var(--sand) 100%);
+      padding: 18px 12px 24px;
+    }
+
+    .panel {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      animation: panelIn 0.55s ease both;
+    }
+
+    .duel-wrapper {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .duel-header {
+      text-align: center;
+    }
+
+    .game-shell {
+      display: grid;
+      grid-template-columns: minmax(260px, 320px) minmax(380px, 1fr) minmax(260px, 320px);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .side-panel {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .cowboy-panel {
+      grid-column: 1;
+    }
+
+    .mage-panel {
+      grid-column: 3;
+    }
+
+    .arena-panel {
+      grid-column: 2;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      font-size: 0.74rem;
+      color: var(--blue);
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Luckiest Guy", "Verdana", sans-serif;
+      letter-spacing: 0.03em;
+      font-weight: 400;
+      color: #20354a;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(1.2rem, 2.7vw, 1.55rem);
+    }
+
+    .sub {
+      margin: 0 0 14px;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      margin: 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.68);
+      display: grid;
+      gap: 4px;
+    }
+
+    .stat span {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .stat strong {
+      font-size: 1.02rem;
+      color: #1f3550;
+    }
+
+    .status {
+      margin: 12px 0 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      min-height: 44px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      color: #1f446b;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .status-title {
+      margin: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+
+    .status.warn {
+      color: var(--warn);
+    }
+
+    .status.dead {
+      color: var(--danger);
+      background: rgba(255, 212, 212, 0.78);
+      border-color: rgba(190, 72, 72, 0.35);
+    }
+
+    .arena-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    #limits {
+      margin: 0;
+      font-weight: 700;
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+    }
+
+    .arena {
+      --cols: 8;
+      display: grid;
+      grid-template-columns: repeat(var(--cols), minmax(40px, 1fr));
+      gap: 8px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(56, 134, 199, 0.26);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(220, 242, 255, 0.64)),
+        repeating-linear-gradient(
+          90deg,
+          rgba(94, 157, 214, 0.08) 0,
+          rgba(94, 157, 214, 0.08) 38px,
+          transparent 38px,
+          transparent 76px
+        );
+    }
+
+    .tile {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      border: 1px solid var(--tile-border);
+      background: var(--tile);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .tile.active {
+      border-color: rgba(47, 119, 209, 0.62);
+      box-shadow: inset 0 0 0 2px rgba(47, 119, 209, 0.22);
+    }
+
+    .entity {
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 5px rgba(36, 60, 87, 0.22));
+    }
+
+    .entity.avatar {
+      font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+    }
+
+    .entity.bullet {
+      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+      color: #111;
+    }
+
+    .entity.spell {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      animation: pulseSpell 0.55s ease-in-out infinite alternate;
+    }
+
+    .tile-coord {
+      position: absolute;
+      right: 4px;
+      bottom: 3px;
+      font-size: 0.56rem;
+      font-weight: 700;
+      color: rgba(58, 86, 114, 0.74);
+      pointer-events: none;
+    }
+
+    button {
+      margin: 0;
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(180deg, #2f77d1, #245ea7);
+      box-shadow: 0 7px 14px rgba(25, 66, 120, 0.24);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button.alt {
+      background: linear-gradient(180deg, #2ea66c, #217c51);
+      box-shadow: 0 7px 14px rgba(29, 90, 60, 0.24);
+    }
+
+    button.danger {
+      background: linear-gradient(180deg, #e05656, #be3535);
+      box-shadow: 0 7px 14px rgba(145, 40, 40, 0.25);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.62;
+      transform: none;
+      filter: grayscale(0.2);
+      box-shadow: none;
+    }
+
+    .move-grid,
+    .actions-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .move-grid {
+      grid-template-columns: repeat(2, minmax(130px, 1fr));
+      grid-template-areas:
+        "up up"
+        "left right"
+        "down down";
+      justify-items: stretch;
+      margin-bottom: 12px;
+    }
+
+    .move-grid .move-up {
+      grid-area: up;
+    }
+
+    .move-grid .move-left {
+      grid-area: left;
+    }
+
+    .move-grid .move-right {
+      grid-area: right;
+    }
+
+    .move-grid .move-down {
+      grid-area: down;
+    }
+
+    .actions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .control-block {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.84);
+      background: rgba(255, 255, 255, 0.58);
+      padding: 12px;
+    }
+
+    .control-block h3 {
+      margin: 0 0 10px;
+      color: #1f3550;
+      font-size: 1rem;
+    }
+
+    @keyframes panelIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes stepIn {
+      from {
+        transform: translateY(8px) scale(0.94);
+        opacity: 0.4;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulseSpell {
+      from {
+        transform: scale(0.9);
+        opacity: 0.65;
+      }
+      to {
+        transform: scale(1.07);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .game-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .cowboy-panel {
+        grid-column: 1;
+      }
+
+      .arena-panel {
+        grid-column: 1;
+      }
+
+      .mage-panel {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 620px) {
+      body {
+        padding: 12px 8px 20px;
+      }
+
+      .panel {
+        border-radius: 14px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .move-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .game-shell {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="duel-wrapper">
+    <header class="duel-header">
+      <p class="eyebrow">Mini Duel RPG</p>
+      <h1>🤠 VS 🧙🏽‍♂️ </h1>
+      <p class="sub">Escolha seu personagem e comece o duelo!</p>
+    </header>
+
+    <section class="game-shell">
+      <aside class="panel side-panel cowboy-panel">
+        <h2>🤠 Cowboy</h2>
+
+        <div class="stats">
+          <p class="stat">
+            <span>Posição</span>
+            <strong id="cowboyPos">0, 0</strong>
+          </p>
+          <p class="stat">
+            <span>Vida</span>
+            <strong id="cowboyLife">10</strong>
+          </p>
+          <p class="stat">
+            <span>Munição</span>
+            <strong id="cowboyAmmo">10</strong>
+          </p>
+          <p class="stat">
+            <span>Dano</span>
+            <strong id="cowboyDamage">2</strong>
+          </p>
+        </div>
+
+        <article class="control-block">
+          <h3>Movimento</h3>
+          <div class="move-grid">
+            <button id="btnCowboyUp" class="move-up" data-control>(W) Cima</button>
+            <button id="btnCowboyLeft" class="move-left" data-control>(A) Esquerda</button>
+            <button id="btnCowboyRight" class="move-right" data-control>(D) Direita</button>
+            <button id="btnCowboyDown" class="move-down" data-control>(S) Baixo</button>
+          </div>
+        </article>
+
+        <article class="control-block">
+          <h3>Ações</h3>
+          <div class="actions-grid">
+            <button id="btnCowboyShoot" class="alt" data-control>⚫ Atirar (Espaço)</button>
+            <button id="btnCowboyAmmo" class="alt" data-control>📦 Encontrar munição (R)</button>
+          </div>
+        </article>
+
+        <p class="status-title">Status do Cowboy</p>
+        <p id="cowboyStatus" class="status">🤠 Pronto para atirar.</p>
+      </aside>
+
+      <section class="panel arena-panel">
+        <div class="arena-top">
+          <h2>Mapa</h2>
+          <p id="limits">Limites: X 0-7 | Y 0-5</p>
+        </div>
+
+        <div id="arena" class="arena" aria-label="Mapa do avatar"></div>
+      </section>
+
+      <aside class="panel side-panel mage-panel">
+        <h2>🧙🏽‍♂️ Mago</h2>
+
+        <div class="stats">
+          <p class="stat">
+            <span>Posição</span>
+            <strong id="magePos">0, 0</strong>
+          </p>
+          <p class="stat">
+            <span>Vida</span>
+            <strong id="mageLife">10</strong>
+          </p>
+          <p class="stat">
+            <span>Feitiços</span>
+            <strong id="mageSpells">10</strong>
+          </p>
+          <p class="stat">
+            <span>Dano</span>
+            <strong id="mageDamage">3</strong>
+          </p>
+        </div>
+
+        <article class="control-block">
+          <h3>Movimento</h3>
+          <div class="move-grid">
+            <button id="btnMageUp" class="move-up" data-control>⬆️ Cima</button>
+            <button id="btnMageLeft" class="move-left" data-control>⬅️ Esquerda</button>
+            <button id="btnMageRight" class="move-right" data-control>➡️ Direita</button>
+            <button id="btnMageDown" class="move-down" data-control>⬇️ Baixo</button>
+          </div>
+        </article>
+
+        <article class="control-block">
+          <h3>Ação</h3>
+          <div class="actions-grid">
+            <button id="btnMageCast" class="danger" data-control>💥 Rajada de Fogo (Enter)</button>
+          </div>
+        </article>
+
+        <p class="status-title">Status do Mago</p>
+        <p id="mageStatus" class="status">🧙🏽‍♂️ Feitiços carregados.</p>
+      </aside>
+    </section>
+  </main>
+
+  <script src="game_logic.js"></script>
+</body>
+</html>

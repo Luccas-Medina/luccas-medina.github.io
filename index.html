@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="icon" type="image/png" href="./assets/favicon/index-icon.png">
     
     <!-- Primary Meta Tags -->
     <title>Next World Apps</title>
     <meta name="description" content="Explore todos os aplicativos gratuitos da Next World Apps.">
     <meta name="title" content="Next World Apps - Conheça nossos Apps">
     <meta name="description" content="Acesse gratuitamente ferramentas web profissionais: monitore o ranking do seu app na Google Play Store e crie roletas de sorteio personalizadas. Ferramentas online gratuitas para desenvolvedores e usuários.">
-    <meta name="keywords" content="SEO, ranking monitor, Google Play, roleta da sorte, ferramentas web, sorteio online, monitoramento de apps, ferramentas gratuitas">
+    <meta name="keywords" content="ASO, ranking monitor, Google Play, roleta da sorte, ferramentas web, sorteio online, monitoramento de apps, ferramentas gratuitas">
     <meta name="author" content="Luccas Medina">
     <meta name="robots" content="index, follow">
     
@@ -69,11 +69,18 @@
 
         <nav class="site-nav__links">
             <a href="#apps-mobile" class="site-nav__link">Apps Mobile</a>
+            <a href="#web-games" class="site-nav__link">Games</a>
             <a href="#web-apps" class="site-nav__link">Web Apps</a>
-            <a href="#games" class="site-nav__link">Games</a>
-            <a href="#contato" class="site-nav__link">Contato</a>
+            <a href="https://www.linkedin.com/in/luccasmedina/" class="site-nav__link"target="_blank">Contato</a>
         </nav>
     </header>
+
+    <!-- ============================================
+         SCROLL INDICATOR
+         ============================================ -->
+    <div class="scroll-indicator">
+        <span class="scroll-indicator__bar"></span>
+    </div>
 
     <!-- ============================================
          HERO SECTION
@@ -83,11 +90,33 @@
             <div class="container-max principal-hero__content">
                 <div class="orbit-menu" data-reveal>
                     <article class="orbit-menu__core">
-                        <p class="eyebrow">Next World Apps</p>
-                        <h1 class="orbit-menu__headline">Todos os nossos aplicativos em um hub vivo</h1>
-                        <p class="orbit-menu__lead">
+                        <!-- <p class="eyebrow">Next World Apps</p> -->
+                        <h1 class="orbit-menu__headline orbit-menu__headline--stack" aria-label="Next World Apps" data-orbit-headline>
+                            <span class="orbit-menu__word is-active" data-orbit-word aria-hidden="true">
+                                <span class="orbit-menu__letter">N</span>
+                                <span class="orbit-menu__letter">e</span>
+                                <span class="orbit-menu__letter">x</span>
+                                <span class="orbit-menu__letter">t</span>
+                                <span class="orbit-menu__letter orbit-menu__letter--ghost" aria-hidden="true"></span>
+                            </span>
+                            <span class="orbit-menu__word" data-orbit-word aria-hidden="true" style="margin-top: -30px;">
+                                <span class="orbit-menu__letter">W</span>
+                                <span class="orbit-menu__letter">o</span>
+                                <span class="orbit-menu__letter">r</span>
+                                <span class="orbit-menu__letter">l</span>
+                                <span class="orbit-menu__letter">d</span>
+                            </span>
+                            <span class="orbit-menu__word" data-orbit-word aria-hidden="true">
+                                <span class="orbit-menu__letter">A</span>
+                                <span class="orbit-menu__letter">p</span>
+                                <span class="orbit-menu__letter">p</span>
+                                <span class="orbit-menu__letter">s</span>
+                                <span class="orbit-menu__letter orbit-menu__letter--ghost" aria-hidden="true"></span>
+                            </span>
+                        </h1>
+                        <!-- <p class="orbit-menu__lead">
                             Explore apps mobile, ferramentas web e games com navegacao por secoes e layout em movimento.
-                        </p>
+                        </p> -->
                         <a href="#apps-mobile" class="cta-button">Comecar exploracao</a>
                     </article>
 
@@ -157,7 +186,7 @@
                 </div>
             </section>
 
-            <div class="slider-ribbon" id="web-apps">
+            <div class="slider-ribbon">
                 <div class="slider-ribbon__track">
                     <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/mensagens-bom-dia.html">Mensagens Bom Dia</a>
                     <a class="slider-ribbon__item slider-ribbon__item-link" href="apps/biblia-sagrada.html">Biblia Sagrada</a>
@@ -280,7 +309,7 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="section" style="text-align: center;" id="sobre-next">
+        <!-- <section class="section" style="text-align: center;" id="sobre-next">
             <div class="container-max">
                 <h2>Estamos sempre criando novos aplicativos</h2>
                 <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-6);">
@@ -288,10 +317,153 @@
                 </p>
                 <a href="about.html" class="btn btn-primary btn-large">Conhecer Nosso Time</a>
             </div>
+        </section> -->
+    </div>
+
+    <div class="page-sections" id="web-games">
+        <section class="apps-mobile-showcase web-apps-showcase">
+            <section class="brigadeiros-hero">
+                <div class="container-max brigadeiros-hero__inner" data-reveal>
+                    <p class="eyebrow">Games</p>
+                    <h1>Conheça nossos Games Web</h1>
+                    <p>
+                        Nossos games disponíveis na web e demonstrações de games mobile.
+                    </p>
+                </div>
+            </section>
+            
+        </section>
+        
+
+            <section class="cupcakes-scroll-stack container-max">
+                <!-- <div class="cupcakes-scroll-stack__header" data-reveal>
+                    <p class="eyebrow">Games em destaque</p>
+                    <h2>Jogue direto no navegador</h2>
+                </div> -->
+
+                <article class="cupcakes-scroll-block is-reverse" data-reveal>
+                    <div
+                        class="cupcakes-scroll-block__media cupcakes-scroll-block__media--sun"
+                        role="img"
+                        aria-label="Roleta da Sorte para sorteios rápidos"
+                        style="background-image: url('roleta_da_sorte_web/banner.png')"
+                    ></div>
+                    <div class="cupcakes-scroll-block__content">
+                        <p class="eyebrow">Sorteio rápido</p>
+                        <h2>Roleta da Sorte</h2>
+                        <p>
+                            Monte sua roleta personalizada e sorteie opções em segundos para jogos, decisões e brincadeiras.
+                        </p>
+                        <a class="icon-button webapps-link" href="roleta_da_sorte_web/index.html">Jogar</a>
+                    </div>
+                </article>
+
+                <article class="cupcakes-scroll-block" data-reveal>
+                    <div
+                        class="cupcakes-scroll-block__media cupcakes-scroll-block__media--berry"
+                        role="img"
+                        aria-label="Cowboy vs Mage com duelo em grade tática"
+                        style="background-image: url('assets/images/cowboy-vs-mage.png'); background-size: cover;"
+                    ></div>
+                    <div class="cupcakes-scroll-block__content">
+                        <p class="eyebrow">Mini Duel RPG</p>
+                        <h2>Cowboy vs Mage</h2>
+                        <p>
+                            Duelo multiplayer tático em grade com movimentação por teclado, tiros, feitiços e vitória por eliminação.
+                        </p>
+                        <a class="icon-button webapps-link" href="games/cowboy_vs_mage/index.html">Jogar</a>
+                    </div>
+                </article>
+            </section>
+    </div>
+    
+    <div class="page-sections" id="web-apps">
+        <section class="apps-mobile-showcase web-apps-showcase">
+            <section class="brigadeiros-hero">
+                <div class="container-max brigadeiros-hero__inner" data-reveal>
+                    <p class="eyebrow">Web Apps</p>
+                    <h1>Conheça as Ferramentas Web</h1>
+                    <p>
+                        Ferramentas online e demonstrações de funcionalidades dos Apps Android.
+                    </p>
+                </div>
+            </section>
+
+            <div class="container-max">
+                <div class="doces-carousel webapps-carousel" tabindex="0" data-reveal>
+                    <div class="doces-carousel__viewport">
+                        <div class="doces-carousel__track" data-carousel-track>
+                            <article class="doces-slide" data-carousel-slide role="group" aria-label="Slide 2 de 2">
+                                <a class="doces-slide__media doces-slide__media--webapps" href="seo_ranking_monitor_web/index.html" aria-label="Abrir ASO Ranking Monitor" style="background-image: url('seo_ranking_monitor_web/banner.png')"></a>
+                                <div class="doces-slide__content">
+                                    <p class="eyebrow">Monitoramento de Ranking de Apps</p>
+                                    <h2>ASO Ranking Monitor</h2>
+                                    <p>
+                                        Monitore posicionamento de apps na Play Store com visão prática para analisar evolução de palavras-chave.
+                                    </p>
+                                    <a class="icon-button webapps-link" href="seo_ranking_monitor_web/index.html">Abrir Web App</a>
+                                </div>
+                            </article>
+
+                            <article class="doces-slide" data-carousel-slide role="group" aria-label="Slide 1 de 2">
+                                <a class="doces-slide__media doces-slide__media--webapps" href="roleta_da_sorte_web/index.html" aria-label="Abrir Roleta da Sorte" style="background-image: url('roleta_da_sorte_web/banner.png')"></a>
+                                <div class="doces-slide__content">
+                                    <p class="eyebrow">Sorteio Rápido e Fácil</p>
+                                    <h2>Roleta da Sorte</h2>
+                                    <p>
+                                        Monte roletas personalizadas em segundos para sorteios, decisões rápidas e brincadeiras em grupo.
+                                    </p>
+                                    <a class="icon-button webapps-link" href="roleta_da_sorte_web/index.html">Abrir Web App</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="doces-carousel__controls">
+                        <button type="button" class="icon-button" data-carousel-control="prev" aria-label="Slide anterior">Prev</button>
+                        <button type="button" class="icon-button" data-carousel-control="next" aria-label="Próximo slide">Next</button>
+                    </div>
+
+                    <div class="doces-carousel__dots">
+                        <button type="button" class="doces-carousel__dot" data-carousel-dot="0" aria-label="Ir para slide 1"></button>
+                        <button type="button" class="doces-carousel__dot" data-carousel-dot="1" aria-label="Ir para slide 2"></button>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 
     <script>
+        (function wireOrbitHeadline(scope) {
+            var headline = scope.querySelector("[data-orbit-headline]");
+
+            if (!headline || !window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                return;
+            }
+
+            var words = Array.prototype.slice.call(headline.querySelectorAll("[data-orbit-word]"));
+
+            if (words.length < 2) {
+                return;
+            }
+
+            var activeIndex = 0;
+
+            function update() {
+                words.forEach(function (word, index) {
+                    word.classList.toggle("is-active", index === activeIndex);
+                });
+            }
+
+            function advance() {
+                activeIndex = (activeIndex + 1) % words.length;
+                update();
+            }
+
+            update();
+            window.setInterval(advance, 1000);
+        })(document);
+
         (function wireFeaturedMotion(scope) {
             var panels = Array.prototype.slice.call(scope.querySelectorAll("[data-featured-panel]"));
 
@@ -329,6 +501,102 @@
         })(document);
     </script>
 
+    <script>
+        (function wireWebAppsCarousel(scope) {
+            var carousels = Array.prototype.slice.call(scope.querySelectorAll(".webapps-carousel"));
+
+            if (!carousels.length) {
+                return;
+            }
+
+            carousels.forEach(function (carousel) {
+                var track = carousel.querySelector("[data-carousel-track]");
+                var slides = Array.prototype.slice.call(carousel.querySelectorAll("[data-carousel-slide]"));
+                var dots = Array.prototype.slice.call(carousel.querySelectorAll("[data-carousel-dot]"));
+
+                if (!track || !slides.length) {
+                    return;
+                }
+
+                var activeIndex = 0;
+
+                function update() {
+                    track.style.transform = "translateX(" + activeIndex * -100 + "%)";
+
+                    slides.forEach(function (slide, index) {
+                        slide.setAttribute("aria-hidden", index === activeIndex ? "false" : "true");
+                    });
+
+                    dots.forEach(function (dot, index) {
+                        var isActive = index === activeIndex;
+                        dot.classList.toggle("is-active", isActive);
+                        dot.setAttribute("aria-current", isActive ? "true" : "false");
+                    });
+                }
+
+                function goTo(index) {
+                    var lastIndex = slides.length - 1;
+
+                    if (index < 0) {
+                        activeIndex = lastIndex;
+                    } else if (index > lastIndex) {
+                        activeIndex = 0;
+                    } else {
+                        activeIndex = index;
+                    }
+
+                    update();
+                }
+
+                carousel.addEventListener("click", function (event) {
+                    var control = event.target.closest("[data-carousel-control], [data-carousel-dot]");
+
+                    if (!control || !carousel.contains(control)) {
+                        return;
+                    }
+
+                    if (control.dataset.carouselControl === "next") {
+                        goTo(activeIndex + 1);
+                        return;
+                    }
+
+                    if (control.dataset.carouselControl === "prev") {
+                        goTo(activeIndex - 1);
+                        return;
+                    }
+
+                    if (control.dataset.carouselDot) {
+                        goTo(Number(control.dataset.carouselDot));
+                    }
+                });
+
+                carousel.addEventListener("keydown", function (event) {
+                    if (event.key === "ArrowRight") {
+                        goTo(activeIndex + 1);
+                    }
+
+                    if (event.key === "ArrowLeft") {
+                        goTo(activeIndex - 1);
+                    }
+                });
+
+                update();
+            });
+        })(document);
+    </script>
+    <script>
+        const words = document.querySelectorAll('[data-orbit-word]');
+        let index = 0;
+
+        setInterval(() => {
+        words[index].classList.remove('is-active');
+
+        index = (index + 1) % words.length;
+
+        words[index].classList.add('is-active');
+        }, 2000);
+    </script>
+
     <!-- ============================================
          FOOTER
          ============================================ -->
@@ -336,7 +604,7 @@
         <div class="container-max">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Descobrir</h4>
+                    <h4>Navegar</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="#top">Todos os Apps</a></li>
@@ -351,10 +619,10 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Comunidade</h4>
+                    <h4>Contato</h4>
                     <ul>
                         <li><a href="https://github.com/luccas-medina" target="_blank">GitHub</a></li>
-                        <li><a href="contact.html">Feedback</a></li>
+                        <li><a href="https://www.linkedin.com/in/luccasmedina/" target="_blank">Linkedin</a></li>
                     </ul>
                 </div>
             </div>
@@ -400,6 +668,29 @@
                 observer.observe(item);
             });
         })("[data-reveal]");
+
+        (function wireScrollProgress(scope, selector) {
+            var bar = scope.querySelector(selector);
+
+            if (!bar) {
+                return;
+            }
+
+            var update = function () {
+                var pageTop = scope.offsetTop;
+                var pageHeight = scope.scrollHeight;
+                var viewport = window.innerHeight;
+                var max = Math.max(pageHeight - viewport, 1);
+                var traveled = Math.min(Math.max(window.scrollY - pageTop, 0), max);
+                var ratio = traveled / max;
+
+                bar.style.transform = "scaleY(" + ratio + ")";
+            };
+
+            window.addEventListener("scroll", update, { passive: true });
+            window.addEventListener("resize", update);
+            update();
+        })(document.documentElement, ".scroll-indicator__bar");
     </script>
 
 </body>

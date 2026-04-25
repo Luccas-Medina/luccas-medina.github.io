@@ -1,4 +1,4 @@
-# SEO Ranking Monitor - Google Play Store
+# ASO Ranking Monitor - Google Play Store
 
 Static Single Page Application (SPA) for monitoring app rankings on Google Play Store search results.
 
@@ -234,4 +234,4 @@ Feel free to fork, modify, and improve this project!
 
 ---
 
-**Built with ❤️ for app developers who want to monitor their SEO rankings**
+**Built with ❤️ for app developers who want to monitor their ASO rankings**
