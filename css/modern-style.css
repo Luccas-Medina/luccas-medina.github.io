@@ -176,6 +176,41 @@ nav a.active {
     color: var(--color-primary);
 }
 
+/* Hamburger Menu */
+.site-nav__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+}
+
+.site-nav__hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-gray-700);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.site-nav__hamburger.is-active .site-nav__hamburger-line:nth-child(1) {
+    opacity: 0.8;
+}
+
+.site-nav__hamburger.is-active .site-nav__hamburger-line:nth-child(2) {
+    opacity: 0.5;
+}
+
+.site-nav__hamburger.is-active .site-nav__hamburger-line:nth-child(3) {
+    opacity: 0.2;
+}
+
 /* Index header styles migrated from index.html to avoid inline/style conflicts */
 .site-nav {
     position: sticky;
@@ -1058,17 +1093,52 @@ nav a.active {
 
 @media (max-width: 820px) {
     .site-nav {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .site-nav__hamburger {
+        display: flex;
     }
 
     .site-nav__links {
+        position: fixed;
+        top: 74px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(255, 250, 242, 0.98);
+        backdrop-filter: blur(12px);
+        gap: 0;
+        padding: 1rem 0;
+        max-height: calc(100vh - 74px);
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
         width: 100%;
-        overflow-x: auto;
+        border-bottom: 1px solid rgba(31, 33, 48, 0.15);
+    }
+
+    .site-nav__links.is-active {
+        transform: translateX(0);
+    }
+
+    .site-nav__link {
+        display: block;
+        width: 100%;
+        padding: 1rem 1.4rem;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(31, 33, 48, 0.08);
     }
 
     .orbit-menu {
         min-height: 560px;
+    }
+
+    .orbit-menu__core{
+        display: none;
     }
 
     .orbit-menu__item {
@@ -1156,26 +1226,30 @@ nav a.active {
 
     .featured-thumb-stack {
         width: 100%;
-        height: clamp(250px, 72vw, 320px);
+        height: clamp(200px, 50vw, 280px);
     }
 
     .featured-thumb--main {
-        width: min(88vw, 340px);
-        top: 12%;
+        width: min(60vw, 200px);
+        top: 15%;
     }
 
     .featured-thumb--left,
     .featured-thumb--right {
-        width: min(66vw, 250px);
-        top: 26%;
+        width: min(50vw, 160px);
+        top: 30%;
     }
 
     .featured-thumb--left {
-        left: -8%;
+        left: 10%;
     }
 
     .featured-thumb--right {
-        right: -8%;
+        right: 10%;
+    }
+
+    .featured-copy {
+        padding-top: 50px;
     }
 
     .web-apps-showcase {
@@ -1200,6 +1274,32 @@ nav a.active {
 
     .doces-carousel__controls {
         justify-content: center;
+    }
+    
+    .apps-mobile-showcase {
+        /* margin: 1.2rem 0 0; */
+        /* border-radius: 1.2rem; */
+        overflow: hidden;
+        background: linear-gradient(150deg, #1a1114 0 85%, #fef4ec 42% 100%);
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .footer-section {
+        text-align: left;
+        margin: 0;
+        width: auto;
+    }
+    
+    .footer-bottom {
+        text-align: start;
+        padding-top: var(--spacing-6);
+        border-top: 1px solid var(--color-gray-700);
+        color: var(--color-gray-400);
+        font-size: var(--font-size-sm);
     }
 }
 
@@ -1280,15 +1380,11 @@ footer a:hover {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
     gap: var(--spacing-6);
     margin-bottom: var(--spacing-4);
 }
 
-.footer-section {
-  margin: 0 auto;
-  width: fit-content;
-}
 
 .footer-section h4 {
     /* margin-bottom: var(--spacing-4); */
@@ -1314,6 +1410,17 @@ footer a:hover {
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
+
+@media (min-width: 621px) {
+    .footer-section {
+        margin: 0 auto;
+        width: fit-content;
+    }
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
 
 @media (max-width: 768px) {
     .container-max {

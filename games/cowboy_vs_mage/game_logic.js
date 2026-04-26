@@ -362,6 +362,79 @@ function updateUI() {
     renderArena();
 }
 
+function showMobileWarningModal() {
+    const existingModal = document.getElementById("mobileWarningModal");
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    const overlay = document.createElement("div");
+    overlay.id = "mobileWarningModal";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-labelledby", "mobileWarningTitle");
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.zIndex = "9998";
+    overlay.style.display = "grid";
+    overlay.style.placeItems = "center";
+    overlay.style.padding = "16px";
+    overlay.style.background = "rgba(20, 27, 35, 0.55)";
+    overlay.style.backdropFilter = "blur(3px)";
+
+    const card = document.createElement("div");
+    card.style.width = "min(420px, 100%)";
+    card.style.borderRadius = "16px";
+    card.style.border = "1px solid rgba(255, 255, 255, 0.84)";
+    card.style.background = "rgba(255, 255, 255, 0.94)";
+    card.style.boxShadow = "0 16px 36px rgba(0, 0, 0, 0.22)";
+    card.style.padding = "18px";
+    card.style.textAlign = "center";
+
+    const title = document.createElement("h2");
+    title.id = "mobileWarningTitle";
+    title.textContent = "💻 Dica de Experiência";
+    title.style.margin = "0 0 10px";
+    title.style.fontSize = "1.3rem";
+
+    const message = document.createElement("p");
+    message.textContent = "Este jogo foi otimizado para dispositivos desktop. Para a melhor experiência, acesse em um computador com teclado e mouse.";
+    message.style.margin = "0 0 16px";
+    message.style.fontWeight = "600";
+    message.style.color = "#1f3550";
+    message.style.lineHeight = "1.5";
+
+    const continueButton = document.createElement("button");
+    continueButton.type = "button";
+    continueButton.textContent = "Entendi, continuar assim";
+    continueButton.style.marginRight = "8px";
+    continueButton.addEventListener("click", () => {
+        overlay.remove();
+    });
+
+    const backButton = document.createElement("button");
+    backButton.type = "button";
+    backButton.textContent = "Voltar";
+    backButton.style.background = "linear-gradient(180deg, #707070, #505050)";
+    backButton.style.boxShadow = "0 7px 14px rgba(60, 60, 60, 0.24)";
+    backButton.addEventListener("click", () => {
+        window.history.back();
+    });
+
+    const buttonContainer = document.createElement("div");
+    buttonContainer.style.display = "flex";
+    buttonContainer.style.gap = "8px";
+    buttonContainer.style.justifyContent = "center";
+    buttonContainer.style.flexWrap = "wrap";
+    buttonContainer.appendChild(continueButton);
+    buttonContainer.appendChild(backButton);
+
+    card.append(title, message, buttonContainer);
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+    continueButton.focus();
+}
+
 function showGameOverModal(winnerName) {
     const existingModal = document.getElementById("gameOverModal");
     if (existingModal) {
@@ -581,3 +654,8 @@ bindKeyboardControls();
 setCowboyStatus("⚔️ Pronto para o duelo.");
 setMageStatus("⚔️ Pronto para o duelo.");
 updateUI();
+
+// Verificar se é dispositivo móvel/pequena tela e mostrar aviso
+if (window.innerWidth < 980) {
+    showMobileWarningModal();
+}

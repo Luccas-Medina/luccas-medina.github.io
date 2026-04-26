@@ -67,7 +67,13 @@
     <header class="site-nav">
         <a href="#home" class="site-nav__brand">Next World Apps</a>
 
-        <nav class="site-nav__links">
+        <button class="site-nav__hamburger" id="hamburger-menu" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="site-nav__hamburger-line"></span>
+            <span class="site-nav__hamburger-line"></span>
+            <span class="site-nav__hamburger-line"></span>
+        </button>
+
+        <nav class="site-nav__links" id="mobile-menu">
             <a href="#apps-mobile" class="site-nav__link">Apps Mobile</a>
             <a href="#web-games" class="site-nav__link">Games</a>
             <a href="#web-apps" class="site-nav__link">Web Apps</a>
@@ -691,6 +697,44 @@
             window.addEventListener("resize", update);
             update();
         })(document.documentElement, ".scroll-indicator__bar");
+    </script>
+
+    <script>
+        (function wireHamburgerMenu() {
+            var hamburger = document.getElementById("hamburger-menu");
+            var mobileMenu = document.getElementById("mobile-menu");
+            var navLinks = document.querySelectorAll(".site-nav__link");
+
+            if (!hamburger || !mobileMenu) {
+                return;
+            }
+
+            function toggleMenu() {
+                hamburger.classList.toggle("is-active");
+                mobileMenu.classList.toggle("is-active");
+                hamburger.setAttribute("aria-expanded", hamburger.classList.contains("is-active"));
+            }
+
+            hamburger.addEventListener("click", toggleMenu);
+
+            // Close menu when a link is clicked
+            navLinks.forEach(function (link) {
+                link.addEventListener("click", function () {
+                    hamburger.classList.remove("is-active");
+                    mobileMenu.classList.remove("is-active");
+                    hamburger.setAttribute("aria-expanded", "false");
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener("click", function (event) {
+                if (!event.target.closest(".site-nav")) {
+                    hamburger.classList.remove("is-active");
+                    mobileMenu.classList.remove("is-active");
+                    hamburger.setAttribute("aria-expanded", "false");
+                }
+            });
+        })();
     </script>
 
 </body>
