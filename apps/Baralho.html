@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Card Game Enviesado</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #1e1e2f;
+      color: white;
+    }
+
+    .card {
+      display: inline-block;
+      padding: 15px;
+      margin: 5px;
+      background: #fff;
+      color: #000;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #availableNumbers {
+      margin-top: 8px;
+    }
+
+    .number-chip {
+      display: inline-block;
+      min-width: 28px;
+      padding: 6px 8px;
+      margin: 4px;
+      border-radius: 999px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .number-chip.available {
+      background: #2e7d32;
+      color: #fff;
+    }
+
+    .number-chip.blocked {
+      background: #b71c1c;
+      color: #fff;
+      text-decoration: line-through;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎴 Card Game Enviesado</h1>
+  <p>Chegue o mais perto possível de 21</p>
+
+  <h2>Seu total: <span id="playerTotal">0</span></h2>
+  <div id="playerCards"></div>
+
+  <div id="biasInfo" style="max-width: 520px; margin: 16px auto; padding: 14px; background: #2d2d44; border-radius: 8px; text-align: left;">
+    <h3 style="margin: 0 0 8px 0;">Como o jogo te atrapalha</h3>
+    <p style="margin: 4px 0;">Chance atual de carta alta (6-10): <strong><span id="highChance">70%</span></strong></p>
+    <p style="margin: 4px 0;">Chance atual de carta baixa (1-5): <strong><span id="lowChance">30%</span></strong></p>
+    <p style="margin: 4px 0;">Número bloqueado para impedir vitória: <strong><span id="blockedNumber">21</span></strong></p>
+    <p style="margin: 8px 0 4px 0;">Números que podem ser sorteados agora:</p>
+    <div id="availableNumbers"></div>
+    <p style="margin: 8px 0 0 0; font-size: 14px; color: #d9d9e3;">
+      Quando seu total está abaixo de 10, o jogo aumenta a chance de cartas altas para forçar risco de estourar 21.
+    </p>
+  </div>
+
+  <button onclick="drawCard()">Comprar Carta</button>
+  <button onclick="resetGame()">Reset</button>
+
+  <script>
+    let playerTotal = 0;
+    const ALL_CARDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    function getBlockedNumber() {
+      return 21 - playerTotal;
+    }
+
+    function getAvailableCards() {
+      const blockedNumber = getBlockedNumber();
+      return ALL_CARDS.filter((n) => n !== blockedNumber);
+    }
+
+    function updateAvailableNumbersView() {
+      const blockedNumber = getBlockedNumber();
+      const availableCards = getAvailableCards();
+      const wrapper = document.getElementById("availableNumbers");
+
+      document.getElementById("blockedNumber").innerText =
+        blockedNumber >= 1 && blockedNumber <= 10 ? blockedNumber : "nenhum (fora de 1-10)";
+
+      wrapper.innerHTML = ALL_CARDS.map((n) => {
+        const isAvailable = availableCards.includes(n);
+        const chipClass = isAvailable ? "available" : "blocked";
+        return `<span class="number-chip ${chipClass}">${n}</span>`;
+      }).join("");
+    }
+
+    function updateBiasInfo() {
+      let highChance = playerTotal < 10 ? 70 : 30;
+      let lowChance = 100 - highChance;
+
+      document.getElementById("highChance").innerText = highChance + "%";
+      document.getElementById("lowChance").innerText = lowChance + "%";
+      updateAvailableNumbersView();
+    }
+
+    function pickRandomFrom(cards) {
+      const index = Math.floor(Math.random() * cards.length);
+      return cards[index];
+    }
+
+    function biasedRandom() {
+      const availableCards = getAvailableCards();
+      const highCards = availableCards.filter((n) => n >= 6);
+      const lowCards = availableCards.filter((n) => n <= 5);
+
+      // Se o jogador estiver "mal", aumenta chance de cartas altas
+      let biasFactor = playerTotal < 10 ? 0.7 : 0.3;
+
+      if (Math.random() < biasFactor && highCards.length > 0) {
+        return pickRandomFrom(highCards);
+      }
+
+      if (lowCards.length > 0) {
+        return pickRandomFrom(lowCards);
+      }
+
+      return pickRandomFrom(highCards);
+    }
+
+    function drawCard() {
+      let card = biasedRandom();
+      playerTotal += card;
+
+      let cardEl = document.createElement("div");
+      cardEl.className = "card";
+      cardEl.innerText = card;
+      document.getElementById("playerCards").appendChild(cardEl);
+
+      document.getElementById("playerTotal").innerText = playerTotal;
+      updateBiasInfo();
+
+      if (playerTotal > 21) {
+        setTimeout(() => alert("💥 Você perdeu!"), 100);
+      } else if (playerTotal === 21) {
+        setTimeout(() => alert("🎉 Você venceu!"), 100);
+      }
+    }
+
+    function resetGame() {
+      playerTotal = 0;
+      document.getElementById("playerTotal").innerText = 0;
+      document.getElementById("playerCards").innerHTML = "";
+      updateBiasInfo();
+    }
+
+    updateBiasInfo();
+  </script>
+
+</body>
+</html>
