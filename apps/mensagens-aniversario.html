@@ -21,7 +21,7 @@
         --cream: #f6f2ea;
         --sand: #efe6d7;
         --white: #ffffff;
-        --intro-image: url("../assets/images/aniversarios-bg-hero.png");
+        --intro-image: url("../assets/images/aniversario/aniversarios-bg-hero.png");
         /* --intro-image: radial-gradient(circle at 20% 20%, rgba(235, 53, 56, 0.35), rgba(235, 53, 56, 0) 55%),
         radial-gradient(circle at 80% 30%, rgba(61, 156, 216, 0.35), rgba(61, 156, 216, 0) 60%),
         linear-gradient(120deg, rgba(84, 105, 53, 0.65), rgba(61, 156, 216, 0.6)); */
@@ -58,8 +58,8 @@
         }
 
         .container {
-        width: min(1120px, 90vw);
-        margin: 0 auto;
+        width: min(1120px, 100%);
+        margin: auto;
         }
 
         .site-header {
@@ -528,7 +528,7 @@
         }
 
         .t2 {
-        transform: translate(60px, -30px) rotate(-3deg);
+        transform: translate(30px, -30px) rotate(-8deg);
         }
 
         .t3 {
@@ -627,6 +627,87 @@
             transition: none;
         }
         }
+        /* Slider ribbon + carousel card styles (adapted) */
+        /* .carousel-section { padding: 2.5rem 0; } */
+
+        /* make ribbon full-bleed horizontally so it "touches" both edges */
+        .carousel-section .slider-ribbon {
+
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(49% - 49vw);
+        /* padding-left: 1.25rem;
+        padding-right: 1.25rem; */
+        overflow: hidden;
+        background: transparent;
+        }
+
+        .slider-ribbon__track {
+        width: max-content;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.6rem 0;
+        animation: ribbonMove 35s linear infinite;
+        }
+
+        .slider-ribbon:hover .slider-ribbon__track {
+        animation-play-state: paused;
+        }
+
+        .slider-ribbon--reverse .slider-ribbon__track {
+        animation-direction: reverse;
+        }
+
+        @keyframes ribbonMove {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+        }
+
+        /* Carousel card visuals */
+        .carousel-cards { padding: 0.6rem 0; }
+
+        .carousel-card {
+        display: inline-block;
+        width: 300px;
+        box-sizing: border-box;
+        padding: 4px;
+        border-radius: 22px;
+        background: #fff;
+        text-decoration: none;
+        color: inherit;
+        transform-origin: center center;
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, filter 260ms ease;
+        will-change: transform;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+        }
+
+        .carousel-card__image {
+        width: 100%;
+        border-radius: 22px;
+        /* maintain portrait aspect ratio (977x1440) using padding-top trick */
+        display: block;
+        padding-top: 147.38%; /* (1440/977)*100 */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: #fff;
+        }
+
+        /* hide the textual body — images are primary */
+        .carousel-card__body { display: none; }
+
+        /* Hover: lift and scale */
+        .carousel-card:hover, .carousel-card:focus-within {
+        transform: translateY(-10px) scale(1.06);
+        z-index: 10;
+        }
+
+        /* Slightly smaller on narrow screens */
+        @media (max-width: 860px) {
+        .carousel-card { width: 140px; padding: 6px; }
+        .carousel-card__image { padding-top: 147.38%; }
+        .carousel-section .slider-ribbon { padding-left: 0.85rem; padding-right:0.85rem; }
+        }
     </style>
   </head>
   <body>
@@ -675,7 +756,7 @@
               </div>
               <div>
                 <strong>Categorias</strong>
-                <span>família, amigos, amor, etc..</span>
+                <span>família, amor, etc..</span>
               </div>
               <div>
                 <strong>100%</strong>
@@ -732,10 +813,9 @@
           </div>
           <div class="feature-grid">
             <article>
-              <h3>Biblioteca inteligente</h3>
+              <h3>Imagens personalizadas</h3>
               <p>
-                Filtre por relacionamento, tom ou ocasião e encontre a frase
-                ideal em segundos.
+                Combine imagens e frases à sua escolha para criar mensagens únicas.
               </p>
             </article>
             <article>
@@ -745,9 +825,9 @@
               </p>
             </article>
             <article>
-              <h3>Favoritos offline</h3>
+              <h3>Compartilhamento fácil</h3>
               <p>
-                Guarde suas favoritas e acesse mesmo sem internet.
+                Crie e compartilhe suas imagens em segundos via WhatsApp, Instagram ou onde preferir.
               </p>
             </article>
           </div>
@@ -757,9 +837,9 @@
       <section id="modelos" class="section templates">
         <div class="container templates-grid">
           <div>
-            <h2>Modelos prontos que parecem escritos por você</h2>
+            <h2>Use mensagens prontas ou crie suas próprias imagens</h2>
             <p>
-              Crie combinacoes de frases, emojis e assinatura pessoal com um
+              Crie combinações de frases, emojis e assinatura pessoal com um
               toque. Envie por WhatsApp, Instagram ou onde preferir.
             </p>
             <div class="template-tags">
@@ -769,6 +849,9 @@
               <span>Profissional</span>
               <span>Engraçadas</span>
             </div>
+            <a href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" target="_blank" rel="noreferrer">
+              <img src="../assets/images/aniversario/logo.png" alt="logo do app mensagens de aniversário" style="margin-top: 2rem; width: 300px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08);" />
+            </a>
           </div>
           <div class="template-cards">
             <div class="card">
@@ -791,6 +874,109 @@
                 "Que o novo ciclo traga serenidade, crescimento e momentos
                 inesquecíveis."
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="galeria" class="section carousel-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Galeria de Imagens</h2>
+            <p>Momentos e cartões inspiradores prontos para compartilhar.</p>
+          </div>
+
+          <div class="slider-ribbon carousel-cards" aria-hidden="false">
+            <div class="slider-ribbon__track" role="list">
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel1.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 1</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel2.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 2</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel3.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 3</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel4.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 4</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel5.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 5</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel6.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 6</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel7.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel8.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel9.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel10.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel11.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <!-- Repeat for seamless ribbon animation -->
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel1.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 1</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel2.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 2</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel3.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 3</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel4.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 4</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel5.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 5</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel6.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 6</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel7.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel8.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel9.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel10.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
+              <a class="carousel-card" href="https://play.google.com/store/apps/details?id=com.mensagens_aniversario.app" role="listitem">
+                <div class="carousel-card__image" style="background-image:url('../assets/images/aniversario/carousel11.webp')"></div>
+                <div class="carousel-card__body"><div class="carousel-card__title">Cartão 7</div></div>
+              </a>
             </div>
           </div>
         </div>

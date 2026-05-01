@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Organizer+ Checklist Tarefas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  
   <style>
     :root {
       --bg-primary: #f5f7fa;
@@ -167,13 +168,13 @@
       justify-content: space-between;
     }
 
-    .card-title .chevron {
+    .chevron {
       font-size: 0.75rem;
       transition: transform 0.25s ease;
-      opacity: 0.4;
+      opacity: 0.6;
     }
 
-    .card.expanded .card-title .chevron {
+    .card.expanded .chevron {
       transform: rotate(180deg);
     }
 
@@ -327,39 +328,44 @@
     }
 
     .progress-bar {
-      display: flex;
-      gap: 3px;
-      background: transparent;
-      border-radius: 4px;
+      height: 8px;
+      background: rgba(0, 0, 0, 0.08);
+      border-radius: 999px;
       margin: 0 20px 12px;
       overflow: visible;
-    }
-
-    .progress-segment {
-      flex: 1;
-      height: 6px;
-      background: rgba(0, 0, 0, 0.08);
-      border-radius: 3px;
       position: relative;
-      transition: all 0.3s ease;
     }
 
-    .progress-segment.completed {
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      position: relative;
+      transition: width 0.3s ease;
       background: linear-gradient(90deg, #13302C, #00AA68);
     }
 
-    .progress-segment.completed::after {
-      content: '✓';
+    .progress-check {
       position: absolute;
+      right: -8px;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 8px;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #00AA68;
       color: white;
-      font-weight: bold;
+      font-size: 10px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 0 0 2px white;
+    }
+
+    .progress-empty {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin: -2px 20px 12px;
     }
 
     .modal-overlay {
@@ -1201,6 +1207,7 @@
       container.innerHTML = filtered.map(list => {
         const total = list.items.length;
         const completed = list.items.filter(i => i.completed).length;
+        const progressPercent = total > 0 ? (completed / total) * 100 : 0;
         const overdue = isOverdue(list.deadline);
         const isExpanded = expandedCards.has(list.id);
 
@@ -1208,12 +1215,13 @@
           <div class="card priority-${list.priority} color-${list.color || 'blue'} ${isExpanded ? 'expanded' : ''}">
             <div class="card-header" onclick="toggleAccordion('${list.id}')">
               <div class="card-title-section">
-                <div class="card-title">${escapeHtml(list.title)} <span class="chevron">▼</span></div>
+                <div class="card-title">${escapeHtml(list.title)} </div>
                 ${list.description ? `<div class="card-description">${escapeHtml(list.description)}</div>` : ''}
               </div>
               <div class="card-actions">
                 <button class="btn-icon" onclick="event.stopPropagation();openEditModal('${list.id}')" title="Editar">✏️</button>
                 <button class="btn-icon" onclick="event.stopPropagation();openDeleteConfirm('${list.id}')" title="Excluir">🗑️</button>
+                <i class="fa fa-chevron-down chevron"></i>
               </div>
             </div>
 
@@ -1223,10 +1231,11 @@
             </div>
 
             <div class="progress-bar">
-              ${total > 0 ? list.items.map(item => `
-                <div class="progress-segment ${item.completed ? 'completed' : ''}"></div>
-              `).join('') : '<div style="color: var(--text-secondary); font-size: 0.85rem; padding: 2px 0;">Adicione tarefas para começar</div>'}
+              <div class="progress-fill" style="width: ${progressPercent}%; ${completed > 0 ? 'min-width: 16px;' : ''}">
+                ${completed > 0 ? '<span class="progress-check">✓</span>' : ''}
+              </div>
             </div>
+            ${total === 0 ? '<div class="progress-empty">Adicione tarefas para começar</div>' : ''}
 
             <div class="card-collapse">
               <div class="card-items">
