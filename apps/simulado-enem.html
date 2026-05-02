@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado Enem - Sua jornada rumo à aprovação</title>
+  <meta name="description" content="Plataforma inteligente com cronogramas personalizados, banco de questões comentadas e análise de desempenho em tempo real.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lexend:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/simulado-enem-header.css">
+  <style>
+    :root {
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.125rem;
+      --font-size-xl: 1.25rem;
+      --font-size-2xl: 1.5rem;
+      --font-size-3xl: 2rem;
+      --font-size-4xl: 2.5rem;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+
+      --radius-lg: 0.5rem;
+      --radius-xl: 0.75rem;
+      --radius-2xl: 1rem;
+      --radius-3xl: 1.5rem;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+
+      --container-max: 1200px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lexend', system-ui, -apple-system, sans-serif;
+      color: var(--color-on-surface);
+      background: var(--color-surface);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Material Symbols */
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .font-heading {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    .font-body {
+      font-family: 'Lexend', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Main Content */
+    main {
+      padding-top: var(--header-height);
+      container-type: inline-size;
+      container-name: page;
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-6) var(--space-24);
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-4);
+      background: var(--color-primary-fixed);
+      color: var(--color-on-primary-container);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: 500;
+      font-family: 'Lexend', sans-serif;
+      width: fit-content;
+    }
+
+    .hero__badge .material-symbols-outlined {
+      font-size: 1rem;
+    }
+
+    .hero__title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-3xl);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-on-surface);
+      max-width: 42rem;
+    }
+
+    .hero__title .text-primary {
+      color: var(--color-primary);
+    }
+
+    .hero__description {
+      font-size: var(--font-size-lg);
+      color: var(--color-on-surface-variant);
+      max-width: 36rem;
+      line-height: 1.6;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      padding-top: var(--space-4);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-lg);
+      font-family: 'Lexend', sans-serif;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn--primary {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn--primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--color-secondary);
+      border-color: var(--color-secondary);
+    }
+
+    .btn--secondary:hover {
+      background: var(--color-secondary-container);
+    }
+
+    .hero__image-wrapper {
+      position: relative;
+    }
+
+    .hero__image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: calc(-1 * var(--space-12));
+      right: calc(-1 * var(--space-12));
+      width: 16rem;
+      height: 16rem;
+      background: rgba(214, 228, 255, 0.2);
+      border-radius: var(--radius-full);
+      filter: blur(48px);
+      z-index: -10;
+    }
+
+    .hero__image-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: calc(-1 * var(--space-12));
+      left: calc(-1 * var(--space-12));
+      width: 16rem;
+      height: 16rem;
+      background: rgba(209, 228, 255, 0.2);
+      border-radius: var(--radius-full);
+      filter: blur(48px);
+      z-index: -10;
+    }
+
+    .hero__image {
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      width: 100%;
+      object-fit: cover;
+      aspect-ratio: 4/5;
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--color-surface-container-low);
+      padding: var(--space-16) 0;
+    }
+
+    .stats__container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .stats__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+      text-align: center;
+    }
+
+    .stats__number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-3xl);
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .stats__label {
+      font-family: 'Lexend', sans-serif;
+      font-size: var(--font-size-xs);
+      font-weight: 500;
+      color: var(--color-on-surface-variant);
+      margin-top: var(--space-2);
+    }
+
+    /* Features Section */
+    .features {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: var(--space-24) var(--space-6);
+    }
+
+    .features__header {
+      text-align: center;
+      margin-bottom: var(--space-16);
+    }
+
+    .features__title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-2xl);
+      font-weight: 600;
+      color: var(--color-on-surface);
+      margin-bottom: var(--space-4);
+    }
+
+    .features__title .text-primary {
+      color: var(--color-primary);
+    }
+
+    .features__subtitle {
+      font-family: 'Lexend', sans-serif;
+      font-size: var(--font-size-base);
+      color: var(--color-on-surface-variant);
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+
+    .features__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .feature-card {
+      background: var(--color-bg-white);
+      padding: var(--space-8);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #E2E8F0;
+      transition: box-shadow 300ms;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-card--primary {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+    }
+
+    .feature-card--dark {
+      background: #1E293B;
+      color: white;
+    }
+
+    .feature-card__icon {
+      font-size: 2.25rem;
+      color: var(--color-primary);
+      background: var(--color-primary-fixed);
+      padding: var(--space-3);
+      border-radius: var(--radius-lg);
+      display: inline-block;
+      margin-bottom: var(--space-6);
+    }
+
+    .feature-card--primary .feature-card__icon {
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .feature-card--dark .feature-card__icon {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card__title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+
+    .feature-card__description {
+      font-family: 'Lexend', sans-serif;
+      font-size: var(--font-size-base);
+      color: var(--color-on-surface-variant);
+      line-height: 1.6;
+    }
+
+    .feature-card--primary .feature-card__description,
+    .feature-card--dark .feature-card__description {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .feature-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: 'Lexend', sans-serif;
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--color-primary);
+      text-decoration: none;
+      margin-top: var(--space-4);
+      transition: transform 300ms;
+    }
+
+    .feature-card__link:hover {
+      transform: translateX(8px);
+    }
+
+    .feature-card--primary .feature-card__link {
+      color: white;
+    }
+
+    .feature-card__progress {
+      margin-top: var(--space-8);
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .feature-card__progress-bar {
+      height: 100%;
+      background: white;
+      width: 66%;
+      transition: width 1000ms;
+    }
+
+    .feature-card:hover .feature-card__progress-bar {
+      width: 75%;
+    }
+
+    .feature-card__bg-icon {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 33%;
+      opacity: 0.1;
+      transition: opacity 300ms;
+    }
+
+    .feature-card:hover .feature-card__bg-icon {
+      opacity: 0.2;
+    }
+
+    .feature-card__bg-icon .material-symbols-outlined {
+      font-size: 7.5rem;
+    }
+
+    .feature-card__image {
+      flex: 1;
+      border-radius: var(--radius-lg);
+      opacity: 0.8;
+      transition: opacity 300ms;
+      padding-top: 10px;
+    }
+
+    .feature-card:hover .feature-card__image {
+      opacity: 1;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: var(--space-24) 0;
+      background: rgba(214, 228, 255, 0.1);
+    }
+
+    .cta-section__container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .cta-section__card {
+      background: var(--color-bg-white);
+      padding: var(--space-12);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(214, 228, 255, 0.2);
+      text-align: center;
+      space-y: var(--space-8);
+    }
+
+    .cta-section__title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-3xl);
+      font-weight: 700;
+      color: var(--color-on-surface);
+      margin-bottom: var(--space-4);
+    }
+
+    .cta-section__description {
+      font-family: 'Lexend', sans-serif;
+      font-size: var(--font-size-lg);
+      color: var(--color-on-surface-variant);
+      max-width: 42rem;
+      margin: 0 auto var(--space-8);
+    }
+
+    .cta-section__actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      justify-content: center;
+    }
+
+    .cta-section .btn--primary {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      padding: var(--space-5) var(--space-10);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      box-shadow-color: rgba(35, 86, 157, 0.2);
+    }
+
+    .cta-section .btn--primary:hover {
+      transform: scale(1.05);
+    }
+
+    .cta-section .btn--secondary {
+      background: var(--color-surface-container);
+      color: var(--color-on-surface);
+      padding: var(--space-5) var(--space-10);
+      border-radius: var(--radius-xl);
+    }
+
+    .cta-section .btn--secondary:hover {
+      background: var(--color-surface-container);
+    }
+
+    /* Footer */
+    .footer {
+      width: 100%;
+      padding: var(--space-12) var(--space-6);
+      border-top: 1px solid #E2E8F0;
+      background: #F8FAFC;
+    }
+
+    .footer__container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-lg);
+      font-weight: 700;
+      color: #334155;
+      justify-content: center;
+    }
+
+    .footer__logo .material-symbols-outlined {
+      color: var(--color-primary);
+    }
+
+    .footer__text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-xs);
+      color: #94A3B8;
+    }
+
+    .footer__links {
+      display: flex;
+      gap: var(--space-8);
+      list-style: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: var(--font-size-xs);
+    }
+
+    .footer__link {
+      color: #94A3B8;
+      text-decoration: none;
+      transition: color 300ms;
+    }
+
+    .footer__link:hover {
+      color: var(--color-primary);
+    }
+
+    .footer__social {
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    .footer__social-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-full);
+      background: white;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748B;
+      cursor: pointer;
+      transition: color 300ms;
+    }
+
+    .footer__social-btn:hover {
+      color: var(--color-primary);
+    }
+
+    .footer__social-btn .material-symbols-outlined {
+      font-size: 1.25rem;
+    }
+
+    /* Container Queries - Tablet (768px) */
+    @container page (min-width: 768px) {
+      .hero {
+        padding: var(--space-24) var(--space-12);
+      }
+
+      .hero__grid {
+        grid-template-columns: 7fr 5fr;
+      }
+
+      .hero__title {
+        font-size: var(--font-size-4xl);
+      }
+
+      .hero__actions {
+        flex-direction: row;
+      }
+
+      .stats__container {
+        padding: 0 var(--space-12);
+      }
+
+      .stats__grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .features {
+        padding: var(--space-24) var(--space-12);
+      }
+
+      .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .feature-card--span-2 {
+        grid-column: span 2;
+      }
+
+      .feature-card--dark {
+        grid-column: span 2;
+        flex-direction: row;
+      }
+
+      .cta-section__container {
+        padding: 0 var(--space-12);
+      }
+
+      .cta-section__actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .footer__container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+
+      .footer__brand {
+        align-items: flex-start;
+      }
+
+      .footer__logo {
+        justify-content: flex-start;
+      }
+    }
+
+    /* Container Queries - Desktop (1024px) */
+    @container page (min-width: 1024px) {
+      .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @container page (max-width: 768px) {
+      .feature-card--span-2 {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" role="banner">
+    <nav class="header__container" aria-label="Navegação principal">
+      <!-- Brand Identity -->
+      <a href="/" class="header__logo" aria-label="Simulado Enem - Página inicial">
+        <span class="material-symbols-outlined header__logo-icon" aria-hidden="true">school</span>
+        <span class="header__logo-text">Simulado Enem</span>
+      </a>
+
+      <!-- Navigation Links (Desktop) -->
+      <ul class="header__nav-list" role="list">
+        <li class="header__nav-item">
+          <a href="#inicio" class="header__nav-link header__nav-link--active" aria-current="page">Início</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="#recursos" class="header__nav-link">Recursos</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="#sobre" class="header__nav-link">Sobre</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="../index.html" class="header__nav-link">Outros Apps</a>
+        </li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="header__actions">
+        <a href="https://play.google.com/store/apps/details?id=com.simulado_enem_estudar_prova.app"
+           class="header__cta"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Baixar na PlayStore">
+          <span class="material-symbols-outlined header__cta-icon" aria-hidden="true">download</span>
+          Baixar na PlayStore
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button class="header__menu-toggle"
+                aria-label="Abrir menu de navegação"
+                aria-expanded="false"
+                aria-controls="header-nav">
+          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section: Bento Grid Hybrid -->
+    <section class="hero" id="inicio">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="material-symbols-outlined" data-weight="fill" aria-hidden="true">verified</span>
+            Atualizado com questões oficiais do Enem
+          </div>
+          <h1 class="hero__title">
+            Sua jornada rumo à <span class="text-primary">aprovação</span> começa com o simulado perfeito.
+          </h1>
+          <p class="hero__description">
+            Plataforma inteligente com simulados personalizados e análise de desempenho em tempo real. Estude onde e quando quiser.
+          </p>
+          <div class="hero__actions">
+            <a href="https://play.google.com/store/apps/details?id=com.simulado_enem_estudar_prova.app" target="_blank" rel="noopener noreferrer">
+              <button class="btn btn--primary">
+                Baixe Agora Gratuitamente
+              </button>
+            </a>
+
+            <a href="#recursos">
+              <button class="btn btn--secondary">
+                Ver Recursos
+              </button>
+            </a>
+            </a>
+          </div>
+        </div>
+        <div class="hero__image-wrapper">
+          <img alt="Student studying"
+               class="hero__image"
+               data-alt="A focused young student sitting in a bright, modern library setting with large windows allowing natural sunlight to pour in. The student is wearing headphones and looking at a sleek tablet displaying educational charts and graphs in green and blue tones. The atmosphere is quiet and intellectually stimulating, featuring minimalist white furniture and blurred bookshelves in the background. The aesthetic is clean, professional, and encouraging."
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr9_Jz097WarrEHv37qbZ1OEePGn_2ic1SAo8XxMPxulv0UtNTcv5N1Khlu_qfWenXEpcAw34o7TpPH3Bk3jsKiu3WL96aLgxxRhDWPSzh9VgoJ9qpAck0_9jaZVCLrJXPC86YbdXQ4gfpdy4ppagW4Dv4aznMwTr92sWNI0gExbRmafgy6NXFbfuZyzpPsbYa74RrRLE-KgieZhG85UM9O1RAhvyW4W-3Gb3nA-TPLGRFsAqv0Fq_dNoyM3XRh6501oCvZ7lj7QU"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features: Glassmorphism Bento Grid -->
+    <section class="features" id="recursos">
+      <div class="features__header">
+        <h2 class="features__title">
+          Ferramentas para o seu <span class="text-primary">Sucesso</span>
+        </h2>
+        <p class="features__subtitle">Tudo o que você precisa para dominar o conteúdo do Enem em um só lugar, organizado por especialistas.</p>
+      </div>
+      <div class="features__grid">
+        <!-- Feature Card 1 - Span 2 -->
+        <article class="feature-card feature-card--span-2 group">
+          <div class="flex flex-col h-full justify-between gap-8">
+            <div class="space-y-4 relative z-10">
+              <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">timer</span>
+              <h3 class="feature-card__title">Simulados em Tempo Real</h3>
+              <p class="feature-card__description max-w-md">Treine com o cronômetro assim como no Enem. Nossa plataforma simula a pressão do dia da prova para você ganhar confiança e velocidade.</p>
+            </div>
+            <!-- <div class="relative z-10">
+              <a href="#" class="feature-card__link">
+                Saiba mais
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div> -->
+            <div class="feature-card__bg-icon" aria-hidden="true">
+              <span class="material-symbols-outlined">history_toggle_off</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature Card 2 - Primary -->
+        <!-- <article class="feature-card feature-card--primary">
+          <div class="space-y-4">
+            <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">analytics</span>
+            <h3 class="feature-card__title">Análise de IA</h3>
+            <p class="feature-card__description">Receba feedbacks personalizados sobre seus pontos fortes e fracos através do nosso algoritmo de inteligência artificial.</p>
+          </div>
+          <div class="feature-card__progress">
+            <div class="feature-card__progress-bar"></div>
+          </div>
+        </article> -->
+
+        <article class="feature-card feature-card--primary" style="border-radius: 12px;">
+          <img src="../assets/images/enem/logo.png" alt="Logo Enem" class="feature-card__logo" style="border-radius: 12px; height: 286px;">
+        </article>
+
+        <!-- Feature Card 3 -->
+        <article class="feature-card">
+          <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">menu_book</span>
+          <h3 class="feature-card__title">Gabarito Oficial</h3>
+          <p class="feature-card__description">Escolha entre o gabarito ao final da prova ou mostrar resposta após cada questão respondida.</p>
+        </article>
+
+        <!-- Feature Card 4 - Dark Span 2 -->
+        <article class="feature-card feature-card--dark feature-card--span-2">
+          <div class="space-y-4 flex-1">
+            <h3 class="feature-card__title">Questões de Outras Edições</h3>
+            <p class="feature-card__description">Simule provas do Enem de outras edições, podendo escolher entre áreas do conhecimento específicas.</p>
+            <!-- <button class="btn btn--secondary mt-8" style="background: white; color: #1E293B; border: none;">
+              Entrar na Comunidade
+            </button> -->
+          </div>
+          <div class="flex-1">
+            <img alt="Community studying"
+                 class="feature-card__image rounded-lg"
+                 data-alt="A diverse group of college students collaborating on a group project in a high-tech study lounge. They are using laptops and digital whiteboards in a workspace decorated with green plants and modern lighting. The color palette is professional with accents of deep blue and forest green, creating a collaborative and motivating atmosphere. Soft-focus background shows a bustling but orderly academic environment."
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQs8RLmML4uXVqoCNBJk0_8NcCLGDzPxtixSMbwuxRUqbLv9eCRVLhvlkpQsuAV0C4Kd_Lg0rXH75cmJnolHUnlt6-5-A2-vdXUs71ZXu9kYvhqqdZJXSRsrZFB5sOFEHSAf2raSRRYqbNWBljzq98EvDHMBE4J_dXYIU5-nUdfoNZJzYfL2NcOoOre9JNwaNaRY131uUGIJ3osophgJZIn4HH1VVqbUJUVe6SmiXxq4gDDFKplu_LChglo0Glv_bDRrF9NOsHQpk"/>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="stats__container">
+        <div class="stats__grid">
+          <div class="stats__item">
+            <div class="stats__number">180+</div>
+            <div class="stats__label">Questões Com Gabarito</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__number">10+</div>
+            <div class="stats__label">Dados Estatísticos</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__number">70%</div>
+            <div class="stats__label">Supere a Taxa de Aprovação</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__number">∞</div>
+            <div class="stats__label">Personalize Seu Simulado</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="sobre">
+      <div class="cta-section__container">
+        <div class="cta-section__card">
+          <h2 class="cta-section__title">Pronto para conquistar sua vaga?</h2>
+          <p class="cta-section__description">Junte-se a milhares de aprovados e comece a estudar com a melhor tecnologia do mercado.</p>
+          <div class="cta-section__actions">
+            <a href="https://play.google.com/store/apps/details?id=com.simulado_enem_estudar_prova.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Baixar na PlayStore">
+              <img alt="Google Play Store" src="../assets/images/baixar-google-play.png">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="contato">
+    <div class="footer__container">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="material-symbols-outlined" aria-hidden="true">school</span>
+          Simulado Enem
+        </div>
+        <p class="footer__text">© 2024 Simulado Enem. Estude com inteligência.</p>
+      </div>
+      <!-- <ul class="footer__links">
+        <li><a href="#" class="footer__link">Termos de Uso</a></li>
+        <li><a href="#" class="footer__link">Privacidade</a></li>
+        <li><a href="#" class="footer__link">Ajuda</a></li>
+      </ul> -->
+      <!-- <div class="footer__social">
+        <button class="footer__social-btn" aria-label="Compartilhar">
+          <span class="material-symbols-outlined" aria-hidden="true">share</span>
+        </button>
+        <button class="footer__social-btn" aria-label="Email">
+          <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+        </button>
+      </div> -->
+    </div>
+  </footer>
+
+  <script src="../js/simulado-enem-header.js"></script>
+</body>
+</html>
