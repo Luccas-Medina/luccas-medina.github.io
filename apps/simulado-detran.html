@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado Detran - Aprovação na CNH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lexend:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    a { text-decoration: none; }
+    a:hover { text-decoration: none; }
+  </style>
+  <script>
+    // Simulado Detran - Landing Page Scripts
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const nav = document.querySelector('nav');
+      const navUl = document.querySelector('nav ul');
+
+      if (mobileMenuBtn && navUl) {
+        mobileMenuBtn.addEventListener('click', function() {
+          // Toggle visibility
+          if (navUl.classList.contains('hidden')) {
+            // Show menu - position below header (top-full = 100% of parent height)
+            navUl.classList.remove('hidden');
+            navUl.classList.add('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-white', 'p-6', 'shadow-md', 'z-50');
+          } else {
+            // Hide menu
+            navUl.classList.add('hidden');
+            navUl.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-white', 'p-6', 'shadow-md', 'z-50');
+          }
+        });
+
+        // Close menu when clicking on links
+        navUl.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', function() {
+            navUl.classList.add('hidden');
+            navUl.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-white', 'p-6', 'shadow-md', 'z-50');
+          });
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Header scroll effect
+      const header = document.querySelector('header');
+      let lastScroll = 0;
+
+      window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > 50) {
+          header.classList.add('shadow-md');
+        } else {
+          header.classList.remove('shadow-md');
+        }
+
+        lastScroll = currentScroll;
+      });
+
+      // CTA button click tracking (placeholder for analytics)
+      document.querySelectorAll('a[href*="play.google.com"]').forEach(button => {
+        button.addEventListener('click', function() {
+          console.log('CTA clicked: ', this.textContent.trim());
+        });
+      });
+    });
+  </script>
+  <style>
+        /* ============================================
+      DESIGN SYSTEM - SIMULADO DETRAN
+      ============================================ */
+
+    /* --------------------------------------------
+      CSS VARIABLES - ROOT CONFIGURATION
+      Organized by category for easy maintenance
+      -------------------------------------------- */
+
+    :root {
+      /* === SPACING SYSTEM (4px base) === */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-2-5: 10px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
+
+      /* === COLOR PALETTE === */
+      --color-primary: #FC8F02;
+      --color-primary-light: #FFB84D;
+      --color-primary-dark: #D97706;
+      --color-primary-contrast: #FFFFFF;
+
+      --color-gray-50: #F9FAFB;
+      --color-gray-100: #F3F4F6;
+      --color-gray-200: #E5E7EB;
+      --color-gray-300: #D1D5DB;
+      --color-gray-400: #9CA3AF;
+      --color-gray-500: #6B7280;
+      --color-gray-600: #4B5563;
+      --color-gray-700: #374151;
+      --color-gray-800: #1F2937;
+      --color-gray-900: #111827;
+
+      --color-success: #10B981;
+      --color-error: #EF4444;
+      --color-warning: #F59E0B;
+      --color-info: #3B82F6;
+
+      --color-bg-primary: #FFFFFF;
+      --color-bg-secondary: #F9FAFB;
+      --color-bg-tertiary: #F3F4F6;
+
+      --color-text-primary: #111827;
+      --color-text-secondary: #4B5563;
+      --color-text-tertiary: #9CA3AF;
+      --color-text-inverse: #FFFFFF;
+
+      --color-border-light: #E5E7EB;
+      --color-border-medium: #D1D5DB;
+      --color-border-dark: #9CA3AF;
+
+      /* === TYPOGRAPHIC SCALE (12px to 48px) === */
+      --font-size-xs: 12px;
+      --font-size-sm: 14px;
+      --font-size-base: 16px;
+      --font-size-md: 18px;
+      --font-size-lg: 20px;
+      --font-size-xl: 24px;
+      --font-size-2xl: 30px;
+      --font-size-3xl: 36px;
+      --font-size-4xl: 48px;
+
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+
+      --font-weight-regular: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --font-weight-extrabold: 800;
+
+      --font-family-primary: 'Plus Jakarta Sans', sans-serif;
+      --font-family-secondary: 'Lexend', sans-serif;
+      --font-family-icons: 'Material Symbols Outlined', sans-serif;
+
+      --letter-spacing-tight: -0.025em;
+      --letter-spacing-normal: 0;
+      --letter-spacing-wide: 0.025em;
+      --letter-spacing-wider: 0.05em;
+
+      /* === BORDER RADIUS === */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 12px;
+      --radius-2xl: 16px;
+      --radius-3xl: 24px;
+      --radius-full: 9999px;
+
+      /* === SHADOWS === */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+      /* === TRANSITIONS === */
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* === LAYOUT === */
+      --container-max: 1200px;
+      --header-height: 80px;
+      --z-header: 100;
+      --z-modal: 1000;
+    }
+
+    /* --------------------------------------------
+      RESET & BASE STYLES
+      -------------------------------------------- */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family-secondary);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    #cta, #stats {
+      position: relative;
+      z-index: 1;
+    }
+
+    #cta::before, #stats::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('../assets/images/detran/logo.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position-y: center;
+      opacity: 0.8; /* 👈 control image opacity here */
+      z-index: -1;
+    }
+    ul {
+      list-style: none;
+    }
+
+    .wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 150px; /* adjust */
+    }
+
+    .moving-img {
+      position: absolute;
+      left: -200px; /* start off-screen (adjust or use JS for dynamic) */
+      top: 0;
+      overflow: hidden;
+      animation: moveRight 10s linear infinite;
+    }
+
+    @keyframes moveRight {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(calc(100vw + 200px));
+      }
+    }
+
+    /* --------------------------------------------
+      TYPOGRAPHY UTILITIES
+      -------------------------------------------- */
+
+    .text-xs { font-size: var(--font-size-xs); }
+    .text-sm { font-size: var(--font-size-sm); }
+    .text-base { font-size: var(--font-size-base); }
+    .text-md { font-size: var(--font-size-md); }
+    .text-lg { font-size: var(--font-size-lg); }
+    .text-xl { font-size: var(--font-size-xl); }
+    .text-2xl { font-size: var(--font-size-2xl); }
+    .text-3xl { font-size: var(--font-size-3xl); }
+    .text-4xl { font-size: var(--font-size-4xl); }
+
+    .font-regular { font-weight: var(--font-weight-regular); }
+    .font-medium { font-weight: var(--font-weight-medium); }
+    .font-semibold { font-weight: var(--font-weight-semibold); }
+    .font-bold { font-weight: var(--font-weight-bold); }
+    .font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+    .font-primary { font-family: var(--font-family-primary); }
+    .font-secondary { font-family: var(--font-family-secondary); }
+
+    .leading-tight { line-height: var(--line-height-tight); }
+    .leading-normal { line-height: var(--line-height-normal); }
+    .leading-relaxed { line-height: var(--line-height-relaxed); }
+
+    .tracking-tight { letter-spacing: var(--letter-spacing-tight); }
+    .tracking-normal { letter-spacing: var(--letter-spacing-normal); }
+    .tracking-wide { letter-spacing: var(--letter-spacing-wide); }
+
+    /* ============================================
+      UTILITY CLASSES
+      ============================================ */
+
+    /* --------------------------------------------
+      BUTTONS
+      -------------------------------------------- */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      font-family: var(--font-family-primary);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-normal);
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-primary-contrast);
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: var(--color-gray-100);
+      color: var(--color-text-primary);
+      border-color: var(--color-gray-200);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-gray-200);
+      border-color: var(--color-gray-300);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-primary);
+      color: var(--color-primary-contrast);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--color-text-primary);
+      border-color: transparent;
+    }
+
+    .btn-ghost:hover { background-color: var(--color-gray-100); }
+
+    .btn-lg {
+      padding: var(--space-4) var(--space-8);
+      font-size: var(--font-size-base);
+      border-radius: var(--radius-lg);
+    }
+
+    .btn-sm {
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--font-size-xs);
+    }
+
+    .btn-icon {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: var(--radius-md);
+    }
+
+    /* --------------------------------------------
+      CARDS
+      -------------------------------------------- */
+
+    .card {
+      background-color: var(--color-bg-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: all var(--transition-base);
+    }
+
+    .card-standard {
+      border: 1px solid var(--color-border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-standard:hover { box-shadow: var(--shadow-md); }
+
+    .card-elevated { box-shadow: var(--shadow-md); }
+
+    .card-elevated:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .card-outlined {
+      border: 2px solid var(--color-border-light);
+    }
+
+    .card-outlined:hover { border-color: var(--color-primary); }
+
+    .card-primary {
+      background-color: var(--color-primary);
+      color: var(--color-primary-contrast);
+    }
+
+    .card-glass {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* --------------------------------------------
+      FORMS
+      -------------------------------------------- */
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .form-label {
+      font-family: var(--font-family-primary);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-primary);
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      font-family: var(--font-family-secondary);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-primary);
+      border: 2px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      outline: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(252, 143, 2, 0.1);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--color-text-tertiary); }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--space-4) center;
+      padding-right: var(--space-10);
+    }
+
+    .form-error { border-color: var(--color-error); }
+
+    .form-error:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .form-help {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+    }
+
+    .form-error-text {
+      font-size: var(--font-size-xs);
+      color: var(--color-error);
+    }
+
+    .form-checkbox,
+    .form-radio {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      cursor: pointer;
+      font-size: var(--font-size-sm);
+    }
+
+    .form-checkbox input[type="checkbox"],
+    .form-radio input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    /* --------------------------------------------
+      DISPLAY UTILITIES
+      -------------------------------------------- */
+
+    .hidden { display: none; }
+    .inline-flex { display: inline-flex; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .fixed { position: fixed; }
+
+    /* --------------------------------------------
+      WIDTH & HEIGHT UTILITIES
+      -------------------------------------------- */
+
+    .w-full { width: 100%; }
+    .h-full { height: 100%; }
+    .w-10 { width: 40px; }
+    .h-10 { height: 40px; }
+    .h-20 { height: 80px; }
+    .w-64 { width: 256px; }
+    .h-64 { height: 256px; }
+    .h-2 { height: 8px; }
+    .aspect-4-5 { aspect-ratio: 4/5; }
+
+    .w-1-3 { width: 33.333%; }
+    .w-2-3 { width: 66.667%; }
+
+    /* --------------------------------------------
+      MAX-WIDTH UTILITIES
+      -------------------------------------------- */
+
+    .max-w-xl { max-width: 576px; }
+    .max-w-2xl { max-width: 672px; }
+    .max-w-1200 { max-width: 1200px; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    /* --------------------------------------------
+      POSITIONING UTILITIES
+      -------------------------------------------- */
+
+    .top-0 { top: 0; }
+    .top-20 { top: var(--space-20); }
+    .top-full { top: 100%; }
+    .left-0 { left: 0; }
+    .-top-12 { top: -48px; }
+    .-right-12 { right: -48px; }
+    .-bottom-12 { bottom: -48px; }
+    .-left-12 { left: -48px; }
+    .z-10 { z-index: 10; }
+    .z-50 { z-index: 50; }
+    .z-100 { z-index: 100; }
+    .z-neg-10 { z-index: -10; }
+
+    /* --------------------------------------------
+      BORDER UTILITIES
+      -------------------------------------------- */
+
+    .border { border-width: 1px; border-style: solid; }
+    .border-2 { border-width: 2px; border-style: solid; }
+    .border-b { border-bottom-width: 1px; border-bottom-style: solid; }
+    .border-b-2 { border-bottom-width: 2px; border-bottom-style: solid; }
+    .border-t { border-top-width: 1px; border-top-style: solid; }
+    .border-light { border-color: var(--color-border-light); }
+    .border-medium { border-color: var(--color-border-medium); }
+    .border-gray-100 { border-color: var(--color-gray-100); }
+    .border-gray-200 { border-color: var(--color-gray-200); }
+    .border-primary { border-color: var(--color-primary); }
+
+    /* --------------------------------------------
+      BORDER RADIUS UTILITIES
+      -------------------------------------------- */
+
+    .rounded { border-radius: var(--radius-md); }
+    .rounded-sm { border-radius: var(--radius-sm); }
+    .rounded-lg { border-radius: var(--radius-lg); }
+    .rounded-xl { border-radius: var(--radius-xl); }
+    .rounded-2xl { border-radius: var(--radius-2xl); }
+    .rounded-3xl { border-radius: var(--radius-3xl); }
+    .rounded-full { border-radius: var(--radius-full); }
+
+    /* --------------------------------------------
+      SHADOW UTILITIES
+      -------------------------------------------- */
+
+    .shadow-sm { box-shadow: var(--shadow-sm); }
+    .shadow-md { box-shadow: var(--shadow-md); }
+    .shadow-lg { box-shadow: var(--shadow-lg); }
+    .shadow-xl { box-shadow: var(--shadow-xl); }
+
+    /* --------------------------------------------
+      BACKGROUND OPACITY & BACKDROP
+      -------------------------------------------- */
+
+    .bg-white-80 { background-color: rgba(255, 255, 255, 0.8); }
+    .backdrop-blur { backdrop-filter: blur(12px); }
+
+    .bg-primary-5 { background-color: rgba(252, 143, 2, 0.05); }
+    .bg-primary-10 { background-color: rgba(252, 143, 2, 0.1); }
+    .bg-primary-20 { background-color: rgba(252, 143, 2, 0.2); }
+    .bg-white-20 { background-color: rgba(255, 255, 255, 0.2); }
+
+    /* --------------------------------------------
+      OBJECT FIT
+      -------------------------------------------- */
+
+    .object-cover { object-fit: cover; }
+
+    /* --------------------------------------------
+      SPACE Y UTILITIES
+      -------------------------------------------- */
+
+    .space-y-2 > * + * { margin-top: var(--space-2); }
+    .space-y-4 > * + * { margin-top: var(--space-4); }
+    .space-y-6 > * + * { margin-top: var(--space-6); }
+    .space-y-8 > * + * { margin-top: var(--space-8); }
+
+    /* --------------------------------------------
+      PADDING UTILITIES
+      -------------------------------------------- */
+
+    .p-0 { padding: 0; }
+    .p-4 { padding: var(--space-4); }
+    .p-6 { padding: var(--space-6); }
+    .p-8 { padding: var(--space-8); }
+    .p-12 { padding: var(--space-12); }
+
+    .px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+    .px-5 { padding-left: var(--space-5); padding-right: var(--space-5); }
+    .px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+    .px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+    .px-10 { padding-left: var(--space-10); padding-right: var(--space-10); }
+    .px-12 { padding-left: var(--space-12); padding-right: var(--space-12); }
+
+    .py-2-5 { padding-top: var(--space-2-5); padding-bottom: var(--space-2-5); }
+    .py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+    .py-5 { padding-top: var(--space-5); padding-bottom: var(--space-5); }
+    .py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+    .py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+
+    .pb-1 { padding-bottom: var(--space-1); }
+    .pb-2 { padding-bottom: var(--space-2); }
+
+    /* --------------------------------------------
+      MARGIN UTILITIES
+      -------------------------------------------- */
+
+    .m-0 { margin: 0; }
+    .mt-2 { margin-top: var(--space-2); }
+    .mt-4 { margin-top: var(--space-4); }
+    .mt-6 { margin-top: var(--space-6); }
+    .mt-8 { margin-top: var(--space-8); }
+    .mt-12 { margin-top: var(--space-12); }
+    .mb-2 { margin-bottom: var(--space-2); }
+    .mb-4 { margin-bottom: var(--space-4); }
+    .mb-6 { margin-bottom: var(--space-6); }
+    .mb-8 { margin-bottom: var(--space-8); }
+    .mb-12 { margin-bottom: var(--space-12); }
+
+    /* --------------------------------------------
+      TEXT GRAY COLORS
+      -------------------------------------------- */
+
+    .text-gray-50 { color: var(--color-gray-50); }
+    .text-gray-100 { color: var(--color-gray-100); }
+    .text-gray-200 { color: var(--color-gray-200); }
+    .text-gray-300 { color: var(--color-gray-300); }
+    .text-gray-400 { color: var(--color-gray-400); }
+    .text-gray-500 { color: var(--color-gray-500); }
+    .text-gray-600 { color: var(--color-gray-600); }
+    .text-gray-700 { color: var(--color-gray-700); }
+    .text-gray-800 { color: var(--color-gray-800); }
+    .text-gray-900 { color: var(--color-gray-900); }
+
+    /* --------------------------------------------
+      BG GRAY COLORS
+      -------------------------------------------- */
+
+    .bg-gray-50 { background-color: var(--color-gray-50); }
+    .bg-gray-100 { background-color: var(--color-gray-100); }
+    .bg-gray-200 { background-color: var(--color-gray-200); }
+    .bg-gray-300 { background-color: var(--color-gray-300); }
+    .bg-gray-900 { background-color: var(--color-gray-900); }
+
+    /* --------------------------------------------
+      COLOR UTILITIES
+      -------------------------------------------- */
+
+    .text-primary { color: var(--color-primary); }
+    .text-secondary { color: var(--color-text-secondary); }
+    .text-tertiary { color: var(--color-text-tertiary); }
+    .text-white { color: var(--color-text-inverse); }
+
+    .bg-primary { background-color: var(--color-primary); }
+    .bg-white { background-color: var(--color-bg-primary); }
+
+    /* --------------------------------------------
+      OVERFLOW & OPACITY
+      -------------------------------------------- */
+
+    .overflow-hidden { overflow: hidden; }
+    .opacity-10 { opacity: 0.1; }
+    .opacity-20 { opacity: 0.2; }
+    .opacity-80 { opacity: 0.8; }
+
+    /* --------------------------------------------
+      TRANSFORM & TRANSITION
+      -------------------------------------------- */
+
+    .transform { transform: translateZ(0); }
+    .transition-all { transition: all var(--transition-base); }
+
+    .hover\:translate-y-n2:hover { transform: translateY(-8px); }
+    .hover\:scale-105:hover { transform: scale(1.05); }
+    .hover\:opacity-90:hover { opacity: 0.9; }
+
+    /* --------------------------------------------
+      FILTER UTILITIES
+      -------------------------------------------- */
+
+    .blur-3xl { filter: blur(64px); }
+
+    /* --------------------------------------------
+      WHITE SPACE & CURSOR
+      -------------------------------------------- */
+
+    .whitespace-nowrap { white-space: nowrap; }
+    .cursor-pointer { cursor: pointer; }
+
+    /* --------------------------------------------
+      ICONS (Material Symbols)
+      -------------------------------------------- */
+
+    .material-symbols-outlined {
+      font-family: var(--font-family-icons);
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* --------------------------------------------
+      LAYOUT UTILITIES
+      -------------------------------------------- */
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .section {
+      padding: var(--space-16) 0;
+    }
+
+    .section-sm {
+      padding: var(--space-8) 0;
+    }
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .items-end { align-items: flex-end; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-end { justify-content: flex-end; }
+
+    .gap-1 { gap: var(--space-1); }
+    .gap-2 { gap: var(--space-2); }
+    .gap-2-5 { gap: var(--space-2-5); }
+    .gap-3 { gap: var(--space-3); }
+    .gap-4 { gap: var(--space-4); }
+    .gap-5 { gap: var(--space-5); }
+    .gap-6 { gap: var(--space-6); }
+    .gap-8 { gap: var(--space-8); }
+    .gap-10 { gap: var(--space-10); }
+
+    .grid { display: grid; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .col-span-2 { grid-column: span 2 / span 2; }
+
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+
+    /* --------------------------------------------
+      HEADER SPECIFIC
+      -------------------------------------------- */
+
+    .header-transition {
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* --------------------------------------------
+      RESPONSIVE BREAKPOINTS
+      -------------------------------------------- */
+
+    @media (min-width: 640px) {
+      .sm\:flex-row { flex-direction: row; }
+    }
+
+    @media (min-width: 768px) {
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .md\:flex { display: flex; }
+      .md\:hidden { display: none; }
+      .md\:flex-row { flex-direction: row; }
+      .md\:col-span-2 { grid-column: span 2 / span 2; }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 var(--space-12);
+      }
+      .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .lg\:flex { display: flex; }
+      .lg\:px-12 { padding-left: var(--space-12); padding-right: var(--space-12); }
+      .lg\:col-span-2 { grid-column: span 2 / span 2; }
+      .lg\:col-span-5 { grid-column: span 5 / span 5; }
+      .lg\:col-span-7 { grid-column: span 7 / span 7; }
+      .lg\:text-2xl { font-size: var(--font-size-2xl); }
+      .lg\:text-3xl { font-size: var(--font-size-3xl); }
+      .lg\:text-4xl { font-size: var(--font-size-4xl); }
+      .lg\:py-24 { padding-top: var(--space-24); padding-bottom: var(--space-24); }
+      .lg\:py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header-transition fixed top-0 left-0 w-full z-100 bg-white-80 backdrop-blur border-b border-light">
+    <nav class="relative flex justify-between items-center h-20 px-6 lg:px-12 container">
+      <div class="flex items-center gap-2 text-xl font-extrabold text-gray-900">
+        <span class="material-symbols-outlined text-primary" style="font-size: 30px;">directions_car</span>
+        <span class="font-primary">Simulado Detran</span>
+      </div>
+      <ul class="hidden md:flex items-center gap-8 font-primary text-sm font-medium">
+        <li><a class="text-primary font-semibold border-b-2 border-primary pb-1" href="#inicio">Início</a></li>
+        <li><a class="text-gray-600 hover:text-primary transition-all" href="#recursos">Recursos</a></li>
+        <li><a class="text-gray-600 hover:text-primary transition-all" href="#cta">Sobre</a></li>
+        <li><a class="text-gray-600 hover:text-primary transition-all" href="../index.html">Outros Apps</a></li>
+      </ul>
+      <div class="flex items-center gap-4">
+        <a href="https://play.google.com/store/apps/details?id=com.simulado_detran_prova_cnh_brasil.app" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center gap-2 px-5 py-2-5 bg-primary text-white font-medium rounded hover:opacity-90 transition-all shadow-sm">
+          <span class="material-symbols-outlined text-lg">download</span>
+          Baixar na PlayStore
+        </a>
+        <button class="md:hidden p-2 text-gray-900 cursor-pointer" id="mobile-menu-btn">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section id="inicio" class="max-w-1200 mx-auto px-6 lg:px-12 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          
+          <div class="lg:col-span-5">
+            <div class="relative">
+              <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full blur-3xl z-neg-10 bg-primary-20"></div>
+              <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-gray-200 rounded-full blur-3xl z-neg-10"></div>
+              <!-- <img alt="Simulado Detran App" src="../assets/images/detran/logo.png" class="rounded-xl shadow-xl w-full object-cover aspect-4-5 size-100" style="max-width: 300px; max-height: 300px; margin: auto;"> -->
+            </div>
+          </div>
+          <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-10" style="color: var(--color-primary-dark);">
+            <span class="material-symbols-outlined text-sm mr-2" style="font-variation-settings: 'FILL' 1;">verified</span>
+            <span class="text-sm font-medium">Questões atualizadas</span>
+          </div>
+          <h1 class="font-primary text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+            Sua <span class="text-primary">CNH</span> está mais perto do que você imagina
+          </h1>
+          <p class="font-secondary text-lg text-gray-600 max-w-xl leading-relaxed">
+            Prepare-se para a prova teórica do Detran com simulados completos, questões atualizadas e estatísticas detalhadas do seu desempenho.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="https://play.google.com/store/apps/details?id=com.simulado_detran_prova_cnh_brasil.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-medium shadow-md hover:translate-y-n2 transition-all">
+              Baixar Gratuitamente
+            </a>
+            <a href="#recursos" class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition-all">
+              Ver Recursos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-16 mt-12 mb-12" style="padding: 25px;">
+     <img src="../assets/images/detran/car.png" class="moving-img" alt="Car animation" style="height: 180px; margin-top: -170px; margin-left: -30px; ">
+      <div class="max-w-1200 mx-auto px-6 lg:px-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
+            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">500+</div>
+            <div class="font-medium text-gray-600 text-sm">Questões Disponíveis</div>
+          </div>
+          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
+            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">10+</div>
+            <div class="font-medium text-gray-600 text-sm">Dados Estatísticos</div>
+          </div>
+          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
+            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">70%</div>
+            <div class="font-medium text-gray-600 text-sm">Supere a Taxa de Aprovação</div>
+          </div>
+          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
+            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">100%</div>
+            <div class="font-medium text-gray-600 text-sm">Gratuito e Offline</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="recursos" class="max-w-1200 mx-auto px-6 lg:px-12 py-24 mt-8">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="font-primary text-2xl lg:text-3xl font-bold">Tudo para sua <span class="text-primary">Aprovação</span></h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">Recursos completos para você passar na prova teórica do Detran na primeira tentativa.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Feature 1 -->
+        <div class="md:col-span-2 bg-white p-8 rounded-xl shadow-sm border border-light hover:shadow-lg transition-all group overflow-hidden relative">
+          <div class="flex flex-col h-full justify-between gap-8">
+            <div class="space-y-4 relative z-10">
+              <span class="material-symbols-outlined text-4xl p-3 rounded-lg inline-block bg-primary-10 text-primary">quiz</span>
+              <h3 class="font-primary text-xl lg:text-2xl font-semibold">Simulados Completos</h3>
+              <p class="text-gray-600 max-w-md">Questões baseadas na legislação de trânsito vigente, organizadas por tema para um estudo direcionado e eficiente.</p>
+            </div>
+            <div class="relative z-10">
+              <a href="https://play.google.com/store/apps/details?id=com.simulado_detran_prova_cnh_brasil.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-medium text-primary">
+                Começar agora <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+            <div class="absolute right-0 bottom-0 w-1-3 opacity-10 group-hover:opacity-20 transition-all">
+              <span class="material-symbols-outlined" style="font-size: 120px;">history_toggle_off</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-primary text-white p-8 rounded-xl shadow-md flex flex-col justify-between group">
+          <div class="space-y-4">
+            <span class="material-symbols-outlined text-4xl bg-white-20 p-3 rounded-lg">timer</span>
+            <h3 class="font-primary text-xl lg:text-2xl font-semibold text-white">Modo Cronometrado</h3>
+            <p class="opacity-80">Treine no modo simulado com tempo real, igual à prova oficial do Detran. Ganhe confiança e velocidade.</p>
+          </div>
+          <div class="mt-8 h-2 bg-white-20 rounded-full overflow-hidden">
+            <div class="h-full bg-white w-2-3" style="transition: width 1000ms ease;" onmouseenter="this.style.width='75%'" onmouseleave="this.style.width='66.67%'"></div>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-light hover:shadow-lg transition-all group">
+          <span class="material-symbols-outlined text-4xl p-3 rounded-lg inline-block bg-primary-10 text-primary">route</span>
+          <h3 class="font-primary text-xl lg:text-2xl font-semibold mt-4 mb-2">Estudo por Tema</h3>
+          <p class="text-gray-600">Foque em placas, legislação, direção defensiva e muito mais. Estude no seu ritmo.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-light hover:shadow-lg transition-all group">
+          <span class="material-symbols-outlined text-4xl p-3 rounded-lg inline-block bg-primary-10 text-primary">bar_chart</span>
+          <h3 class="font-primary text-xl lg:text-2xl font-semibold mt-4 mb-2">Estatísticas de Desempenho</h3>
+          <p class="text-gray-600">Acompanhe seu progresso com gráficos detalhados e identifique pontos que precisam de reforço.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <!-- <div class="md:col-span-2 bg-gray-900 text-white p-8 rounded-xl shadow-lg flex flex-col sm:flex-row gap-8 items-center">
+          <div class="space-y-4 flex-1">
+            <h3 class="font-primary text-xl lg:text-2xl font-semibold">Modo Treino e Simulado</h3>
+            <p class="text-gray-300">Alterne entre o modo treino para aprender e o modo simulado para testar seus conhecimentos sob pressão.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.simulado_detran_prova_cnh_brasil.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2 bg-white text-gray-900 rounded-lg font-medium mt-4">
+              <span class="material-symbols-outlined">play_store_installed</span>
+              Baixar Aplicativo
+            </a>
+          </div>
+          <div class="flex-1 text-center">
+            <span class="material-symbols-outlined" style="font-size: 120px; opacity: 0.2;">school</span>
+          </div>
+        </div>
+      </div> -->
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-24 mt-12 mb-12">
+      <div class="max-w-1200 mx-auto px-6 lg:px-12 text-center">
+        <div class="bg-white p-12 rounded-3xl shadow-xl space-y-8" style="border: 1px solid rgba(252, 143, 2, 0.2);">
+          <h2 class="font-primary text-3xl lg:text-4xl font-bold">Pronto para tirar sua CNH?</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto mb-8 text-lg">Junte-se a milhares de aprovados e comece a estudar com a melhor ferramenta para o Detran.</p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="https://play.google.com/store/apps/details?id=com.simulado_detran_prova_cnh_brasil.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-primary text-white rounded-xl font-medium shadow-lg hover:scale-105 transition-all">
+               <span class="material-symbols-outlined">download</span>
+               Baixar na PlayStore
+             </a>
+             <a href="https://play.google.com/store/apps/details?id=com.simulado_detran_prova_cnh_brasil.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-gray-100 text-gray-900 rounded-xl font-medium hover:bg-gray-200 transition-all">
+               Começar Gratuitamente
+             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-12 px-6 border-t border-gray-200 bg-gray-50">
+    <div class="max-w-1200 mx-auto justify-between items-center gap-8">
+      <div class="space-y-4 text-center md:text-left">
+        <div class="text-lg font-bold text-gray-700 flex items-center gap-2 justify-center md:justify-start">
+          <span class="material-symbols-outlined text-primary">directions_car</span>
+          Simulado Detran
+        </div>
+        <p class="text-xs text-gray-500">© 2024 Simulado Detran. Todos os direitos reservados.</p>
+      </div>
+      <!-- <div class="flex gap-8 text-xs text-gray-500">
+        <a class="hover:text-primary transition-all" href="#">Termos de Uso</a>
+        <a class="hover:text-primary transition-all" href="#">Privacidade</a>
+        <a class="hover:text-primary transition-all" href="#">Ajuda</a>
+      </div> -->
+      <!-- <div class="flex gap-4">
+        <button class="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:text-primary transition-all cursor-pointer">
+          <span class="material-symbols-outlined text-xl">share</span>
+        </button>
+        <button class="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:text-primary transition-all cursor-pointer">
+          <span class="material-symbols-outlined text-xl">mail</span>
+        </button>
+      </div> -->
+    </div>
+  </footer>
+</body>
+</html>
