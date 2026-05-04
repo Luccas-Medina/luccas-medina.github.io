@@ -243,8 +243,53 @@
       background-size: cover;
       background-attachment: fixed;
       background-position-y: center;
+      background-position-x: center;
       opacity: 0.8; /* 👈 control image opacity here */
       z-index: -1;
+    }
+
+    .stats {
+      overflow: visible;
+      padding: var(--space-16) 0;
+    }
+
+    .stats__container {
+      position: relative;
+      z-index: 1;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .stats__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+      text-align: center;
+    }
+
+    .stats__item {
+      background-color: var(--color-bg-primary);
+      padding: var(--space-8) var(--space-4);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .stats__number {
+      font-family: var(--font-family-primary);
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      line-height: var(--line-height-tight);
+    }
+
+    .stats__label {
+      font-family: var(--font-family-secondary);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-2);
     }
     ul {
       list-style: none;
@@ -261,7 +306,9 @@
       position: absolute;
       left: -200px; /* start off-screen (adjust or use JS for dynamic) */
       top: 0;
-      overflow: hidden;
+      overflow-x: hidden;
+      z-index: 2;
+      pointer-events: none;
       animation: moveRight 10s linear infinite;
     }
 
@@ -840,6 +887,16 @@
       .sm\:flex-row { flex-direction: row; }
     }
 
+    @media (max-width: 767px) {
+      #inicio {
+        margin-bottom: 80px;
+      }
+    }
+
+    #inicio {
+      margin-bottom: 30px;
+    }
+
     @media (min-width: 768px) {
       .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -848,6 +905,19 @@
       .md\:hidden { display: none; }
       .md\:flex-row { flex-direction: row; }
       .md\:col-span-2 { grid-column: span 2 / span 2; }
+
+      .stats__container {
+        padding: 0 var(--space-12);
+      }
+
+      .stats__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--space-8);
+      }
+
+      .stats__item {
+        padding: var(--space-12) var(--space-8);
+      }
     }
 
     @media (min-width: 1024px) {
@@ -903,7 +973,7 @@
           
           <div class="lg:col-span-5">
             <div class="relative">
-              <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full blur-3xl z-neg-10 bg-primary-20"></div>
+              <div class="absolute -top-12 w-64 h-64 rounded-full blur-3xl z-neg-10 bg-primary-20"></div>
               <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-gray-200 rounded-full blur-3xl z-neg-10"></div>
               <!-- <img alt="Simulado Detran App" src="../assets/images/detran/logo.png" class="rounded-xl shadow-xl w-full object-cover aspect-4-5 size-100" style="max-width: 300px; max-height: 300px; margin: auto;"> -->
             </div>
@@ -931,25 +1001,27 @@
     </section>
 
     <!-- Stats Section -->
-    <section id="stats" class="py-16 mt-12 mb-12" style="padding: 25px;">
+    <section id="stats" class="stats">
      <img src="../assets/images/detran/car.png" class="moving-img" alt="Car animation" style="height: 180px; margin-top: -170px; margin-left: -30px; ">
       <div class="max-w-1200 mx-auto px-6 lg:px-12">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
-            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">500+</div>
-            <div class="font-medium text-gray-600 text-sm">Questões Disponíveis</div>
-          </div>
-          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
-            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">10+</div>
-            <div class="font-medium text-gray-600 text-sm">Dados Estatísticos</div>
-          </div>
-          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
-            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">70%</div>
-            <div class="font-medium text-gray-600 text-sm">Supere a Taxa de Aprovação</div>
-          </div>
-          <div class="bg-white p-12 rounded-3xl text-center space-y-2">
-            <div class="font-primary text-3xl lg:text-4xl font-bold text-primary">100%</div>
-            <div class="font-medium text-gray-600 text-sm">Gratuito e Offline</div>
+        <div class="stats__container">
+          <div class="stats__grid">
+            <div class="stats__item">
+              <div class="stats__number">500+</div>
+              <div class="stats__label">Questões Disponíveis</div>
+            </div>
+            <div class="stats__item">
+              <div class="stats__number">10+</div>
+              <div class="stats__label">Dados Estatísticos</div>
+            </div>
+            <div class="stats__item">
+              <div class="stats__number">70%</div>
+              <div class="stats__label">Supere a Taxa de Aprovação</div>
+            </div>
+            <div class="stats__item">
+              <div class="stats__number">100%</div>
+              <div class="stats__label">Gratuito e Offline</div>
+            </div>
           </div>
         </div>
       </div>
