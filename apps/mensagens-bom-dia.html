@@ -1,174 +1,400 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensagens Bom Dia - Comece o Dia com Inspiração</title>
-    <meta name="description" content="Receba mensagens de bom dia inspiradoras e com imagens bonitas. Comece seu dia com motivação e positividade.">
-    
-    <link rel="stylesheet" href="../css/grid-system.css">
-    <link rel="stylesheet" href="../css/modern-style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --app-primary: #1E9C2E;
-            --app-light: rgba(30, 156, 46, 0.1);
-            --app-dark: #186a23;
-        }
-        
-        .app-accent {
-            color: var(--app-primary);
-        }
-        
-        .app-tag {
-            display: inline-block;
-            background-color: var(--app-light);
-            color: var(--app-primary);
-            padding: var(--spacing-1) var(--spacing-3);
-            border-radius: var(--radius-lg);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            border: 1px solid var(--app-primary);
-            margin-bottom: var(--spacing-3);
-        }
-        
-        .hero-app {
-            background: linear-gradient(135deg, rgba(30, 156, 46, 0.1) 0%, rgba(30, 156, 46, 0.05) 100%),
-                        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .feature-item-app {
-            border-left: 4px solid var(--app-primary);
-            padding-left: var(--spacing-4);
-        }
-        
-        .btn-download {
-            background-color: var(--app-primary);
-        }
-        
-        .btn-download:hover {
-            background-color: var(--app-dark);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensagens de Bom Dia</title>
+  
+  <link rel="icon" type="image/png" href="../assets/favicon/bomdia.png">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #3366ff;
+      --primary-dark: #1f4de3;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --bg: #f7f8fc;
+      --white: #ffffff;
+      --shadow: 0 15px 40px rgba(0,0,0,.08);
+      --radius: 24px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 1px solid #eee;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .cta-btn {
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: .3s ease;
+      display: inline-block;
+    }
+
+    .cta-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+      max-width: 520px;
+    }
+
+    .phone-container {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 580px;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 580px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      color: #999;
+      background: linear-gradient(135deg, #edf2ff, #dbeafe);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--primary);
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .download {
+      text-align: center;
+      background: white;
+      border-radius: var(--radius);
+      padding: 80px 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .download h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .download p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .hero p {
+        margin: auto auto 30px;
+      }
+
+      .carousel {
+        height: 450px;
+      }
+
+      .slide {
+        height: 450px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- ============================================
-         HEADER & NAVIGATION
-         ============================================ -->
-    <header>
-        <nav class="container-max flex justify-between items-center main-nav">
-            <a href="../index.html" class="logo">
-                <i class="fas fa-rocket"></i> Next World Apps
-            </a>
-            <div class="flex items-center gap" style="gap: var(--spacing-4);">
-                <a href="../index.html">Home</a>
-                <a href="../about.html">Sobre</a>
-                <a href="../contact.html">Contato</a>
-            </div>
-        </nav>
-    </header>
 
-    <!-- ============================================
-         HERO SECTION
-         ============================================ -->
-    <section class="hero hero-app">
-        <div class="container-max hero-content">
-            <div class="app-tag">☀️ Mensagens Motivacionais</div>
-            <h1>Mensagens Bom Dia</h1>
-            <p>Comece cada dia com mensagens inspiradoras e imagens bonitas que vão energizar seu dia.</p>
-            <div class="cta-group">
-                <a href="https://play.google.com/store/apps/details?id=com.mensagensbomdia.app" target="_blank" rel="noopener" class="btn btn-primary btn-download btn-large">
-                    <i class="fab fa-google-play"></i> Baixar no Play Store
-                </a>
-            </div>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">☀️ Mensagens de Bom Dia</div>
+
+      <a 
+        class="cta-btn"
+        href="https://play.google.com/store/apps/details?id=com.mensagensbomdia.app"
+        target="_blank"
+      >
+        Baixar App
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <h1>Comece o dia espalhando inspiração.</h1>
+
+      <p>
+        Encontre mensagens de bom dia, frases motivacionais,
+        reflexões e imagens lindas para compartilhar com quem você ama.
+        Inspire pessoas todos os dias.
+      </p>
+
+      <a 
+        class="cta-btn"
+        href="https://play.google.com/store/apps/details?id=com.mensagensbomdia.app"
+        target="_blank"
+      >
+        📲 Instalar Agora
+      </a>
+    </div>
+
+    <div class="phone-container">
+      <div class="carousel">
+        <div class="slides" id="slides">
+
+          <div class="slide">
+            <img src="../assets/images/dia/dia1.jpeg" alt="mensagem de bom dia" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+          </div>
+
+          <div class="slide">
+            <img src="../assets/images/dia/dia2.jpeg" alt="mensagem de bom dia" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+          </div>
+
+          <div class="slide">
+            <img src="../assets/images/dia/dia3.jpeg" alt="mensagem de bom dia" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+          </div>
+
         </div>
-    </section>
+      </div>
 
-    <!-- ============================================
-         MAIN CONTENT
-         ============================================ -->
-    <main class="container-max">
-        <!-- Features -->
-        <section class="section">
-            <h2 class="section-title">Por Que Usar</h2>
-            <div class="grid grid-cols-2">
-                <div class="feature-card feature-item-app">
-                    <h3>🌅 Mensagens Diárias</h3>
-                    <p>Receba uma mensagem inspiradora todos os dias para começar bem seu dia.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>🎨 Imagens Bonitas</h3>
-                    <p>Cada mensagem vem com imagens cuidadosamente selecionadas.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>💚 Positivo</h3>
-                    <p>Mensagens que inspiram, motivam e trazem positividade para seu dia.</p>
-                </div>
-                <div class="feature-card feature-item-app">
-                    <h3>📤 Compartilhável</h3>
-                    <p>Compartilhe com amigos e família nas suas redes sociais.</p>
-                </div>
-            </div>
-        </section>
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
 
-        <!-- Use Cases -->
-        <section class="section">
-            <h2 class="section-title">Ideal Para</h2>
-            <div class="grid grid-cols-3">
-                <div class="card">
-                    <h3>😊 Motivação</h3>
-                    <p>Comece seu dia com inspiração e energia para enfrentar os desafios.</p>
-                </div>
-                <div class="card">
-                    <h3>👥 Compartilhamento</h3>
-                    <p>Envie boas energias para amigos e família todos os dias.</p>
-                </div>
-                <div class="card">
-                    <h3>💪 Bem-estar</h3>
-                    <p>Cultive hábitos positivos com mensagens inspiradoras diárias.</p>
-                </div>
-            </div>
-        </section>
+  </div>
+</section>
 
-        <!-- CTA Section -->
-        <section class="section" style="text-align: center;">
-            <h2>Baixe Agora</h2>
-            <p style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-6);">
-                Disponível gratuitamente na Google Play Store.
-            </p>
-            <a href="https://play.google.com/store/apps/details?id=com.mensagensbomdia.app" target="_blank" rel="noopener" class="btn btn-primary btn-download btn-large">
-                <i class="fab fa-google-play"></i> Baixar Agora
-            </a>
-        </section>
-    </main>
+<section>
+  <div class="container">
 
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
-    <footer>
-        <div class="container-max">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Nossos Aplicativos</h4>
-                    <ul>
-                        <li><a href="../index.html">Ver Todos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Sobre</h4>
-                    <ul>
-                        <li><a href="../about.html">Sobre Nós</a></li>
-                        <li><a href="../contact.html">Contato</a></li>
-                        <li><a href="../privacy-policy.html">Privacidade</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Luccas Medina. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <div class="section-title">
+      <h2>Feito para inspirar seu dia</h2>
+      <p>
+        Tudo o que você precisa para começar o dia com positividade.
+      </p>
+    </div>
+
+    <div class="features">
+
+      <div class="card">
+        <h3>🌅 Mensagens Diárias</h3>
+        <p>
+          Receba inspiração todos os dias com mensagens especiais.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>💖 Compartilhe Fácil</h3>
+        <p>
+          Envie frases e imagens diretamente no WhatsApp e redes sociais.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>✨ Frases Motivacionais</h3>
+        <p>
+          Reflexões, inspiração e mensagens positivas para cada manhã.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="download">
+
+      <h2>Baixe agora o Mensagens de Bom Dia</h2>
+
+      <p>
+        Inspire pessoas, compartilhe carinho e comece todos os dias com energia positiva.
+      </p>
+
+      <a 
+        class="cta-btn"
+        href="https://play.google.com/store/apps/details?id=com.mensagensbomdia.app"
+        target="_blank"
+      >
+        Baixar na Google Play
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Mensagens de Bom Dia • Todos os direitos reservados.
+</footer>
+
+<script>
+  const slides = document.getElementById("slides");
+  const dots = document.querySelectorAll(".dot");
+
+  let index = 0;
+
+  function updateCarousel() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      index = i;
+      updateCarousel();
+    });
+  });
+
+  setInterval(() => {
+    index = (index + 1) % dots.length;
+    updateCarousel();
+  }, 3500);
+</script>
 
 </body>
 </html>
