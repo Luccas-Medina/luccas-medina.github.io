@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bingo Digital - Sorteio e Cartelas</title>
+<meta name="description" content="Bingo digital completo: sorteie números e marque cartelas online. Disponível em vários idiomas com suporte offline.">
+<meta property="og:title" content="Bingo Digital - Sorteio e Cartelas">
+<meta property="og:description" content="Sorteie números e gerencie cartelas de bingo diretamente no navegador.">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/favicon/bingo.png">
+<style>
+:root {
+  --theme: #561490;
+  --theme-light: #7b2fc7;
+  --theme-dark: #3d0e68;
+  --theme-bg: #f5f0fa;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-soft: #555;
+  --border: #e0d6ed;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+  --shadow: 0 4px 20px rgba(86, 20, 144, 0.12);
+  --shadow-lg: 0 8px 32px rgba(86, 20, 144, 0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, var(--theme-bg) 0%, #ede4f7 100%);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* NAV */
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+}
+.top-bar .brand {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--theme);
+  text-decoration: none;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.top-bar .brand i { font-size: 1.1rem; }
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-btn:hover {
+  background: var(--theme);
+  color: #fff;
+  border-color: var(--theme);
+}
+.nav-btn.cta {
+  background: linear-gradient(135deg, #f24e43, #f79f3d);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(242,78,67,0.3);
+}
+.nav-btn.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(242,78,67,0.4);
+}
+
+/* Lang toggle */
+.lang-toggle {
+  position: relative;
+}
+.lang-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.lang-toggle button:hover { background: rgba(86,20,144,0.08); }
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+  max-height: 300px;
+  overflow-y: auto;
+  min-width: 200px;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+  text-align: left;
+}
+.lang-dropdown button:hover { background: var(--theme-bg); }
+.lang-dropdown button.active { background: rgba(86,20,144,0.12); font-weight: 700; }
+
+/* MODE SELECTOR */
+.mode-selector {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 16px 8px;
+  flex-wrap: wrap;
+}
+.mode-btn {
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mode-btn:hover { border-color: var(--theme); color: var(--theme); }
+.mode-btn.active {
+  background: var(--theme);
+  color: #fff;
+  border-color: var(--theme);
+  box-shadow: 0 4px 14px rgba(86,20,144,0.3);
+}
+
+/* MAIN LAYOUT */
+.app-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 16px 80px;
+}
+.combined-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-height: calc(100vh - 220px);
+}
+.combined-layout .panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 220px);
+}
+.combined-layout .panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+.panel {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: var(--theme);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.panel-header i { font-size: 1.1rem; }
+.panel-body { padding: 16px; }
+
+/* RAFFLE SECTION */
+.raffle-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.number-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-weight: 800;
+  color: #fff;
+  transition: all 0.2s;
+  position: relative;
+  flex-shrink: 0;
+}
+.number-circle.idle {
+  background: #e0d6ed;
+  color: #999;
+  font-size: 40px;
+}
+.number-circle.drawn { background: var(--theme); box-shadow: 0 8px 24px rgba(86,20,144,0.3); }
+.number-circle.animating { background: #ff9800; box-shadow: 0 8px 24px rgba(255,152,0,0.4); }
+.number-circle.hidden {
+  background: #e0d6ed;
+  cursor: pointer;
+  border: 3px solid var(--theme);
+}
+.number-circle.hidden i { font-size: 60px; color: var(--theme); }
+
+.btn-draw {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--theme);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-draw:hover:not(:disabled) { background: var(--theme-light); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(86,20,144,0.3); }
+.btn-draw:disabled { background: #ccc; color: #999; cursor: not-allowed; }
+
+.btn-reset {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--theme);
+  background: transparent;
+  color: var(--theme);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-reset:hover { background: rgba(86,20,144,0.08); }
+
+/* Config */
+.config-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.config-toggle:hover { border-color: var(--theme); color: var(--theme); }
+.config-toggle.open { background: var(--theme); color: #fff; border-color: var(--theme); }
+
+.config-panel {
+  background: #faf8fd;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-top: 8px;
+}
+.config-panel label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.config-panel input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--theme);
+}
+
+/* History */
+.history-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  background: #faf8fd;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.history-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.history-controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.history-controls button:hover { background: rgba(86,20,144,0.08); }
+.history-controls button.active { background: rgba(86,20,144,0.12); color: var(--theme); }
+.history-count {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  text-align: center;
+  padding: 6px;
+}
+
+/* Toggle list/grid */
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.view-toggle button {
+  padding: 4px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  transition: all 0.15s;
+}
+.view-toggle button.active { background: var(--theme); color: #fff; }
+
+.drawn-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  justify-content: center;
+}
+.drawn-list .num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: rgba(86,20,144,0.1);
+  color: var(--theme);
+}
+.all-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 4px;
+  padding: 10px;
+}
+.all-grid .cell {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1.5px solid #ddd;
+  background: #f5f5f5;
+  color: #bbb;
+}
+.all-grid .cell.drawn { background: rgba(86,20,144,0.15); color: var(--theme); border-color: rgba(86,20,144,0.3); font-weight: 800; }
+
+/* SHEETS SECTION */
+.sheets-container { display: flex; flex-direction: column; gap: 16px; }
+.sheets-toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sheets-toolbar button {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-soft);
+}
+.sheets-toolbar button:hover:not(:disabled) { border-color: var(--theme); color: var(--theme); }
+.sheets-toolbar button:disabled { opacity: 0.4; cursor: not-allowed; }
+.sheets-toolbar .btn-add { background: var(--theme); color: #fff; border-color: var(--theme); }
+.sheets-toolbar .btn-add:hover:not(:disabled) { background: var(--theme-light); }
+.sheets-toolbar .btn-reset-all { color: #e53935; border-color: #e53935; }
+.sheets-toolbar .btn-reset-all:hover { background: rgba(229,57,53,0.08); }
+.sheets-toolbar .max-msg { font-size: 0.78rem; color: var(--text-soft); align-self: center; }
+
+.sheets-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: visible;
+  padding-right: 4px;
+}
+
+/* Sheet Card */
+.sheet-card {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.2s;
+  background: #fff;
+}
+.sheet-card.complete {
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(86,20,144,0.15); }
+  50% { box-shadow: 0 0 24px rgba(86,20,144,0.35); }
+}
+
+.sheet-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: #fff;
+}
+.sheet-topbar .s-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sheet-topbar .s-name:hover { text-decoration: underline; }
+.sheet-topbar .s-actions {
+  display: flex;
+  gap: 10px;
+}
+.sheet-topbar .s-actions button {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.15s;
+  padding: 2px;
+}
+.sheet-topbar .s-actions button:hover { color: #fff; transform: scale(1.15); }
+
+.sheet-grid-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 6px 0;
+  color: #fff;
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.sheet-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+.sheet-row:last-child { border-bottom: none; }
+.sheet-row.row-complete { background: rgba(86,20,144,0.06); }
+.sheet-row .cell {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-right: 1px solid #eee;
+  position: relative;
+  user-select: none;
+  transition: background 0.15s;
+}
+.sheet-row .cell:last-child { border-right: none; }
+.sheet-row .cell.free { font-size: 1.4rem; }
+.sheet-row .cell.marked { background: rgba(86,20,144,0.12); color: var(--theme); }
+.sheet-row .cell .x-mark {
+  position: absolute;
+  top: 1px;
+  right: 3px;
+  font-size: 0.6rem;
+  color: var(--theme);
+}
+.sheet-row .row-check {
+  position: absolute;
+  right: -26px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--theme);
+  font-size: 0.85rem;
+}
+
+/* Name edit modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: min(400px, 90vw);
+  box-shadow: var(--shadow-lg);
+}
+.modal-box h3 { margin-bottom: 12px; color: var(--theme); }
+.modal-box input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+.modal-box input:focus { border-color: var(--theme); }
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+.modal-actions button {
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-soft);
+}
+.modal-actions button.primary { background: var(--theme); color: #fff; border-color: var(--theme); }
+.modal-actions button.primary:hover { background: var(--theme-light); }
+.modal-actions button.danger { background: #e53935; color: #fff; border-color: #e53935; }
+.modal-actions button.danger:hover { background: #c62828; }
+
+/* Confirm dialog */
+.confirm-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+}
+.confirm-overlay.open { display: flex; }
+.confirm-box {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: min(360px, 90vw);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.confirm-box h3 { margin-bottom: 8px; color: var(--theme); }
+.confirm-box p { font-size: 0.9rem; color: var(--text-soft); margin-bottom: 16px; }
+
+/* CTA Banner */
+.cta-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #3d0e68, #7b2fc7);
+  color: #fff;
+  flex-wrap: wrap;
+}
+.cta-banner p {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 200px;
+}
+.cta-banner .btn-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: linear-gradient(135deg, #f24e43, #f79f3d);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(242,78,67,0.35);
+  white-space: nowrap;
+}
+.cta-banner .btn-play:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(242,78,67,0.45); }
+
+/* FOOTER */
+footer {
+  background: var(--theme-dark);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+}
+footer a { color: #ceadf0; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .combined-layout { grid-template-columns: 1fr; min-height: auto; }
+  .combined-layout .panel { max-height: none; }
+}
+@media (max-width: 600px) {
+  .top-bar { padding: 8px 10px; }
+  .top-bar .brand span { display: none; }
+  .number-circle { width: 140px; height: 140px; font-size: 48px; }
+  .all-grid { grid-template-columns: repeat(15, 1fr); gap: 2px; }
+  .all-grid .cell { font-size: 0.65rem; }
+  .drawn-list .num { width: 36px; height: 36px; font-size: 0.8rem; }
+  .panel-body { padding: 10px; }
+  .mode-btn { padding: 8px 14px; font-size: 0.82rem; }
+  .cta-banner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="../index.html" class="brand"><i class="fas fa-arrow-left"></i> <span>Next World Apps</span></a>
+
+  <div class="lang-toggle" id="langToggle">
+    <button id="langBtn"><span id="langFlag">🇧🇷</span> <span id="langName">Português</span> <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:2px;"></i></button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+
+  <a class="nav-btn cta" href="https://play.google.com/store/apps/details?id=com.offline_bingo_draw_raffle_sheet.app" target="_blank" rel="noopener">
+    <i class="fab fa-google-play"></i> App
+  </a>
+</div>
+
+<!-- MODE SELECTOR -->
+<div class="mode-selector" id="modeSelector">
+  <button class="mode-btn" data-mode="raffle"><i class="fas fa-dice"></i> <span data-i18n="modeRaffle">Sorteio</span></button>
+  <button class="mode-btn" data-mode="sheets"><i class="fas fa-grid"></i> <span data-i18n="modeSheets">Cartelas</span></button>
+  <button class="mode-btn" data-mode="combined"><i class="fas fa-layer-group"></i> <span data-i18n="modeBoth">Completo</span></button>
+</div>
+
+<!-- MAIN -->
+<main class="app-main">
+  <div id="appContent">
+    <!-- динамический контент -->
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <p><i class="fas fa-cloud"></i> <span data-i18n="ctaOffline">Baixe o app e jogue mesmo offline! Cartelas e sorteio sem depender da internet.</span></p>
+    <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.offline_bingo_draw_raffle_sheet.app" target="_blank" rel="noopener">
+      <i class="fab fa-google-play"></i> <span data-i18n="ctaDownload">Baixar App</span>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 Next World Apps. <span data-i18n="footerRights">Todos os direitos reservados.</span> | <a href="../index.html"><span data-i18n="footerHome">Home</span></a></p>
+</footer>
+
+<!-- MODAL nome -->
+<div class="modal-overlay" id="nameModal">
+  <div class="modal-box">
+    <h3 data-i18n="editName">Editar Nome</h3>
+    <input type="text" id="nameInput" maxlength="30" autofocus>
+    <div class="modal-actions">
+      <button id="nameCancel" data-i18n="cancel">Cancelar</button>
+      <button class="primary" id="nameConfirm" data-i18n="ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL confirm -->
+<div class="confirm-overlay" id="confirmModal">
+  <div class="confirm-box">
+    <h3 id="confirmTitle"></h3>
+    <p id="confirmMsg"></p>
+    <div class="modal-actions" style="justify-content:center;">
+      <button id="confirmNo" data-i18n="cancel">Cancelar</button>
+      <button class="danger" id="confirmYes" data-i18n="ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// LOCALIZATION
+// ============================================================
+const LANGUAGES = {
+  ar: { flag: '🇸🇦', name: 'العربية' },
+  de: { flag: '🇩🇪', name: 'Deutsch' },
+  el: { flag: '🇬🇷', name: 'Ελληνικά' },
+  en: { flag: '🇬🇧', name: 'English' },
+  es: { flag: '🇪🇸', name: 'Español' },
+  fi: { flag: '🇫🇮', name: 'Suomi' },
+  fr: { flag: '🇫🇷', name: 'Français' },
+  it: { flag: '🇮🇹', name: 'Italiano' },
+  ko: { flag: '🇰🇷', name: '한국어' },
+  pl: { flag: '🇵🇱', name: 'Polski' },
+  'pt-br': { flag: '🇧🇷', name: 'Português' },
+  ro: { flag: '🇷🇴', name: 'Română' },
+  ru: { flag: '🇷🇺', name: 'Русский' },
+  vi: { flag: '🇻🇳', name: 'Tiếng Việt' },
+  zh: { flag: '🇨🇳', name: '中文' }
+};
+
+const STRINGS = {
+  modeRaffle: {
+    ar: 'سحب', de: 'Ziehung', el: 'Κλήρωση', en: 'Raffle', es: 'Sorteo', fi: 'Arvonta',
+    fr: 'Tirage', it: 'Estrazione', ko: '추첨', pl: 'Losowanie', 'pt-br': 'Sorteio',
+    ro: 'Extragere', ru: 'Розыгрыш', vi: 'Rút thăm', zh: '抽奖'
+  },
+  modeSheets: {
+    ar: 'بطاقات', de: 'Karten', el: 'Κάρτες', en: 'Sheets', es: 'Cartones', fi: 'Kortit',
+    fr: 'Cartes', it: 'Cartelle', ko: '카드', pl: 'Karty', 'pt-br': 'Cartelas',
+    ro: 'Cartonașe', ru: 'Карточки', vi: 'Thẻ', zh: '卡片'
+  },
+  modeBoth: {
+    ar: 'كامل', de: 'Komplett', el: 'Πλήρες', en: 'Full', es: 'Completo', fi: 'Koko',
+    fr: 'Complet', it: 'Completo', ko: '전체', pl: 'Pełny', 'pt-br': 'Completo',
+    ro: 'Complet', ru: 'Полный', vi: 'Đầy đủ', zh: '完整'
+  },
+  raffleTitle: {
+    ar: 'سحب الأرقام', de: 'Zahlen ziehen', el: 'Κλήρωση αριθμών', en: 'Number Raffle',
+    es: 'Sorteo de números', fi: 'Numeroiden arvonta', fr: 'Tirage de numéros',
+    it: 'Estrazione numeri', ko: '번호 추첨', pl: 'Losowanie liczb', 'pt-br': 'Sorteio de Números',
+    ro: 'Extragere numere', ru: 'Розыгрыш чисел', vi: 'Rút số', zh: '数字抽奖'
+  },
+  sheetsTitle: {
+    ar: 'بطاقات البنغو', de: 'Bingo-Karten', el: 'Κάρτες Μπίνγκο', en: 'Bingo Sheets',
+    es: 'Cartones de Bingo', fi: 'Bingokortit', fr: 'Cartes de Bingo',
+    it: 'Cartelle del Bingo', ko: '빙고 카드', pl: 'Karty Bingo', 'pt-br': 'Cartelas de Bingo',
+    ro: 'Cartonașe Bingo', ru: 'Карточки Бинго', vi: 'Thẻ Bingo', zh: '宾果卡'
+  },
+  drawNext: {
+    ar: 'سحب الرقم التالي', de: 'Nächste Zahl', el: 'Επόμενος αριθμός', en: 'Draw Next Number',
+    es: 'Sortear siguiente', fi: 'Arvo seuraava', fr: 'Tirer le prochain numéro',
+    it: 'Estrai prossimo numero', ko: '다음 번호 추첨', pl: 'Losuj następną', 'pt-br': 'Sortear Próximo Número',
+    ro: 'Extrage următorul', ru: 'Следующее число', vi: 'Rút số tiếp theo', zh: '抽取下一个号码'
+  },
+  resetDraw: {
+    ar: 'إعادة السحب', de: 'Zurücksetzen', el: 'Επαναφορά κλήρωσης', en: 'Reset Draw',
+    es: 'Reiniciar sorteo', fi: 'Nollaa arvonta', fr: 'Réinitialiser le tirage',
+    it: 'Resetta estrazione', ko: '추첨 초기화', pl: 'Resetuj losowanie', 'pt-br': 'Reiniciar Sorteio',
+    ro: 'Resetează extragerea', ru: 'Сброс розыгрыша', vi: 'Đặt lại', zh: '重置抽奖'
+  },
+  resetDrawTitle: {
+    ar: 'تأكيد إعادة السحب', de: 'Zurücksetzen bestätigen', el: 'Επιβεβαίωση επαναφοράς',
+    en: 'Confirm Reset', es: 'Confirmar reinicio', fi: 'Vahvista nollaus',
+    fr: 'Confirmer la réinitialisation', it: 'Conferma reset', ko: '초기화 확인',
+    pl: 'Potwierdź reset', 'pt-br': 'Confirmar Reinício',
+    ro: 'Confirmă resetarea', ru: 'Подтверждение сброса', vi: 'Xác nhận đặt lại', zh: '确认重置'
+  },
+  resetDrawMsg: {
+    ar: 'سيتم مسح جميع الأرقام المسحوبة. هل أنت متأكد؟',
+    de: 'Alle gezogenen Zahlen werden gelöscht. Fortfahren?',
+    el: 'Όλοι οι αριθμοί θα διαγραφούν. Είστε σίγουρος;',
+    en: 'All drawn numbers will be cleared. Are you sure?',
+    es: 'Se borrarán todos los números sorteados. ¿Estás seguro?',
+    fi: 'Kaikki arvotut numerot poistetaan. Oletko varma?',
+    fr: 'Tous les numéros tirés seront effacés. Êtes-vous sûr ?',
+    it: 'Tutti i numeri estratti verranno cancellati. Sei sicuro?',
+    ko: '모든 추첨 번호가 지워집니다. 계속하시겠습니까?',
+    pl: 'Wszystkie wylosowane liczby zostaną usunięte. Jesteś pewien?',
+    'pt-br': 'Todos os números sorteados serão limpos. Tem certeza?',
+    ro: 'Toate numerele extrase vor fi șterse. Ești sigur?',
+    ru: 'Все выпавшие числа будут удалены. Вы уверены?',
+    vi: 'Tất cả số đã rút sẽ bị xóa. Bạn có chắc không?',
+    zh: '所有已抽号码将被清除。确定吗？'
+  },
+  numbersDrawn: {
+    ar: 'الأرقام المسحوبة: %d', de: 'Gezogene Zahlen: %d', el: 'Αριθμοί που κληρώθηκαν: %d',
+    en: 'Numbers drawn: %d', es: 'Números sorteados: %d', fi: 'Arvotut numerot: %d',
+    fr: 'Numéros tirés : %d', it: 'Numeri estratti: %d', ko: '추첨된 숫자: %d',
+    pl: 'Wylosowane liczby: %d', 'pt-br': 'Números sorteados: %d',
+    ro: 'Numere extrase: %d', ru: 'Выпало чисел: %d', vi: 'Đã rút số: %d', zh: '已抽号码: %d'
+  },
+  noNumbers: {
+    ar: 'لم يتم سحب أي أرقام بعد', de: 'Noch keine Zahlen gezogen',
+    el: 'Δεν κληρώθηκαν ακόμη αριθμοί', en: 'No numbers drawn yet',
+    es: 'Aún no se sortearon números', fi: 'Ei vielä arvottuja numeroita',
+    fr: 'Aucun numéro tiré pour le moment', it: 'Nessun numero ancora estratto',
+    ko: '아직 추첨된 번호가 없습니다', pl: 'Jeszcze nie wylosowano żadnych liczb',
+    'pt-br': 'Nenhum número sorteado ainda', ro: 'Niciun număr extras încă',
+    ru: 'Числа ещё не выпадали', vi: 'Chưa rút số nào', zh: '尚未抽取号码'
+  },
+  orderBy: {
+    ar: 'ترتيب', de: 'Sortieren', el: 'Ταξινόμηση', en: 'Order', es: 'Ordenar',
+    fi: 'Järjestys', fr: 'Ordre', it: 'Ordine', ko: '정렬', pl: 'Sortuj',
+    'pt-br': 'Ordenar', ro: 'Ordonează', ru: 'Сортировка', vi: 'Sắp xếp', zh: '排序'
+  },
+  showOnClick: {
+    ar: 'إظهار عند النقر', de: 'Bei Klick anzeigen', el: 'Εμφάνιση με κλικ',
+    en: 'Show on click', es: 'Mostrar al hacer clic', fi: 'Näytä napsauttamalla',
+    fr: 'Afficher au clic', it: 'Mostra al clic', ko: '클릭하여 표시',
+    pl: 'Pokaż po kliknięciu', 'pt-br': 'Mostrar ao clicar',
+    ro: 'Arată la clic', ru: 'Показывать по клику', vi: 'Hiện khi nhấp', zh: '点击显示'
+  },
+  disableAnim: {
+    ar: 'تعطيل الحركة', de: 'Animation deaktivieren', el: 'Απενεργοποίηση κινούμενων',
+    en: 'Disable animation', es: 'Desactivar animación', fi: 'Poista animaatio',
+    fr: 'Désactiver l\'animation', it: 'Disabilita animazione', ko: '애니메이션 비활성화',
+    pl: 'Wyłącz animację', 'pt-br': 'Desativar animação',
+    ro: 'Dezactivează animația', ru: 'Отключить анимацию', vi: 'Tắt hoạt ảnh', zh: '禁用动画'
+  },
+  configRaffle: {
+    ar: 'إعدادات السحب', de: 'Einstellungen', el: 'Ρυθμίσεις κλήρωσης', en: 'Raffle Settings',
+    es: 'Configuración', fi: 'Asetukset', fr: 'Paramètres du tirage', it: 'Impostazioni',
+    ko: '추첨 설정', pl: 'Ustawienia', 'pt-br': 'Configurações',
+    ro: 'Setări extragere', ru: 'Настройки', vi: 'Cài đặt', zh: '抽奖设置'
+  },
+  sheet: {
+    ar: 'بطاقة', de: 'Karte', el: 'Κάρτα', en: 'Sheet', es: 'Cartón',
+    fi: 'Kortti', fr: 'Carte', it: 'Cartella', ko: '카드', pl: 'Karta',
+    'pt-br': 'Cartela', ro: 'Cartonaș', ru: 'Карточка', vi: 'Thẻ', zh: '卡片'
+  },
+  addCard: {
+    ar: 'إضافة بطاقة', de: 'Karte hinzufügen', el: 'Προσθήκη κάρτας', en: 'Add Sheet',
+    es: 'Agregar cartón', fi: 'Lisää kortti', fr: 'Ajouter une carte',
+    it: 'Aggiungi cartella', ko: '카드 추가', pl: 'Dodaj kartę', 'pt-br': 'Adicionar Cartela',
+    ro: 'Adaugă cartonaș', ru: 'Добавить карточку', vi: 'Thêm thẻ', zh: '添加卡片'
+  },
+  maxCards: {
+    ar: 'الحد الأقصى (%d) من البطاقات', de: 'Maximal %d Karten erreicht',
+    el: 'Μέγιστος αριθμός καρτών (%d)', en: 'Maximum %d sheets reached',
+    es: 'Máximo de %d cartones', fi: 'Enintään %d korttia', fr: 'Maximum de %d cartes atteint',
+    it: 'Massimo %d cartelle raggiunto', ko: '최대 %d 카드', pl: 'Maksymalnie %d kart',
+    'pt-br': 'Máximo de %d cartelas atingido', ro: 'Maxim %d cartonașe atins',
+    ru: 'Достигнут максимум %d карточек', vi: 'Đã đạt tối đa %d thẻ', zh: '已达到最多 %d 张卡片'
+  },
+  removeSheetTitle: {
+    ar: 'إزالة البطاقة', de: 'Karte entfernen', el: 'Αφαίρεση κάρτας', en: 'Remove Sheet',
+    es: 'Eliminar cartón', fi: 'Poista kortti', fr: 'Supprimer la carte',
+    it: 'Rimuovi cartella', ko: '카드 제거', pl: 'Usuń kartę', 'pt-br': 'Remover Cartela',
+    ro: 'Elimină cartonașul', ru: 'Удалить карточку', vi: 'Xóa thẻ', zh: '移除卡片'
+  },
+  removeSheetMsg: {
+    ar: 'هل أنت متأكد من إزالة هذه البطاقة؟', de: 'Diese Karte wirklich entfernen?',
+    el: 'Είστε σίγουρος ότι θέλετε να αφαιρέσετε αυτήν την κάρτα;',
+    en: 'Are you sure you want to remove this sheet?',
+    es: '¿Estás seguro de eliminar este cartón?', fi: 'Haluatko varmasti poistaa tämän kortin?',
+    fr: 'Êtes-vous sûr de vouloir supprimer cette carte ?',
+    it: 'Sei sicuro di voler rimuovere questa cartella?',
+    ko: '이 카드를 제거하시겠습니까?', pl: 'Czy na pewno usunąć tę kartę?',
+    'pt-br': 'Tem certeza que deseja remover esta cartela?',
+    ro: 'Ești sigur că vrei să elimini acest cartonaș?',
+    ru: 'Вы уверены, что хотите удалить эту карточку?',
+    vi: 'Bạn có chắc muốn xóa thẻ này?', zh: '确定要移除这张卡片吗？'
+  },
+  resetCards: {
+    ar: 'إعادة تعيين البطاقات', de: 'Karten zurücksetzen', el: 'Επαναφορά καρτών',
+    en: 'Reset Sheets', es: 'Reiniciar cartones', fi: 'Nollaa kortit',
+    fr: 'Réinitialiser les cartes', it: 'Resetta cartelle', ko: '카드 초기화',
+    pl: 'Resetuj karty', 'pt-br': 'Reiniciar Cartelas',
+    ro: 'Resetează cartonașele', ru: 'Сбросить карточки', vi: 'Đặt lại thẻ', zh: '重置卡片'
+  },
+  resetCardsTitle: {
+    ar: 'تأكيد إعادة تعيين البطاقات', de: 'Karten zurücksetzen bestätigen',
+    el: 'Επιβεβαίωση επαναφοράς καρτών', en: 'Reset all sheets?',
+    es: '¿Reiniciar todos los cartones?', fi: 'Nollaa kaikki kortit?',
+    fr: 'Réinitialiser toutes les cartes ?', it: 'Resettare tutte le cartelle?',
+    ko: '모든 카드를 초기화하시겠습니까?', pl: 'Zresetować wszystkie karty?',
+    'pt-br': 'Reiniciar todas as cartelas?', ro: 'Resetezi toate cartonașele?',
+    ru: 'Сбросить все карточки?', vi: 'Đặt lại tất cả thẻ?', zh: '重置所有卡片？'
+  },
+  resetCardsMsg: {
+    ar: 'سيتم إزالة جميع البطاقات والعلامات.', de: 'Alle Karten und Markierungen werden entfernt.',
+    el: 'Όλες οι κάρτες και οι σημάνσεις θα αφαιρεθούν.',
+    en: 'All sheets and markings will be removed.',
+    es: 'Se eliminarán todos los cartones y marcas.', fi: 'Kaikki kortit ja merkinnät poistetaan.',
+    fr: 'Toutes les cartes et marquages seront supprimés.',
+    it: 'Tutte le cartelle e le marcature verranno rimosse.',
+    ko: '모든 카드와 표시가 제거됩니다.', pl: 'Wszystkie karty i oznaczenia zostaną usunięte.',
+    'pt-br': 'Todas as cartelas e marcações serão removidas.',
+    ro: 'Toate cartonașele și marcajele vor fi eliminate.',
+    ru: 'Все карточки и отметки будут удалены.',
+    vi: 'Tất cả thẻ và đánh dấu sẽ bị xóa.', zh: '所有卡片和标记将被移除。'
+  },
+  editName: {
+    ar: 'تعديل الاسم', de: 'Name bearbeiten', el: 'Επεξεργασία ονόματος', en: 'Edit Name',
+    es: 'Editar nombre', fi: 'Muokkaa nimeä', fr: 'Modifier le nom', it: 'Modifica nome',
+    ko: '이름 수정', pl: 'Edytuj nazwę', 'pt-br': 'Editar Nome',
+    ro: 'Editează numele', ru: 'Редактировать имя', vi: 'Sửa tên', zh: '编辑名称'
+  },
+  cancel: {
+    ar: 'إلغاء', de: 'Abbrechen', el: 'Ακύρωση', en: 'Cancel', es: 'Cancelar',
+    fi: 'Peruuta', fr: 'Annuler', it: 'Annulla', ko: '취소', pl: 'Anuluj',
+    'pt-br': 'Cancelar', ro: 'Anulează', ru: 'Отмена', vi: 'Hủy', zh: '取消'
+  },
+  ok: {
+    ar: 'موافق', de: 'OK', el: 'Εντάξει', en: 'OK', es: 'Aceptar', fi: 'OK',
+    fr: 'OK', it: 'OK', ko: '확인', pl: 'OK', 'pt-br': 'OK',
+    ro: 'OK', ru: 'ОК', vi: 'OK', zh: '确定'
+  },
+  remove: {
+    ar: 'إزالة', de: 'Entfernen', el: 'Αφαίρεση', en: 'Remove', es: 'Eliminar',
+    fi: 'Poista', fr: 'Supprimer', it: 'Rimuovi', ko: '제거', pl: 'Usuń',
+    'pt-br': 'Remover', ro: 'Elimină', ru: 'Удалить', vi: 'Xóa', zh: '移除'
+  },
+  ctaOffline: {
+    ar: 'حمّل التطبيق والعب دون اتصال!', de: 'Laden Sie die App herunter und spielen Sie offline!',
+    el: 'Κατεβάστε την εφαρμογή και παίξτε εκτός σύνδεσης!',
+    en: 'Download the app and play even offline!',
+    es: '¡Descarga la app y juega incluso sin conexión!',
+    fi: 'Lataa sovellus ja pelaa offline-tilassa!',
+    fr: 'Téléchargez l\'application et jouez même hors ligne !',
+    it: 'Scarica l\'app e gioca anche offline!',
+    ko: '앱을 다운로드하고 오프라인에서도 플레이하세요!',
+    pl: 'Pobierz aplikację i graj offline!',
+    'pt-br': 'Baixe o app e jogue mesmo offline! Cartelas e sorteio sem depender da internet.',
+    ro: 'Descărcați aplicația și jucați chiar și offline!',
+    ru: 'Скачайте приложение и играйте даже офлайн!',
+    vi: 'Tải ứng dụng và chơi ngay cả khi ngoại tuyến!',
+    zh: '下载应用，离线也能玩！'
+  },
+  ctaDownload: {
+    ar: 'تحميل التطبيق', de: 'App herunterladen', el: 'Λήψη εφαρμογής', en: 'Download App',
+    es: 'Descargar App', fi: 'Lataa sovellus', fr: 'Télécharger l\'app',
+    it: 'Scarica App', ko: '앱 다운로드', pl: 'Pobierz aplikację', 'pt-br': 'Baixar App',
+    ro: 'Descarcă aplicația', ru: 'Скачать приложение', vi: 'Tải ứng dụng', zh: '下载应用'
+  },
+  footerRights: {
+    ar: 'جميع الحقوق محفوظة.', de: 'Alle Rechte vorbehalten.', el: 'Με επιφύλαξη παντός δικαιώματος.',
+    en: 'All rights reserved.', es: 'Todos los derechos reservados.', fi: 'Kaikki oikeudet pidätetään.',
+    fr: 'Tous droits réservés.', it: 'Tutti i diritti riservati.', ko: '모든 권리 보유.',
+    pl: 'Wszelkie prawa zastrzeżone.', 'pt-br': 'Todos os direitos reservados.',
+    ro: 'Toate drepturile rezervate.', ru: 'Все права защищены.', vi: 'Đã đăng ký bản quyền.',
+    zh: '保留所有权利。'
+  },
+  footerHome: {
+    ar: 'الصفحة الرئيسية', de: 'Startseite', el: 'Αρχική', en: 'Home', es: 'Inicio',
+    fi: 'Koti', fr: 'Accueil', it: 'Home', ko: '홈', pl: 'Strona główna',
+    'pt-br': 'Home', ro: 'Acasă', ru: 'Главная', vi: 'Trang chủ', zh: '首页'
+  },
+  viewList: {
+    ar: 'قائمة', de: 'Liste', el: 'Λίστα', en: 'List', es: 'Lista', fi: 'Lista',
+    fr: 'Liste', it: 'Elenco', ko: '목록', pl: 'Lista', 'pt-br': 'Lista',
+    ro: 'Listă', ru: 'Список', vi: 'Danh sách', zh: '列表'
+  },
+  viewGrid: {
+    ar: 'شبكة', de: 'Raster', el: 'Πλέγμα', en: 'Grid', es: 'Cuadrícula', fi: 'Ruudukko',
+    fr: 'Grille', it: 'Griglia', ko: '그리드', pl: 'Siatka', 'pt-br': 'Grade',
+    ro: 'Grilă', ru: 'Сетка', vi: 'Lưới', zh: '网格'
+  },
+  lineComplete: {
+    ar: 'اكتمل الخط!', de: 'Reihe vollständig!', el: 'Η γραμμή ολοκληρώθηκε!',
+    en: 'Line complete!', es: '¡Línea completa!', fi: 'Rivi valmis!',
+    fr: 'Ligne complète !', it: 'Riga completa!', ko: '라인 완성!',
+    pl: 'Linia ukończona!', 'pt-br': 'Linha completa!',
+    ro: 'Linie completă!', ru: 'Линия завершена!', vi: 'Hoàn thành dòng!', zh: '行已完成！'
+  },
+  sheetComplete: {
+    ar: 'بطاقة كاملة!', de: 'Karte vollständig!', el: 'Η κάρτα ολοκληρώθηκε!',
+    en: 'Sheet complete!', es: '¡Cartón completo!', fi: 'Kortti täynnä!',
+    fr: 'Carte complète !', it: 'Cartella completa!', ko: '카드 완성!',
+    pl: 'Karta ukończona!', 'pt-br': 'Cartela completa!',
+    ro: 'Cartonaș complet!', ru: 'Карточка заполнена!', vi: 'Thẻ hoàn thành!', zh: '卡片已完成！'
+  }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+const STATE = {
+  lang: localStorage.getItem('bingo_lang') || 'pt-br',
+  mode: 'raffle', // raffle | sheets | combined
+
+  // raffle
+  drawnNumbers: [],
+  lastDrawn: null,
+  isAnimating: false,
+  animatingNumber: 0,
+  sortAscending: true,
+  showAllNumbers: false,
+  showOnClick: false,
+  disableAnimation: false,
+  lastDrawnRevealed: true,
+  showConfig: false,
+
+  // sheets
+  sheets: [],
+  marked: new Set(),
+  animTimer: null,
+  adInterval: null
+};
+
+const SHEET_COLORS = ['#561490','#2196F3','#9C27B0','#FF9800','#E91E63','#795548','#607D8B','#FF5722','#4CAF50','#3F51B5'];
+const MAX_SHEETS = 10;
+const BINGO_LETTERS = ['B','I','N','G','O'];
+
+let editingSheetIndex = -1;
+let confirmCallback = null;
+
+// ============================================================
+// PERSISTENCE
+// ============================================================
+function saveState() {
+  try {
+    localStorage.setItem('bingo_drawn', JSON.stringify(STATE.drawnNumbers));
+    localStorage.setItem('bingo_lastDrawn', JSON.stringify(STATE.lastDrawn));
+    localStorage.setItem('bingo_raffleConfig', JSON.stringify({
+      sortAscending: STATE.sortAscending,
+      showAllNumbers: STATE.showAllNumbers,
+      showOnClick: STATE.showOnClick,
+      disableAnimation: STATE.disableAnimation,
+      showConfig: STATE.showConfig
+    }));
+    localStorage.setItem('bingo_sheets', JSON.stringify(STATE.sheets));
+    localStorage.setItem('bingo_marked', JSON.stringify(Array.from(STATE.marked)));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const drawn = localStorage.getItem('bingo_drawn');
+    if (drawn) STATE.drawnNumbers = JSON.parse(drawn);
+    const last = localStorage.getItem('bingo_lastDrawn');
+    if (last) STATE.lastDrawn = JSON.parse(last);
+    const cfg = localStorage.getItem('bingo_raffleConfig');
+    if (cfg) {
+      const c = JSON.parse(cfg);
+      Object.assign(STATE, c);
+      STATE.lastDrawnRevealed = STATE.lastDrawn == null ? true : !STATE.showOnClick;
+    }
+    const sheets = localStorage.getItem('bingo_sheets');
+    if (sheets) STATE.sheets = JSON.parse(sheets);
+    const marked = localStorage.getItem('bingo_marked');
+    if (marked) STATE.marked = new Set(JSON.parse(marked));
+  } catch(e) {}
+}
+
+// ============================================================
+// LOCALIZATION FUNCTIONS
+// ============================================================
+function t(key) {
+  const langs = STRINGS[key];
+  if (!langs) return key;
+  return langs[STATE.lang] || langs['en'] || key;
+}
+
+function applyTexts() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.dataset.i18n);
+  });
+}
+
+function applyLanguage(noRender) {
+  const info = LANGUAGES[STATE.lang] || LANGUAGES['en'];
+  document.getElementById('langFlag').textContent = info.flag;
+  document.getElementById('langName').textContent = info.name;
+
+  document.querySelectorAll('.lang-dropdown button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === STATE.lang);
+  });
+
+  document.documentElement.lang = STATE.lang;
+  applyTexts();
+  if (!noRender) render();
+}
+
+function showLangDropdown(open) {
+  document.getElementById('langDropdown').classList.toggle('open', open);
+}
+
+function buildLangDropdown() {
+  const container = document.getElementById('langDropdown');
+  container.innerHTML = '';
+  Object.entries(LANGUAGES).forEach(([code, info]) => {
+    const btn = document.createElement('button');
+    btn.dataset.lang = code;
+    btn.innerHTML = `${info.flag} ${info.name}`;
+    btn.addEventListener('click', () => {
+      STATE.lang = code;
+      localStorage.setItem('bingo_lang', code);
+      showLangDropdown(false);
+      applyLanguage();
+    });
+    container.appendChild(btn);
+  });
+}
+
+// ============================================================
+// SHEET LOGIC
+// ============================================================
+function rand(min, max) {
+  return min + Math.floor(Math.random() * (max - min + 1));
+}
+
+function generateColumn(min, max, hasFree) {
+  const nums = [];
+  const count = hasFree ? 4 : 5;
+  while (nums.length < count) {
+    const n = rand(min, max);
+    if (!nums.includes(n)) nums.push(n);
+  }
+  nums.sort((a,b) => a-b);
+  if (hasFree) nums.splice(2, 0, -1);
+  return nums;
+}
+
+function generateSheet() {
+  return {
+    B: generateColumn(1, 15),
+    I: generateColumn(16, 30),
+    N: generateColumn(31, 45, true),
+    G: generateColumn(46, 60),
+    O: generateColumn(61, 75)
+  };
+}
+
+function nextAvailableColor() {
+  const taken = new Set(STATE.sheets.map(s => s.color));
+  for (const c of SHEET_COLORS) {
+    if (!taken.has(c)) return c;
+  }
+  return SHEET_COLORS[0];
+}
+
+function addSheet() {
+  if (STATE.sheets.length >= MAX_SHEETS) return;
+  const numbers = generateSheet();
+  const color = nextAvailableColor();
+  const name = `${t('sheet')} ${STATE.sheets.length + 1}`;
+  STATE.sheets.push({ numbers, name, color });
+  saveState();
+  render();
+}
+
+function removeSheet(index) {
+  STATE.sheets.splice(index, 1);
+  // update marked keys
+  const newMarked = new Set();
+  STATE.marked.forEach(key => {
+    const parts = key.split('-');
+    const si = parseInt(parts[0]);
+    if (si < index) newMarked.add(key);
+    else if (si > index) newMarked.add(`${si-1}-${parts[1]}-${parts[2]}`);
+  });
+  STATE.marked = newMarked;
+  saveState();
+  render();
+}
+
+function cycleSheetColor(index) {
+  const current = STATE.sheets[index].color;
+  const ci = SHEET_COLORS.indexOf(current);
+  for (let i = 1; i <= SHEET_COLORS.length; i++) {
+    const ni = (ci + i) % SHEET_COLORS.length;
+    const nc = SHEET_COLORS[ni];
+    const taken = STATE.sheets.some(s => s.color === nc);
+    if (!taken) {
+      STATE.sheets[index].color = nc;
+      saveState();
+      render();
+      return;
+    }
+  }
+}
+
+function renameSheet(index, name) {
+  if (name.trim()) {
+    STATE.sheets[index].name = name.trim();
+    saveState();
+    render();
+  }
+}
+
+function toggleMark(sheetIndex, col, row) {
+  const key = `${sheetIndex}-${col}-${row}`;
+  if (STATE.marked.has(key)) STATE.marked.delete(key);
+  else STATE.marked.add(key);
+  saveState();
+  render();
+}
+
+function isRowComplete(sheetIndex, rowIndex) {
+  for (const col of BINGO_LETTERS) {
+    if (col === 'N' && rowIndex === 2) continue;
+    if (!STATE.marked.has(`${sheetIndex}-${col}-${rowIndex}`)) return false;
+  }
+  return true;
+}
+
+function isSheetComplete(sheetIndex) {
+  for (const col of BINGO_LETTERS) {
+    for (let r = 0; r < 5; r++) {
+      if (col === 'N' && r === 2) continue;
+      if (!STATE.marked.has(`${sheetIndex}-${col}-${r}`)) return false;
+    }
+  }
+  return true;
+}
+
+function resetSheets() {
+  STATE.sheets = [];
+  STATE.marked = new Set();
+  addSheet();
+  saveState();
+  render();
+}
+
+// ============================================================
+// RAFFLE LOGIC
+// ============================================================
+function drawNumber() {
+  if (STATE.drawnNumbers.length >= 75) return;
+  let number;
+  do {
+    number = rand(1, 75);
+  } while (STATE.drawnNumbers.includes(number));
+
+  if (STATE.disableAnimation) {
+    STATE.lastDrawn = number;
+    STATE.lastDrawnRevealed = !STATE.showOnClick;
+    if (!STATE.showOnClick) STATE.drawnNumbers.push(number);
+    saveState();
+    render();
+  } else {
+    startAnimation(number);
+  }
+}
+
+function startAnimation(finalNumber) {
+  STATE.isAnimating = true;
+  STATE.animatingNumber = rand(1, 75);
+  render();
+
+  let iterations = 0;
+  const maxIter = 20;
+
+  if (STATE.animTimer) clearInterval(STATE.animTimer);
+  STATE.animTimer = setInterval(() => {
+    if (iterations < maxIter) {
+      STATE.animatingNumber = rand(1, 75);
+      iterations++;
+      render();
+    } else {
+      clearInterval(STATE.animTimer);
+      STATE.animTimer = null;
+      STATE.isAnimating = false;
+      STATE.lastDrawn = finalNumber;
+      STATE.lastDrawnRevealed = !STATE.showOnClick;
+      if (!STATE.showOnClick) STATE.drawnNumbers.push(finalNumber);
+      saveState();
+      render();
+    }
+  }, 80);
+}
+
+function revealLastDrawn() {
+  if (STATE.lastDrawn != null && STATE.showOnClick) {
+    STATE.lastDrawnRevealed = true;
+    STATE.drawnNumbers.push(STATE.lastDrawn);
+    saveState();
+    render();
+  }
+}
+
+function resetDraw() {
+  STATE.drawnNumbers = [];
+  STATE.lastDrawn = null;
+  STATE.isAnimating = false;
+  STATE.lastDrawnRevealed = true;
+  STATE.sortAscending = true;
+  STATE.showAllNumbers = false;
+  STATE.showConfig = false;
+  saveState();
+  render();
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function render() {
+  const content = document.getElementById('appContent');
+  const mode = STATE.mode;
+
+  if (mode === 'raffle') {
+    content.innerHTML = renderRaffle();
+  } else if (mode === 'sheets') {
+    content.innerHTML = renderSheets();
+  } else {
+    content.innerHTML = `<div class="combined-layout">
+      <div class="panel"><div class="panel-header"><i class="fas fa-dice"></i> <span data-i18n="raffleTitle">${t('raffleTitle')}</span></div><div class="panel-body">${renderRaffleContent()}</div></div>
+      <div class="panel"><div class="panel-header"><i class="fas fa-grid"></i> <span data-i18n="sheetsTitle">${t('sheetsTitle')}</span></div><div class="panel-body">${renderSheetsContent()}</div></div>
+    </div>`;
+  }
+
+  applyTexts();
+  bindEvents();
+  // ensure mode buttons reflect current state
+  document.querySelectorAll('.mode-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === STATE.mode);
+  });
+}
+
+function renderRaffle() {
+  return `<div class="panel">
+    <div class="panel-header"><i class="fas fa-dice"></i> <span data-i18n="raffleTitle">${t('raffleTitle')}</span></div>
+    <div class="panel-body">${renderRaffleContent()}</div>
+  </div>`;
+}
+
+function renderRaffleContent() {
+  let html = '<div class="raffle-display">';
+  html += renderNumberCircle();
+  html += `<button class="btn-draw" id="btnDraw" ${STATE.drawnNumbers.length >= 75 || (STATE.showOnClick && STATE.lastDrawn != null && !STATE.lastDrawnRevealed) ? 'disabled' : ''}>${t('drawNext')}</button>`;
+  html += renderConfigSection();
+  if (STATE.drawnNumbers.length > 0) {
+    html += `<button class="btn-reset" id="btnResetDraw" style="margin-top:8px;"><i class="fas fa-redo"></i> ${t('resetDraw')}</button>`;
+    html += renderHistoryPanel();
+  } else if (!STATE.isAnimating) {
+    html += `<p style="text-align:center;color:#999;font-size:0.85rem;padding:8px;">${t('noNumbers')}</p>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderNumberCircle() {
+  if (STATE.lastDrawn == null && !STATE.isAnimating) {
+    return '<div class="number-circle idle"><i class="fas fa-question"></i></div>';
+  }
+
+  if (STATE.showOnClick && !STATE.lastDrawnRevealed && STATE.lastDrawn != null && !STATE.isAnimating) {
+    return `<div class="number-circle hidden" id="revealBtn"><i class="fas fa-hand-pointer"></i></div>`;
+  }
+
+  const num = STATE.isAnimating ? STATE.animatingNumber : STATE.lastDrawn;
+  const cls = STATE.isAnimating ? 'animating' : 'drawn';
+  return `<div class="number-circle ${cls}">${num}</div>`;
+}
+
+function renderConfigSection() {
+  let html = `<button class="config-toggle" id="configToggle"><i class="fas fa-cog"></i> ${t('configRaffle')}</button>`;
+  if (STATE.showConfig) {
+    html += `<div class="config-panel">
+      <label><input type="checkbox" id="chkShowOnClick" ${STATE.showOnClick ? 'checked' : ''}> ${t('showOnClick')}</label>
+      <label><input type="checkbox" id="chkDisableAnim" ${STATE.disableAnimation ? 'checked' : ''}> ${t('disableAnim')}</label>
+    </div>`;
+  }
+  return html;
+}
+
+function renderHistoryPanel() {
+  const count = STATE.drawnNumbers.length;
+  let html = `<div class="history-panel" style="margin-top:12px;">
+    <div class="history-header">
+      <div class="history-controls">
+        <button id="sortBtn" class="${!STATE.showAllNumbers && STATE.sortAscending ? 'active' : ''}"><i class="fas fa-arrow-up"></i> ${t('orderBy')}</button>
+      </div>
+      <div class="view-toggle">
+        <button id="viewList" class="${!STATE.showAllNumbers ? 'active' : ''}"><i class="fas fa-list"></i></button>
+        <button id="viewGrid" class="${STATE.showAllNumbers ? 'active' : ''}"><i class="fas fa-th"></i></button>
+      </div>
+    </div>
+    <div class="history-count">${t('numbersDrawn').replace('%d', count)}</div>`;
+
+  if (STATE.showAllNumbers) {
+    html += renderAllNumbersGrid();
+  } else {
+    html += renderDrawnNumbersList();
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function renderDrawnNumbersList() {
+  const nums = STATE.sortAscending ? [...STATE.drawnNumbers].sort((a,b) => a-b) : STATE.drawnNumbers;
+  return `<div class="drawn-list">${nums.map(n => `<div class="num">${n}</div>`).join('')}</div>`;
+}
+
+function renderAllNumbersGrid() {
+  const drawn = new Set(STATE.drawnNumbers);
+  let html = '<div class="all-grid">';
+  for (let i = 1; i <= 75; i++) {
+    html += `<div class="cell ${drawn.has(i) ? 'drawn' : ''}">${i}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderSheets() {
+  return `<div class="panel">
+    <div class="panel-header"><i class="fas fa-grid"></i> <span data-i18n="sheetsTitle">${t('sheetsTitle')}</span></div>
+    <div class="panel-body">${renderSheetsContent()}</div>
+  </div>`;
+}
+
+function renderSheetsContent() {
+  let html = '<div class="sheets-container">';
+  html += `<div class="sheets-toolbar">
+    <button class="btn-add" id="btnAddSheet" ${STATE.sheets.length >= MAX_SHEETS ? 'disabled' : ''}><i class="fas fa-plus"></i> ${t('addCard')}</button>
+    ${STATE.sheets.length > 1 ? `<button class="btn-reset-all" id="btnResetSheets"><i class="fas fa-redo"></i> ${t('resetCards')}</button>` : ''}
+    ${STATE.sheets.length >= MAX_SHEETS ? `<span class="max-msg">${t('maxCards').replace('%d', MAX_SHEETS)}</span>` : `<span class="max-msg">${STATE.sheets.length}/${MAX_SHEETS}</span>`}
+  </div>`;
+
+  if (STATE.sheets.length === 0) {
+    html += `<p style="text-align:center;color:#999;font-size:0.85rem;padding:16px;">${t('addCard')}</p>`;
+  } else {
+    html += '<div class="sheets-scroll">';
+    STATE.sheets.forEach((sheet, i) => {
+      html += renderSheetCard(i);
+    });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function renderSheetCard(index) {
+  const sheet = STATE.sheets[index];
+  const complete = isSheetComplete(index);
+  const color = sheet.color;
+
+  let html = `<div class="sheet-card ${complete ? 'complete' : ''}" style="border-color:${color}40;">`;
+
+  // top bar
+  html += `<div class="sheet-topbar" style="background:${color};">
+    <span class="s-name" data-edit-name="${index}">${escHtml(sheet.name)}</span>
+    <div class="s-actions">
+      <button data-cycle-color="${index}" title="Change color"><i class="fas fa-palette"></i></button>
+      <button data-remove-sheet="${index}" title="Remove"><i class="fas fa-times"></i></button>
+    </div>
+  </div>`;
+
+  // header
+  html += `<div class="sheet-grid-header" style="background:${color};">
+    ${BINGO_LETTERS.map(l => `<span>${l}</span>`).join('')}
+  </div>`;
+
+  // rows
+  for (let row = 0; row < 5; row++) {
+    const rowComp = isRowComplete(index, row);
+    html += `<div class="sheet-row ${rowComp ? 'row-complete' : ''}" style="${rowComp ? `background:${color}10;` : ''}">`;
+
+    BINGO_LETTERS.forEach(col => {
+      if (col === 'N' && row === 2) {
+        html += `<div class="cell free" style="color:${color};">★</div>`;
+        return;
+      }
+      const val = sheet.numbers[col][row];
+      const key = `${index}-${col}-${row}`;
+      const marked = STATE.marked.has(key);
+      html += `<div class="cell ${marked ? 'marked' : ''}" data-toggle-mark="${index}|${col}|${row}" style="${marked ? `color:${color};background:${color}18;` : ''}">
+        ${val}${marked ? '<span class="x-mark">✕</span>' : ''}
+      </div>`;
+    });
+
+    if (rowComp) {
+      html += `<div class="row-check"><i class="fas fa-check-circle" style="color:${color};"></i></div>`;
+    }
+
+    html += '</div>';
+  }
+
+  // complete badge
+  if (complete) {
+    html += `<div style="padding:6px;text-align:center;background:${color}10;font-size:0.75rem;font-weight:700;color:${color};">
+      <i class="fas fa-trophy"></i> ${t('sheetComplete')}
+    </div>`;
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ============================================================
+// EVENT BINDING
+// ============================================================
+function bindEvents() {
+  // draw button
+  const btnDraw = document.getElementById('btnDraw');
+  if (btnDraw) btnDraw.addEventListener('click', drawNumber);
+
+  // reveal button
+  const revealBtn = document.getElementById('revealBtn');
+  if (revealBtn) revealBtn.addEventListener('click', revealLastDrawn);
+
+  // reset draw
+  const btnReset = document.getElementById('btnResetDraw');
+  if (btnReset) btnReset.addEventListener('click', () => showConfirm(t('resetDrawTitle'), t('resetDrawMsg'), () => { resetDraw(); }));
+
+  // config toggle
+  const cfgToggle = document.getElementById('configToggle');
+  if (cfgToggle) cfgToggle.addEventListener('click', () => {
+    STATE.showConfig = !STATE.showConfig;
+    render();
+  });
+
+  // config checkboxes
+  const chkShow = document.getElementById('chkShowOnClick');
+  if (chkShow) chkShow.addEventListener('change', () => {
+    STATE.showOnClick = chkShow.checked;
+    STATE.lastDrawnRevealed = STATE.lastDrawn == null ? true : !STATE.showOnClick;
+    saveState();
+    render();
+  });
+
+  const chkAnim = document.getElementById('chkDisableAnim');
+  if (chkAnim) chkAnim.addEventListener('change', () => {
+    STATE.disableAnimation = chkAnim.checked;
+    saveState();
+    render();
+  });
+
+  // sort
+  const sortBtn = document.getElementById('sortBtn');
+  if (sortBtn) sortBtn.addEventListener('click', () => {
+    STATE.sortAscending = !STATE.sortAscending;
+    saveState();
+    render();
+  });
+
+  // view toggle
+  const viewList = document.getElementById('viewList');
+  if (viewList) viewList.addEventListener('click', () => {
+    STATE.showAllNumbers = false;
+    saveState();
+    render();
+  });
+  const viewGrid = document.getElementById('viewGrid');
+  if (viewGrid) viewGrid.addEventListener('click', () => {
+    STATE.showAllNumbers = true;
+    saveState();
+    render();
+  });
+
+  // add sheet
+  const btnAdd = document.getElementById('btnAddSheet');
+  if (btnAdd) btnAdd.addEventListener('click', addSheet);
+
+  // reset sheets
+  const btnResetSh = document.getElementById('btnResetSheets');
+  if (btnResetSh) btnResetSh.addEventListener('click', () => showConfirm(t('resetCardsTitle'), t('resetCardsMsg'), () => { resetSheets(); }));
+
+  // dynamic: toggle mark
+  document.querySelectorAll('[data-toggle-mark]').forEach(el => {
+    el.addEventListener('click', () => {
+      const [si, col, row] = el.dataset.toggleMark.split('|');
+      toggleMark(parseInt(si), col, parseInt(row));
+    });
+  });
+
+  // dynamic: edit name
+  document.querySelectorAll('[data-edit-name]').forEach(el => {
+    el.addEventListener('click', () => {
+      editingSheetIndex = parseInt(el.dataset.editName);
+      document.getElementById('nameInput').value = STATE.sheets[editingSheetIndex].name;
+      document.getElementById('nameModal').classList.add('open');
+      setTimeout(() => document.getElementById('nameInput').focus(), 100);
+    });
+  });
+
+  // dynamic: cycle color
+  document.querySelectorAll('[data-cycle-color]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cycleSheetColor(parseInt(el.dataset.cycleColor));
+    });
+  });
+
+  // dynamic: remove sheet
+  document.querySelectorAll('[data-remove-sheet]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(el.dataset.removeSheet);
+      showConfirm(t('removeSheetTitle'), t('removeSheetMsg'), () => { removeSheet(idx); });
+    });
+  });
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function showConfirm(title, msg, cb) {
+  document.getElementById('confirmTitle').textContent = title;
+  document.getElementById('confirmMsg').textContent = msg;
+  document.getElementById('confirmModal').classList.add('open');
+  confirmCallback = cb;
+}
+
+document.getElementById('confirmYes').addEventListener('click', () => {
+  document.getElementById('confirmModal').classList.remove('open');
+  if (confirmCallback) { confirmCallback(); confirmCallback = null; }
+});
+document.getElementById('confirmNo').addEventListener('click', () => {
+  document.getElementById('confirmModal').classList.remove('open');
+  confirmCallback = null;
+});
+
+// name modal
+document.getElementById('nameConfirm').addEventListener('click', () => {
+  const val = document.getElementById('nameInput').value;
+  if (editingSheetIndex >= 0) {
+    renameSheet(editingSheetIndex, val);
+    editingSheetIndex = -1;
+  }
+  document.getElementById('nameModal').classList.remove('open');
+});
+document.getElementById('nameCancel').addEventListener('click', () => {
+  document.getElementById('nameModal').classList.remove('open');
+  editingSheetIndex = -1;
+});
+document.getElementById('nameInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') document.getElementById('nameConfirm').click();
+});
+
+// ============================================================
+// LANG DROPDOWN
+// ============================================================
+document.getElementById('langBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  showLangDropdown(!document.getElementById('langDropdown').classList.contains('open'));
+});
+document.addEventListener('click', () => showLangDropdown(false));
+
+// ============================================================
+// MODE SELECTOR
+// ============================================================
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    STATE.mode = btn.dataset.mode;
+    render();
+  });
+});
+
+// ============================================================
+// INIT
+// ============================================================
+loadState();
+buildLangDropdown();
+// ensure at least one sheet
+if (STATE.sheets.length === 0) addSheet();
+// default mode: Completo on desktop (≥961px), Cartelas on mobile
+STATE.mode = window.innerWidth >= 961 ? 'combined' : 'sheets';
+// apply initial render (applyLanguage triggers render)
+applyLanguage();
+</script>
+</body>
+</html>
