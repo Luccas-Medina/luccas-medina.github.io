@@ -472,8 +472,8 @@
 
         body.focus-mode::before { display: none; }
 
-        body.focus-mode .chapter-prev { left: 12px; }
-        body.focus-mode .chapter-next { right: 12px; }
+        body.focus-mode .chapter-prev { left: 8px; }
+        body.focus-mode .chapter-next { right: 8px; }
         body.focus-mode .chapter-arrow { background: var(--reader-surface); }
 
         .focus-btn {
@@ -489,13 +489,13 @@
         }
 
         .chapter-arrow {
-            position: fixed;
+            position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 38px;
-            height: 38px;
+            width: 76px;
+            height: 76px;
             border-radius: 50%;
-            border: 1px solid var(--reader-border);
+            border: 2px solid var(--reader-border);
             background: var(--reader-dropdown-bg);
             color: var(--reader-text);
             cursor: pointer;
@@ -503,11 +503,11 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
-            z-index: 90;
+            z-index: 10;
         }
 
-        .chapter-prev { left: 16px; }
-        .chapter-next { right: 16px; }
+        .chapter-prev { left: -42px; }
+        .chapter-next { right: -42px; }
 
         .chapter-arrow:hover {
             border-color: var(--accent);
@@ -520,7 +520,7 @@
             pointer-events: none;
         }
 
-        .chapter-arrow .material-symbols-outlined { font-size: 20px; }
+        .chapter-arrow .material-symbols-outlined { font-size: 40px; }
 
         .focus-exit {
             position: fixed;
@@ -639,9 +639,10 @@
             .share-bar { padding: 8px 14px; gap: 8px; }
             .lang-dropdown-menu { right: -10px; }
             .btn-primary span.hide-mobile { display: none; }
-            .chapter-prev { left: 8px; }
-            .chapter-next { right: 8px; }
-            .chapter-arrow { width: 34px; height: 34px; }
+            .chapter-prev { left: 4px; }
+            .chapter-next { right: 4px; }
+            .chapter-arrow { width: 60px; height: 60px; }
+            .chapter-arrow .material-symbols-outlined { font-size: 32px; }
         }
     </style>
 </head>
@@ -748,7 +749,7 @@
     <div class="footer-section">
         <a href="../index.html" data-i18n="home">Home</a> ·
         <a href="../privacy-policy.html" data-i18n="privacy">Privacidade</a> ·
-        © 2026 Luccas Medina
+        © 2026 Next World Apps
     </div>
 
     <script>
