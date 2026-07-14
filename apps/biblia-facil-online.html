@@ -103,14 +103,12 @@
         }
 
         .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 20px;
-            letter-spacing: 0.4px;
-            color: #ffe9c9;
+            display: inline-flex;
+            align-items: center;
             text-decoration: none;
         }
 
-        .logo span { color: var(--accent-soft); }
+        .logo img { height: 32px; width: auto; }
 
         .nav-right {
             display: flex;
@@ -633,7 +631,7 @@
 
         @media (max-width: 640px) {
             .nav { padding: 10px 14px; }
-            .logo { font-size: 17px; }
+            .logo img { height: 28px; }
             .controls-bar { padding: 10px 14px; gap: 8px; }
             .select-wrap select { min-width: 110px; font-size: 12px; }
             main { padding: 16px 12px 120px; }
@@ -649,7 +647,7 @@
 </head>
 <body>
     <nav class="nav">
-        <a class="logo" href="../index.html">Bíblia <span>Fácil</span></a>
+        <a class="logo" href="../index.html"><img src="../assets/images/biblia/icon.png" alt="Bíblia Fácil" height="32"></a>
         <div class="nav-right">
             <a class="btn btn-ghost" href="../index.html" data-i18n="home">Home</a>
             <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.medinabibliasagrada.app" target="_blank" rel="noopener">
@@ -674,9 +672,7 @@
             <select id="translationSelect"></select>
         </div>
         <div class="select-wrap">
-            <select id="bookSelect" disabled>
-                <option value="" data-i18n="book">Livro</option>
-            </select>
+            <select id="bookSelect" disabled></select>
         </div>
         <div class="select-wrap">
             <select id="chapterSelect" disabled>
@@ -1202,8 +1198,6 @@
             $$('[data-i18n="privacy"]').forEach(el => el.textContent = t('privacy'));
             $$('[data-i18n="fullscreen"]').forEach(el => el.textContent = t('fullscreen'));
 
-            const bookOpt = bookSelect.querySelector('option[value=""]');
-            if (bookOpt) bookOpt.textContent = t('selectBook');
             const chapOpt = chapterSelect.querySelector('option[value=""]');
             if (chapOpt) chapOpt.textContent = t('chapter');
 
@@ -1288,7 +1282,7 @@
                 if (!bibleData || !bibleData.books.length) throw new Error('Invalid data');
 
                 bookSelect.disabled = false;
-                bookSelect.innerHTML = `<option value="">${t('selectBook')}</option>`;
+                bookSelect.innerHTML = '';
                 bibleData.books.forEach((book, i) => {
                     const opt = document.createElement('option');
                     opt.value = i;
@@ -1305,12 +1299,8 @@
 
                 loadingState.style.display = 'none';
 
-                if (autoSelectGenesis) {
-                    bookSelect.value = '1';
-                    bookSelect.dispatchEvent(new Event('change'));
-                } else {
-                    readerContent.innerHTML = `<div class="empty-state">${t('selectBookAndChapter')}</div>`;
-                }
+                bookSelect.value = '0';
+                bookSelect.dispatchEvent(new Event('change'));
 
             } catch (err) {
                 const isFileProtocol = location.protocol === 'file:';
@@ -1407,15 +1397,7 @@
 
         bookSelect.addEventListener('change', () => {
             const idx = bookSelect.value;
-            if (idx === '') {
-                chapterSelect.disabled = true;
-                chapterSelect.innerHTML = `<option value="">${t('chapter')}</option>`;
-                currentBook = null;
-                currentChapter = null;
-                readerContent.innerHTML = `<div class="empty-state">${t('selectChapterHint')}</div>`;
-                breadcrumbText.textContent = bibleData ? bibleData.name : t('breadcrumbBible');
-                return;
-            }
+            if (idx === '') return;
             currentBook = parseInt(idx);
             const book = bibleData.books[currentBook];
             chapterSelect.disabled = false;
@@ -1476,18 +1458,18 @@
             updateShareBar();
         });
 
-        $('#selectAllBtn').addEventListener('click', () => {
-            if (!bibleData || currentBook === null || currentChapter === null) return;
-            bibleData.books[currentBook].chapters[currentChapter].forEach(v => selectedVerses.add(v.verse));
-            $$('.verse-p').forEach(p => p.classList.add('selected'));
-            updateShareBar();
-        });
+        // $('#selectAllBtn').addEventListener('click', () => {
+        //     if (!bibleData || currentBook === null || currentChapter === null) return;
+        //     bibleData.books[currentBook].chapters[currentChapter].forEach(v => selectedVerses.add(v.verse));
+        //     $$('.verse-p').forEach(p => p.classList.add('selected'));
+        //     updateShareBar();
+        // });
 
-        $('#deselectAllBtn').addEventListener('click', () => {
-            selectedVerses.clear();
-            $$('.verse-p.selected').forEach(p => p.classList.remove('selected'));
-            updateShareBar();
-        });
+        // $('#deselectAllBtn').addEventListener('click', () => {
+        //     selectedVerses.clear();
+        //     $$('.verse-p.selected').forEach(p => p.classList.remove('selected'));
+        //     updateShareBar();
+        // });
 
         $('#fontDecrease').addEventListener('click', () => {
             if (verseFontSize > 12) {
