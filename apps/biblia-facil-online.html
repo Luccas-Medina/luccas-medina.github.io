@@ -139,9 +139,7 @@
             border: 1px solid rgba(242, 188, 128, 0.3);
         }
 
-        .btn-ghost:hover {
-            background: rgba(213, 126, 49, 0.15);
-        }
+        .btn-ghost:hover { background: rgba(213, 126, 49, 0.15); }
 
         .btn-primary {
             color: #2f1a14;
@@ -201,9 +199,7 @@
             font-size: 12px;
         }
 
-        [data-theme="dark"] .select-wrap::after {
-            color: var(--accent-soft);
-        }
+        [data-theme="dark"] .select-wrap::after { color: var(--accent-soft); }
 
         .controls-divider {
             width: 1px;
@@ -231,15 +227,7 @@
             color: var(--accent);
         }
 
-        .icon-btn.active {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-        }
-
-        .icon-btn .material-symbols-outlined {
-            font-size: 18px;
-        }
+        .icon-btn .material-symbols-outlined { font-size: 18px; }
 
         .font-size-group {
             display: flex;
@@ -255,9 +243,7 @@
             text-align: center;
         }
 
-        [data-theme="dark"] .font-size-label {
-            color: var(--accent-soft);
-        }
+        [data-theme="dark"] .font-size-label { color: var(--accent-soft); }
 
         main {
             max-width: 820px;
@@ -279,18 +265,9 @@
             opacity: 0.8;
         }
 
-        [data-theme="dark"] .breadcrumb {
-            color: var(--accent-soft);
-        }
-
-        .breadcrumb .sep {
-            color: var(--accent);
-        }
-
-        .breadcrumb .current {
-            color: var(--reader-text);
-            font-size: 14px;
-        }
+        [data-theme="dark"] .breadcrumb { color: var(--accent-soft); }
+        .breadcrumb .sep { color: var(--accent); }
+        .breadcrumb .current { color: var(--reader-text); font-size: 14px; }
 
         .reader-card {
             background: var(--reader-dropdown-bg);
@@ -331,9 +308,7 @@
             font-size: 15px;
         }
 
-        [data-theme="dark"] .chapter-header p {
-            color: var(--accent-soft);
-        }
+        [data-theme="dark"] .chapter-header p { color: var(--accent-soft); }
 
         .verses-container {
             font-family: 'Source Serif 4', serif;
@@ -351,9 +326,7 @@
             position: relative;
         }
 
-        .verse-p:hover {
-            background: var(--reader-surface);
-        }
+        .verse-p:hover { background: var(--reader-surface); }
 
         .verse-p.selected {
             background: rgba(213, 126, 49, 0.15);
@@ -370,9 +343,7 @@
             margin-right: 0.4em;
         }
 
-        .verse-p:first-child .verse-num {
-            font-size: 0;
-        }
+        .verse-p:first-child .verse-num { font-size: 0; }
 
         .drop-cap {
             float: left;
@@ -443,10 +414,7 @@
             pointer-events: none;
         }
 
-        .share-bar.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .share-bar.visible { opacity: 1; pointer-events: all; }
 
         .share-bar .share-count {
             font-size: 13px;
@@ -455,28 +423,9 @@
             white-space: nowrap;
         }
 
-        [data-theme="dark"] .share-bar .share-count {
-            color: var(--accent-soft);
-        }
+        [data-theme="dark"] .share-bar .share-count { color: var(--accent-soft); }
 
-        .share-bar .btn {
-            padding: 6px 14px;
-            font-size: 12px;
-        }
-
-        .share-bar .btn-icon {
-            width: 32px;
-            height: 32px;
-            padding: 0;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .share-bar .btn-icon .material-symbols-outlined {
-            font-size: 16px;
-        }
+        .share-bar .btn { padding: 6px 14px; font-size: 12px; }
 
         .toast {
             position: fixed;
@@ -501,14 +450,11 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Focus mode */
         body.focus-mode .nav,
         body.focus-mode .controls-bar,
         body.focus-mode .breadcrumb,
         body.focus-mode .share-bar,
-        body.focus-mode .footer-section {
-            display: none !important;
-        }
+        body.focus-mode .footer-section { display: none !important; }
 
         body.focus-mode main {
             padding-top: 0;
@@ -536,9 +482,7 @@
             display: none;
         }
 
-        body.focus-mode .focus-exit {
-            display: flex;
-        }
+        body.focus-mode .focus-exit { display: flex; }
 
         .footer-section {
             text-align: center;
@@ -548,10 +492,84 @@
             opacity: 0.6;
         }
 
-        .footer-section a {
-            color: var(--accent);
-            text-decoration: none;
+        .footer-section a { color: var(--accent); text-decoration: none; }
+
+        .lang-dropdown {
+            position: relative;
         }
+
+        .lang-dropdown-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            height: 36px;
+            min-width: 36px;
+            padding: 0 6px;
+            border-radius: 10px;
+            border: 1px solid rgba(242, 188, 128, 0.3);
+            background: transparent;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+
+        .lang-dropdown-btn:hover {
+            border-color: var(--accent);
+        }
+
+        .lang-dropdown-btn .chevron {
+            font-size: 10px;
+            color: #f5dfc2;
+            margin-left: 2px;
+            transition: transform 0.2s;
+        }
+
+        .lang-dropdown.open .chevron { transform: rotate(180deg); }
+
+        .lang-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background: var(--reader-dropdown-bg);
+            border: 1px solid var(--reader-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+            min-width: 180px;
+            z-index: 150;
+            overflow: hidden;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
+        .lang-dropdown.open .lang-dropdown-menu { display: block; }
+
+        .lang-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 14px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--reader-text);
+            text-align: left;
+            transition: background 0.15s;
+        }
+
+        .lang-dropdown-item:hover { background: var(--reader-dropdown-hover); }
+
+        .lang-dropdown-item .flag { font-size: 20px; line-height: 1; }
+
+        .lang-dropdown-item .name { flex: 1; }
+
+        .lang-dropdown-item.active { color: var(--accent); font-weight: 800; }
 
         @media (max-width: 640px) {
             .nav { padding: 10px 14px; }
@@ -561,6 +579,8 @@
             main { padding: 16px 12px 120px; }
             .reader-card { padding: 24px 16px; }
             .share-bar { padding: 8px 14px; gap: 8px; }
+            .lang-dropdown-menu { right: -10px; }
+            .btn-primary span.hide-mobile { display: none; }
         }
     </style>
 </head>
@@ -568,9 +588,18 @@
     <nav class="nav">
         <a class="logo" href="../index.html">Bíblia <span>Fácil</span></a>
         <div class="nav-right">
-            <a class="btn btn-ghost" href="../index.html">Home</a>
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.medinabibliasagrada.app" target="_blank" rel="noopener">Download App</a>
-            <button class="icon-btn" id="themeToggle" title="Alternar tema">
+            <a class="btn btn-ghost" href="../index.html" data-i18n="home">Home</a>
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.medinabibliasagrada.app" target="_blank" rel="noopener">
+                <span data-i18n="downloadApp">Baixar App</span>
+            </a>
+            <div class="lang-dropdown" id="langDropdown">
+                <button class="lang-dropdown-btn" id="langDropdownBtn" title="Language">
+                    <span id="currentFlag">🇧🇷</span>
+                    <span class="chevron">▾</span>
+                </button>
+                <div class="lang-dropdown-menu" id="langDropdownMenu"></div>
+            </div>
+            <button class="icon-btn" id="themeToggle" data-i18n-title="titleTheme">
                 <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
             </button>
         </div>
@@ -578,73 +607,71 @@
 
     <div class="controls-bar">
         <div class="select-wrap">
-            <select id="translationSelect">
-                <option value="">Carregando...</option>
-            </select>
+            <select id="translationSelect"></select>
         </div>
         <div class="select-wrap">
             <select id="bookSelect" disabled>
-                <option value="">Livro</option>
+                <option value="" data-i18n="book">Livro</option>
             </select>
         </div>
         <div class="select-wrap">
             <select id="chapterSelect" disabled>
-                <option value="">Cap.</option>
+                <option value="" data-i18n="chapter">Cap.</option>
             </select>
         </div>
         <div class="controls-divider"></div>
         <div class="font-size-group">
-            <button class="icon-btn" id="fontDecrease" title="Diminuir fonte">
+            <button class="icon-btn" id="fontDecrease" data-i18n-title="titleFontDecrease">
                 <span class="material-symbols-outlined">text_decrease</span>
             </button>
             <span class="font-size-label" id="fontSizeLabel">18</span>
-            <button class="icon-btn" id="fontIncrease" title="Aumentar fonte">
+            <button class="icon-btn" id="fontIncrease" data-i18n-title="titleFontIncrease">
                 <span class="material-symbols-outlined">text_increase</span>
             </button>
         </div>
         <div class="controls-divider"></div>
-        <button class="icon-btn" id="focusBtn" title="Modo Foco">
+        <button class="icon-btn" id="focusBtn" data-i18n-title="titleFocus">
             <span class="material-symbols-outlined">center_focus_strong</span>
         </button>
-        <button class="icon-btn" id="selectAllBtn" title="Selecionar todos">
+        <button class="icon-btn" id="selectAllBtn" data-i18n-title="titleSelectAll">
             <span class="material-symbols-outlined">select_all</span>
         </button>
-        <button class="icon-btn" id="deselectAllBtn" title="Limpar seleção">
+        <button class="icon-btn" id="deselectAllBtn" data-i18n-title="titleDeselectAll">
             <span class="material-symbols-outlined">deselect</span>
         </button>
     </div>
 
-    <button class="icon-btn focus-exit" id="focusExit" title="Sair do modo foco">
+    <button class="icon-btn focus-exit" id="focusExit" data-i18n-title="titleFocusExit">
         <span class="material-symbols-outlined">fullscreen_exit</span>
     </button>
 
     <main id="main">
         <div class="breadcrumb" id="breadcrumb">
-            <span>Bíblia</span>
+            <span data-i18n="breadcrumbBible">Bíblia</span>
             <span class="sep">•</span>
-            <span class="current" id="breadcrumbText">Selecione uma tradução</span>
+            <span class="current" id="breadcrumbText"></span>
         </div>
 
         <article class="reader-card" id="readerCard">
             <div class="loading-state" id="loadingState">
                 <div class="spinner"></div>
-                <p>Carregando traduções...</p>
+                <p data-i18n="loadingTranslations">Carregando traduções...</p>
             </div>
             <div id="readerContent"></div>
         </article>
     </main>
 
     <div class="share-bar" id="shareBar">
-        <span class="share-count" id="shareCount">0 versículos selecionados</span>
+        <span class="share-count" id="shareCount"></span>
         <div class="controls-divider" style="height:20px"></div>
-        <button class="btn btn-ghost" id="copyBtn" title="Copiar">
+        <button class="btn btn-ghost" id="copyBtn">
             <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
-            Copiar
+            <span data-i18n="copy">Copiar</span>
         </button>
-        <button class="btn btn-ghost" id="shareBtn" title="Compartilhar">
+        <button class="btn btn-ghost" id="shareBtn">
             <span class="material-symbols-outlined" style="font-size:16px">share</span>
         </button>
-        <button class="btn btn-ghost" id="clearSelectionBtn" title="Limpar">
+        <button class="btn btn-ghost" id="clearSelectionBtn">
             <span class="material-symbols-outlined" style="font-size:16px">close</span>
         </button>
     </div>
@@ -652,8 +679,8 @@
     <div class="toast" id="toast"></div>
 
     <div class="footer-section">
-        <a href="../index.html">Home</a> ·
-        <a href="../privacy-policy.html">Privacidade</a> ·
+        <a href="../index.html" data-i18n="home">Home</a> ·
+        <a href="../privacy-policy.html" data-i18n="privacy">Privacidade</a> ·
         © 2026 Luccas Medina
     </div>
 
@@ -662,39 +689,444 @@
         const BIBLE_DIR = '../assets/data/bible/';
 
         const TRANSLATIONS = [
-            { file: 'blivre.json',      lang: 'PT', label: 'Português — Bíblia Livre' },
-            { file: 'diodati.json',     lang: 'IT', label: 'Italiano — Diodati' },
-            { file: 'de_schlachter.json',lang: 'DE', label: 'Deutsch — Schlachter' },
-            { file: 'el_greek.json',     lang: 'EL', label: 'Ελληνικά — Greek' },
-            { file: 'en_bbe.json',       lang: 'EN', label: 'English — BBE' },
-            { file: 'es_rvr.json',       lang: 'ES', label: 'Español — Reina-Valera' },
-            { file: 'fi_finnish.json',   lang: 'FI', label: 'Suomi — Finnish Bible' },
-            { file: 'fr_apee.json',      lang: 'FR', label: 'Français — APEE' },
-            { file: 'ko_ko.json',        lang: 'KO', label: '한국어 — Korean' },
-            { file: 'pol_ubg.json',      lang: 'PL', label: 'Polski — UBG' },
-            { file: 'ro_cornilescu.json', lang: 'RO', label: 'Română — Cornilescu' }
+            { file: 'blivre.json',        lang: 'PT', flag: '🇧🇷', label: 'Português — Bíblia Livre' },
+            { file: 'diodati.json',       lang: 'IT', flag: '🇮🇹', label: 'Italiano — Diodati' },
+            { file: 'de_schlachter.json', lang: 'DE', flag: '🇩🇪', label: 'Deutsch — Schlachter' },
+            { file: 'el_greek.json',      lang: 'EL', flag: '🇬🇷', label: 'Ελληνικά — Greek' },
+            { file: 'en_bbe.json',        lang: 'EN', flag: '🇺🇸', label: 'English — BBE' },
+            { file: 'es_rvr.json',        lang: 'ES', flag: '🇪🇸', label: 'Español — Reina-Valera' },
+            { file: 'fi_finnish.json',    lang: 'FI', flag: '🇫🇮', label: 'Suomi — Finnish Bible' },
+            { file: 'fr_apee.json',       lang: 'FR', flag: '🇫🇷', label: 'Français — APEE' },
+            { file: 'ko_ko.json',         lang: 'KO', flag: '🇰🇷', label: '한국어 — Korean' },
+            { file: 'pol_ubg.json',       lang: 'PL', flag: '🇵🇱', label: 'Polski — UBG' },
+            { file: 'ro_cornilescu.json', lang: 'RO', flag: '🇷🇴', label: 'Română — Cornilescu' }
         ];
+
+        const I18N = {
+            PT: {
+                home: 'Home',
+                downloadApp: 'Baixar App',
+                book: 'Livro',
+                chapter: 'Cap.',
+                selectBook: 'Selecione o livro',
+                chooseTranslation: 'Escolha uma tradução para começar.',
+                selectBookAndChapter: 'Selecione um livro e capítulo para começar a leitura.',
+                selectChapterHint: 'Selecione um capítulo.',
+                loadingTranslations: 'Carregando traduções...',
+                loadingTranslation: 'Carregando tradução...',
+                breadcrumbBible: 'Bíblia',
+                verseCount1: '1 versículo seleccionado',
+                verseCountN: n => `${n} versículos seleccionados`,
+                copy: 'Copiar',
+                copied: 'Copiado!',
+                shareNotAvailable: 'Copiado! (compartilhamento não disponível)',
+                couldNotShare: 'Não foi possível compartilhar',
+                titleTheme: 'Alternar tema',
+                titleFontDecrease: 'Diminuir fonte',
+                titleFontIncrease: 'Aumentar fonte',
+                titleFocus: 'Modo Foco',
+                titleSelectAll: 'Selecionar todos',
+                titleDeselectAll: 'Limpar seleção',
+                titleFocusExit: 'Sair do modo foco',
+                errCors: 'Este page precisa ser servido por um servidor HTTP (ex: GitHub Pages, <code>python3 -m http.server</code>). Abrir diretamente como arquivo não funciona devido a restrições de segurança do navegador.',
+                errGeneric: 'Erro ao carregar. Verifique sua conexão e tente novamente.',
+                privacy: 'Privacidade',
+                langLabel: 'Idioma',
+            },
+            EN: {
+                home: 'Home',
+                downloadApp: 'Download App',
+                book: 'Book',
+                chapter: 'Ch.',
+                selectBook: 'Select a book',
+                chooseTranslation: 'Choose a translation to start reading.',
+                selectBookAndChapter: 'Select a book and chapter to start reading.',
+                selectChapterHint: 'Select a chapter.',
+                loadingTranslations: 'Loading translations...',
+                loadingTranslation: 'Loading translation...',
+                breadcrumbBible: 'Bible',
+                verseCount1: '1 verse selected',
+                verseCountN: n => `${n} verses selected`,
+                copy: 'Copy',
+                copied: 'Copied!',
+                shareNotAvailable: 'Copied! (sharing not available)',
+                couldNotShare: 'Could not share',
+                titleTheme: 'Toggle theme',
+                titleFontDecrease: 'Decrease font',
+                titleFontIncrease: 'Increase font',
+                titleFocus: 'Focus mode',
+                titleSelectAll: 'Select all',
+                titleDeselectAll: 'Clear selection',
+                titleFocusExit: 'Exit focus mode',
+                errCors: 'This page must be served by an HTTP server (e.g. GitHub Pages, <code>python3 -m http.server</code>). Opening as a file does not work due to browser security restrictions.',
+                errGeneric: 'Error loading. Check your connection and try again.',
+                privacy: 'Privacy',
+                langLabel: 'Language',
+            },
+            ES: {
+                home: 'Inicio',
+                downloadApp: 'Descargar App',
+                book: 'Libro',
+                chapter: 'Cap.',
+                selectBook: 'Selecciona un libro',
+                chooseTranslation: 'Elige una traducción para comenzar.',
+                selectBookAndChapter: 'Selecciona un libro y capítulo para empezar a leer.',
+                selectChapterHint: 'Selecciona un capítulo.',
+                loadingTranslations: 'Cargando traducciones...',
+                loadingTranslation: 'Cargando traducción...',
+                breadcrumbBible: 'Biblia',
+                verseCount1: '1 versículo seleccionado',
+                verseCountN: n => `${n} versículos seleccionados`,
+                copy: 'Copiar',
+                copied: '¡Copiado!',
+                shareNotAvailable: '¡Copiado! (compartir no disponible)',
+                couldNotShare: 'No se pudo compartir',
+                titleTheme: 'Alternar tema',
+                titleFontDecrease: 'Reducir fuente',
+                titleFontIncrease: 'Aumentar fuente',
+                titleFocus: 'Modo enfoque',
+                titleSelectAll: 'Seleccionar todo',
+                titleDeselectAll: 'Limpiar selección',
+                titleFocusExit: 'Salir del modo enfoque',
+                errCors: 'Esta página debe ser servida por un servidor HTTP (ej: GitHub Pages, <code>python3 -m http.server</code>). Abrir directamente como archivo no funciona por restricciones de seguridad del navegador.',
+                errGeneric: 'Error al cargar. Verifica tu conexión e intenta de nuevo.',
+                privacy: 'Privacidad',
+                langLabel: 'Idioma',
+            },
+            FR: {
+                home: 'Accueil',
+                downloadApp: "Télécharger l'App",
+                book: 'Livre',
+                chapter: 'Chap.',
+                selectBook: 'Sélectionnez un livre',
+                chooseTranslation: 'Choisissez une traduction pour commencer.',
+                selectBookAndChapter: 'Sélectionnez un livre et un chapitre pour lire.',
+                selectChapterHint: 'Sélectionnez un chapitre.',
+                loadingTranslations: 'Chargement des traductions...',
+                loadingTranslation: 'Chargement de la traduction...',
+                breadcrumbBible: 'Bible',
+                verseCount1: '1 verset sélectionné',
+                verseCountN: n => `${n} versets sélectionnés`,
+                copy: 'Copier',
+                copied: 'Copié !',
+                shareNotAvailable: 'Copié ! (partage non disponible)',
+                couldNotShare: 'Impossible de partager',
+                titleTheme: 'Basculer le thème',
+                titleFontDecrease: 'Réduire la police',
+                titleFontIncrease: 'Augmenter la police',
+                titleFocus: 'Mode focus',
+                titleSelectAll: 'Tout sélectionner',
+                titleDeselectAll: 'Effacer la sélection',
+                titleFocusExit: 'Quitter le mode focus',
+                errCors: 'Cette page doit être servie par un serveur HTTP (ex: GitHub Pages, <code>python3 -m http.server</code>). L\'ouverture en tant que fichier ne fonctionne pas en raison des restrictions de sécurité du navigateur.',
+                errGeneric: 'Erreur de chargement. Vérifiez votre connexion et réessayez.',
+                privacy: 'Confidentialité',
+                langLabel: 'Langue',
+            },
+            IT: {
+                home: 'Home',
+                downloadApp: 'Scarica App',
+                book: 'Libro',
+                chapter: 'Cap.',
+                selectBook: 'Seleziona un libro',
+                chooseTranslation: 'Scegli una traduzione per iniziare.',
+                selectBookAndChapter: 'Seleziona un libro e un capitolo per iniziare a leggere.',
+                selectChapterHint: 'Seleziona un capitolo.',
+                loadingTranslations: 'Caricamento traduzioni...',
+                loadingTranslation: 'Caricamento traduzione...',
+                breadcrumbBible: 'Bibbia',
+                verseCount1: '1 versetto selezionato',
+                verseCountN: n => `${n} versetti selezionati`,
+                copy: 'Copia',
+                copied: 'Copiato!',
+                shareNotAvailable: 'Copiato! (condivisione non disponibile)',
+                couldNotShare: 'Impossibile condividere',
+                titleTheme: 'Cambia tema',
+                titleFontDecrease: 'Riduci carattere',
+                titleFontIncrease: 'Ingrandisci carattere',
+                titleFocus: 'Modalità fuoco',
+                titleSelectAll: 'Seleziona tutto',
+                titleDeselectAll: 'Cancella selezione',
+                titleFocusExit: 'Esci dalla modalità fuoco',
+                errCors: 'Questa pagina deve essere servita da un server HTTP (es: GitHub Pages, <code>python3 -m http.server</code>). L\'apertura come file non funziona a causa delle restrizioni di sicurezza del browser.',
+                errGeneric: 'Errore di caricamento. Controlla la connessione e riprova.',
+                privacy: 'Privacy',
+                langLabel: 'Lingua',
+            },
+            DE: {
+                home: 'Startseite',
+                downloadApp: 'App herunterladen',
+                book: 'Buch',
+                chapter: 'Kap.',
+                selectBook: 'Buch auswählen',
+                chooseTranslation: 'Wähle eine Übersetzung zum Lesen.',
+                selectBookAndChapter: 'Wähle ein Buch und Kapitel zum Lesen.',
+                selectChapterHint: 'Kapitel auswählen.',
+                loadingTranslations: 'Übersetzungen laden...',
+                loadingTranslation: 'Übersetzung laden...',
+                breadcrumbBible: 'Bibel',
+                verseCount1: '1 Vers ausgewählt',
+                verseCountN: n => `${n} Verse ausgewählt`,
+                copy: 'Kopieren',
+                copied: 'Kopiert!',
+                shareNotAvailable: 'Kopiert! (Freigabe nicht verfügbar)',
+                couldNotShare: 'Konnte nicht teilen',
+                titleTheme: 'Design wechseln',
+                titleFontDecrease: 'Schrift verkleinern',
+                titleFontIncrease: 'Schrift vergrößern',
+                titleFocus: 'Fokusmodus',
+                titleSelectAll: 'Alle auswählen',
+                titleDeselectAll: 'Auswahl löschen',
+                titleFocusExit: 'Fokusmodus beenden',
+                errCors: 'Diese Seite muss über einen HTTP-Server bereitgestellt werden (z.B. GitHub Pages, <code>python3 -m http.server</code>). Das Öffnen als Datei funktioniert wegen Browser-Sicherheitsbeschränkungen nicht.',
+                errGeneric: 'Ladefehler. Überprüfe deine Verbindung und versuche es erneut.',
+                privacy: 'Datenschutz',
+                langLabel: 'Sprache',
+            },
+            EL: {
+                home: 'Αρχική',
+                downloadApp: 'Λήψη App',
+                book: 'Βιβλίο',
+                chapter: 'Κεφ.',
+                selectBook: 'Επιλέξτε βιβλίο',
+                chooseTranslation: 'Επιλέξτε μετάφραση για να ξεκινήσετε.',
+                selectBookAndChapter: 'Επιλέξτε βιβλίο και κεφάλαιο για ανάγνωση.',
+                selectChapterHint: 'Επιλέξτε κεφάλαιο.',
+                loadingTranslations: 'Φόρτωση μεταφράσεων...',
+                loadingTranslation: 'Φόρτωση μετάφρασης...',
+                breadcrumbBible: 'Βίβλος',
+                verseCount1: '1 στίχος επιλεγμένος',
+                verseCountN: n => `${n} στίχοι επιλεγμένοι`,
+                copy: 'Αντιγραφή',
+                copied: 'Αντιγράφηκε!',
+                shareNotAvailable: 'Αντιγράφηκε! (κοινοποίηση μη διαθέσιμη)',
+                couldNotShare: 'Αδυναμία κοινοποίησης',
+                titleTheme: 'Εναλλαγή θέματος',
+                titleFontDecrease: 'Μείωση γραμματοσειράς',
+                titleFontIncrease: 'Αύξηση γραμματοσειράς',
+                titleFocus: 'Λειτουργία εστίασης',
+                titleSelectAll: 'Επιλογή όλων',
+                titleDeselectAll: 'Καθαρισμός επιλογής',
+                titleFocusExit: 'Έξοδος λειτουργίας εστίασης',
+                errCors: 'Αυτή η σελίδα πρέπει να σερβιρίζεται από HTTP server (π.χ. GitHub Pages, <code>python3 -m http.server</code>).',
+                errGeneric: 'Σφάλμα φόρτωσης. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.',
+                privacy: 'Απόρρητο',
+                langLabel: 'Γλώσσα',
+            },
+            KO: {
+                home: '홈',
+                downloadApp: '앱 다운로드',
+                book: '책',
+                chapter: '장',
+                selectBook: '책 선택',
+                chooseTranslation: '번역을 선택하여 시작하세요.',
+                selectBookAndChapter: '읽을 책과 장을 선택하세요.',
+                selectChapterHint: '장 선택',
+                loadingTranslations: '번역 로딩 중...',
+                loadingTranslation: '번역 로딩 중...',
+                breadcrumbBible: '성경',
+                verseCount1: '1절 선택됨',
+                verseCountN: n => `${n}절 선택됨`,
+                copy: '복사',
+                copied: '복사됨!',
+                shareNotAvailable: '복사됨! (공유 불가)',
+                couldNotShare: '공유할 수 없습니다',
+                titleTheme: '테마 전환',
+                titleFontDecrease: '글꼴 작게',
+                titleFontIncrease: '글꼴 크게',
+                titleFocus: '집중 모드',
+                titleSelectAll: '모두 선택',
+                titleDeselectAll: '선택 해제',
+                titleFocusExit: '집중 모드 종료',
+                errCors: '이 페이지는 HTTP 서버(GitHub Pages, <code>python3 -m http.server</code> 등)를 통해 제공되어야 합니다.',
+                errGeneric: '로딩 오류. 연결을 확인하고 다시 시도하세요.',
+                privacy: '개인정보',
+                langLabel: '언어',
+            },
+            FI: {
+                home: 'Koti',
+                downloadApp: 'Lataa App',
+                book: 'Kirja',
+                chapter: 'Kapp.',
+                selectBook: 'Valitse kirja',
+                chooseTranslation: 'Valitse käännös aloittaaksesi.',
+                selectBookAndChapter: 'Valitse kirja ja kappale lukeaksesi.',
+                selectChapterHint: 'Valitse kappale.',
+                loadingTranslations: 'Ladataan käännöksiä...',
+                loadingTranslation: 'Ladataan käännöstä...',
+                breadcrumbBible: 'Raamattu',
+                verseCount1: '1 runko valittu',
+                verseCountN: n => `${n} runkoa valittu`,
+                copy: 'Kopioi',
+                copied: 'Kopioitu!',
+                shareNotAvailable: 'Kopioitu! (jaettavissa ei ole)',
+                couldNotShare: 'Ei voitu jakaa',
+                titleTheme: 'Vaihda teemaa',
+                titleFontDecrease: 'Pienennä fonttia',
+                titleFontIncrease: 'Suurenna fonttia',
+                titleFocus: 'Keskittymistila',
+                titleSelectAll: 'Valitse kaikki',
+                titleDeselectAll: 'Tyhjennä valinta',
+                titleFocusExit: 'Poistu keskittymistilasta',
+                errCors: 'Tämä sivu on palveliltava HTTP-palvelimen kautta (esim. GitHub Pages, <code>python3 -m http.server</code>).',
+                errGeneric: 'Latausvirhe. Tarkista yhteys ja yritä uudelleen.',
+                privacy: 'Tietosuoja',
+                langLabel: 'Kieli',
+            },
+            PL: {
+                home: 'Strona główna',
+                downloadApp: 'Pobierz App',
+                book: 'Księga',
+                chapter: 'Rozdz.',
+                selectBook: 'Wybierz księgę',
+                chooseTranslation: 'Wybierz tłumaczenie, aby rozpocząć.',
+                selectBookAndChapter: 'Wybierz księgę i rozdział, aby czytać.',
+                selectChapterHint: 'Wybierz rozdział.',
+                loadingTranslations: 'Ładowanie tłumaczeń...',
+                loadingTranslation: 'Ładowanie tłumaczenia...',
+                breadcrumbBible: 'Biblia',
+                verseCount1: '1 wers wybrany',
+                verseCountN: n => `${n} wersów wybranych`,
+                copy: 'Kopiuj',
+                copied: 'Skopiowano!',
+                shareNotAvailable: 'Skopiowano! (udostępnianie niedostępne)',
+                couldNotShare: 'Nie można udostępnić',
+                titleTheme: 'Zmień motyw',
+                titleFontDecrease: 'Zmniejsz czcionkę',
+                titleFontIncrease: 'Zwiększ czcionkę',
+                titleFocus: 'Tryb skupienia',
+                titleSelectAll: 'Zaznacz wszystko',
+                titleDeselectAll: 'Wyczyść zaznaczenie',
+                titleFocusExit: 'Wyjdź z trybu skupienia',
+                errCors: 'Ta strona musi być obsługiwana przez serwer HTTP (np. GitHub Pages, <code>python3 -m http.server</code>).',
+                errGeneric: 'Błąd ładowania. Sprawdź połączenie i spróbuj ponownie.',
+                privacy: 'Prywatność',
+                langLabel: 'Język',
+            },
+            RO: {
+                home: 'Acasă',
+                downloadApp: 'Descarcă App',
+                book: 'Carte',
+                chapter: 'Cap.',
+                selectBook: 'Selectează o carte',
+                chooseTranslation: 'Alege o traducere pentru a începe.',
+                selectBookAndChapter: 'Selectează o carte și un capitol pentru a citi.',
+                selectChapterHint: 'Selectează un capitol.',
+                loadingTranslations: 'Se încarcă traducerile...',
+                loadingTranslation: 'Se încarcă traducerea...',
+                breadcrumbBible: 'Biblia',
+                verseCount1: '1 vers selectat',
+                verseCountN: n => `${n} versuri selectate`,
+                copy: 'Copiază',
+                copied: 'Copiat!',
+                shareNotAvailable: 'Copiat! (partajare indisponibilă)',
+                couldNotShare: 'Nu s-a putut partaja',
+                titleTheme: 'Schimbă tema',
+                titleFontDecrease: 'Micșorează fontul',
+                titleFontIncrease: 'Mărește fontul',
+                titleFocus: 'Mod focalizare',
+                titleSelectAll: 'Selectează tot',
+                titleDeselectAll: 'Șterge selecția',
+                titleFocusExit: 'Ieși din modul focalizare',
+                errCors: 'Această pagină trebuie servită de un server HTTP (ex: GitHub Pages, <code>python3 -m http.server</code>).',
+                errGeneric: 'Eroare la încărcare. Verifică conexiunea și încearcă din nou.',
+                privacy: 'Confidențialitate',
+                langLabel: 'Limbă',
+            }
+        };
+
+        const LANG_TO_TRANSLATION = {
+            'pt': 'PT', 'pt-br': 'PT', 'pt-pt': 'PT',
+            'it': 'IT',
+            'de': 'DE', 'de-de': 'DE',
+            'el': 'EL', 'gr': 'EL',
+            'en': 'EN', 'en-us': 'EN', 'en-gb': 'EN',
+            'es': 'ES', 'es-es': 'ES', 'es-mx': 'ES', 'es-ar': 'ES',
+            'fi': 'FI', 'fi-fi': 'FI',
+            'fr': 'FR', 'fr-fr': 'FR', 'fr-ca': 'FR',
+            'ko': 'KO', 'ko-kr': 'KO',
+            'pl': 'PL', 'pl-pl': 'PL',
+            'ro': 'RO', 'ro-ro': 'RO',
+        };
 
         let bibleData = null;
         let currentBook = null;
         let currentChapter = null;
         let selectedVerses = new Set();
         let verseFontSize = 18;
+        let uiLang = 'PT';
 
-        const $ = (s) => document.querySelector(s);
-        const $$ = (s) => document.querySelectorAll(s);
+        const $ = s => document.querySelector(s);
+        const $$ = s => document.querySelectorAll(s);
 
         const translationSelect = $('#translationSelect');
         const bookSelect = $('#bookSelect');
         const chapterSelect = $('#chapterSelect');
         const loadingState = $('#loadingState');
         const readerContent = $('#readerContent');
-        const breadcrumb = $('#breadcrumb');
         const breadcrumbText = $('#breadcrumbText');
         const shareBar = $('#shareBar');
         const shareCount = $('#shareCount');
         const toast = $('#toast');
         const fontSizeLabel = $('#fontSizeLabel');
+        const langDropdownBtn = $('#langDropdownBtn');
+        const langDropdownMenu = $('#langDropdownMenu');
+        const langDropdown = $('#langDropdown');
+        const currentFlag = $('#currentFlag');
+
+        function t(key, arg) {
+            const dict = I18N[uiLang] || I18N['PT'];
+            const val = dict[key];
+            if (typeof val === 'function') return val(arg);
+            return val || key;
+        }
+
+        function detectBrowserLang() {
+            const langs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
+            for (const l of langs) {
+                const code = l.toLowerCase().split('-')[0];
+                if (LANG_TO_TRANSLATION[code]) return LANG_TO_TRANSLATION[code];
+                const full = l.toLowerCase();
+                if (LANG_TO_TRANSLATION[full]) return LANG_TO_TRANSLATION[full];
+            }
+            return 'PT';
+        }
+
+        function applyUI() {
+            $$('.btn-ghost[data-i18n="home"]').forEach(el => el.textContent = t('home'));
+            $$('[data-i18n="downloadApp"]').forEach(el => el.textContent = t('downloadApp'));
+            $$('[data-i18n="privacy"]').forEach(el => el.textContent = t('privacy'));
+
+            const bookOpt = bookSelect.querySelector('option[value=""]');
+            if (bookOpt) bookOpt.textContent = t('selectBook');
+            const chapOpt = chapterSelect.querySelector('option[value=""]');
+            if (chapOpt) chapOpt.textContent = t('chapter');
+
+            $$('.share-bar [data-i18n="copy"]').forEach(el => el.textContent = t('copy'));
+
+            $$('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                el.title = t(key);
+            });
+
+            $$('[data-i18n="breadcrumbBible"]').forEach(el => el.textContent = t('breadcrumbBible'));
+
+            if (!bibleData) {
+                readerContent.innerHTML = `<div class="empty-state">${t('chooseTranslation')}</div>`;
+            }
+
+            document.documentElement.lang = uiLang === 'PT' ? 'pt-BR' : uiLang.toLowerCase();
+        }
+
+        function updateShareBar() {
+            const count = selectedVerses.size;
+            if (count > 0) {
+                shareBar.classList.add('visible');
+                shareCount.textContent = count === 1 ? t('verseCount1') : t('verseCountN', count);
+            } else {
+                shareBar.classList.remove('visible');
+            }
+        }
 
         function showToast(msg) {
             toast.textContent = msg;
@@ -711,67 +1143,47 @@
                         ch.map((text, i) => ({ verse: i + 1, text }))
                     )
                 }));
-                return { name: raw[0].name || 'Bíblia', books };
+                return { name: raw[0].name || 'Bible', books };
             }
 
             if (raw.metadata && raw.verses) {
                 const bookMap = {};
                 raw.verses.forEach(v => {
                     const bname = v.book_name;
-                    if (!bookMap[bname]) {
-                        bookMap[bname] = { name: bname, abbrev: '', chapters: {} };
-                    }
-                    if (!bookMap[bname].chapters[v.chapter]) {
-                        bookMap[bname].chapters[v.chapter] = [];
-                    }
-                    bookMap[bname].chapters[v.chapter].push({
-                        verse: v.verse,
-                        text: v.text
-                    });
+                    if (!bookMap[bname]) bookMap[bname] = { name: bname, abbrev: '', chapters: {} };
+                    if (!bookMap[bname].chapters[v.chapter]) bookMap[bname].chapters[v.chapter] = [];
+                    bookMap[bname].chapters[v.chapter].push({ verse: v.verse, text: v.text });
                 });
                 const books = Object.values(bookMap).map(b => ({
                     name: b.name,
                     abbrev: b.abbrev,
-                    chapters: Object.keys(b.chapters)
-                        .sort((a, b) => a - b)
-                        .map(k => b.chapters[k])
+                    chapters: Object.keys(b.chapters).sort((a, b) => a - b).map(k => b.chapters[k])
                 }));
-                return { name: raw.metadata.name || raw.metadata.shortname || 'Bíblia', books };
+                return { name: raw.metadata.name || raw.metadata.shortname || 'Bible', books };
             }
-
             return null;
         }
 
         function fetchJSON(url) {
             return new Promise((resolve, reject) => {
-                if (location.protocol === 'file:') {
-                    reject(new Error('CORS'));
-                    return;
-                }
-                fetch(url).then(r => {
-                    if (!r.ok) throw new Error(r.status);
-                    return r.json();
-                }).then(resolve).catch(reject);
+                if (location.protocol === 'file:') { reject(new Error('CORS')); return; }
+                fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(resolve).catch(reject);
             });
         }
 
-        async function loadTranslation(file) {
+        async function loadTranslation(file, autoSelectGenesis) {
             loadingState.style.display = '';
             readerContent.innerHTML = '';
-            loadingState.querySelector('p').textContent = 'Carregando tradução...';
-
-            const url = BIBLE_DIR + file;
+            loadingState.querySelector('p').textContent = t('loadingTranslation');
 
             try {
-                const raw = await fetchJSON(url);
+                const raw = await fetchJSON(BIBLE_DIR + file);
                 bibleData = normalizeData(raw);
 
-                if (!bibleData || !bibleData.books.length) {
-                    throw new Error('Dados inválidos');
-                }
+                if (!bibleData || !bibleData.books.length) throw new Error('Invalid data');
 
                 bookSelect.disabled = false;
-                bookSelect.innerHTML = '<option value="">Selecione o livro</option>';
+                bookSelect.innerHTML = `<option value="">${t('selectBook')}</option>`;
                 bibleData.books.forEach((book, i) => {
                     const opt = document.createElement('option');
                     opt.value = i;
@@ -780,29 +1192,32 @@
                 });
 
                 chapterSelect.disabled = true;
-                chapterSelect.innerHTML = '<option value="">Cap.</option>';
+                chapterSelect.innerHTML = `<option value="">${t('chapter')}</option>`;
                 currentBook = null;
                 currentChapter = null;
                 selectedVerses.clear();
                 updateShareBar();
 
                 loadingState.style.display = 'none';
-                readerContent.innerHTML = '<div class="empty-state">Selecione um livro e capítulo para começar a leitura.</div>';
+
+                if (autoSelectGenesis) {
+                    bookSelect.value = '0';
+                    bookSelect.dispatchEvent(new Event('change'));
+                } else {
+                    readerContent.innerHTML = `<div class="empty-state">${t('selectBookAndChapter')}</div>`;
+                }
 
             } catch (err) {
                 const isFileProtocol = location.protocol === 'file:';
-                const msg = isFileProtocol
-                    ? 'Este page precisa ser servido por um servidor HTTP (ex: GitHub Pages, <code>python3 -m http.server</code>). Abrir diretamente como arquivo não funciona devido a restrições de segurança do navegador.'
-                    : 'Erro ao carregar. Verifique sua conexão e tente novamente.';
+                const msg = isFileProtocol ? t('errCors') : t('errGeneric');
                 loadingState.style.display = 'none';
-                readerContent.innerHTML = '<div class="empty-state">' + msg + '</div>';
+                readerContent.innerHTML = `<div class="empty-state">${msg}</div>`;
                 console.error('Error loading bible:', err);
             }
         }
 
         function renderChapter() {
             if (!bibleData || currentBook === null || currentChapter === null) return;
-
             const book = bibleData.books[currentBook];
             const chapter = book.chapters[currentChapter];
             if (!chapter) return;
@@ -810,67 +1225,40 @@
             selectedVerses.clear();
             updateShareBar();
 
-            let html = '<div class="chapter-header">';
-            html += '<div class="line"></div>';
+            let html = '<div class="chapter-header"><div class="line"></div>';
             html += `<h1>${book.name} ${currentChapter + 1}</h1>`;
             html += `<p>${bibleData.name}</p>`;
-            html += '<div class="line"></div>';
-            html += '</div>';
-
+            html += '<div class="line"></div></div>';
             html += `<div class="verses-container" style="--verse-font-size:${verseFontSize}px">`;
 
             chapter.forEach((v, idx) => {
                 const isFirstVerse = idx === 0;
                 const firstChar = v.text.charAt(0);
                 const hasDropCap = isFirstVerse && firstChar === firstChar.toUpperCase() && firstChar !== '¶';
-
                 let text = v.text;
-                if (hasDropCap) {
-                    text = `<span class="drop-cap">${firstChar}</span>` + text.slice(1);
-                }
+                if (hasDropCap) text = `<span class="drop-cap">${firstChar}</span>` + text.slice(1);
 
                 html += `<p class="verse-p" data-verse="${v.verse}" onclick="window.__verseClick(${v.verse})">`;
-                if (!hasDropCap) {
-                    html += `<span class="verse-num">${v.verse}</span>`;
-                } else {
-                    html += `<span class="verse-num" style="margin-right:0.3em">${v.verse}</span>`;
-                }
-                html += text;
-                html += '</p>';
+                html += hasDropCap
+                    ? `<span class="verse-num" style="margin-right:0.3em">${v.verse}</span>`
+                    : `<span class="verse-num">${v.verse}</span>`;
+                html += text + '</p>';
             });
 
-            html += '</div>';
-            html += '<div class="end-mark"><span></span></div>';
-
+            html += '</div><div class="end-mark"><span></span></div>';
             readerContent.innerHTML = html;
-
             breadcrumbText.textContent = `${book.name} ${currentChapter + 1} · ${bibleData.name}`;
         }
 
         window.__verseClick = function(verseNum) {
-            if (selectedVerses.has(verseNum)) {
-                selectedVerses.delete(verseNum);
-            } else {
-                selectedVerses.add(verseNum);
-            }
+            if (selectedVerses.has(verseNum)) selectedVerses.delete(verseNum);
+            else selectedVerses.add(verseNum);
 
             $$('.verse-p').forEach(p => {
-                const v = parseInt(p.dataset.verse);
-                p.classList.toggle('selected', selectedVerses.has(v));
+                p.classList.toggle('selected', selectedVerses.has(parseInt(p.dataset.verse)));
             });
-
             updateShareBar();
         };
-
-        function updateShareBar() {
-            const count = selectedVerses.size;
-            if (count > 0) {
-                shareBar.classList.add('visible');
-                shareCount.textContent = count === 1 ? '1 versículo seleccionado' : `${count} versículos seleccionados`;
-            } else {
-                shareBar.classList.remove('visible');
-            }
-        }
 
         function getSelectedText() {
             if (!bibleData || currentBook === null || currentChapter === null) return '';
@@ -884,37 +1272,68 @@
             return `${book.name} ${currentChapter + 1}:${sorted.join(',')} — ${bibleData.name}\n${lines.join('\n')}`;
         }
 
+        bookSelect.addEventListener('change', () => {
+            const idx = bookSelect.value;
+            if (idx === '') {
+                chapterSelect.disabled = true;
+                chapterSelect.innerHTML = `<option value="">${t('chapter')}</option>`;
+                currentBook = null;
+                currentChapter = null;
+                readerContent.innerHTML = `<div class="empty-state">${t('selectChapterHint')}</div>`;
+                breadcrumbText.textContent = bibleData ? bibleData.name : t('breadcrumbBible');
+                return;
+            }
+            currentBook = parseInt(idx);
+            const book = bibleData.books[currentBook];
+            chapterSelect.disabled = false;
+            chapterSelect.innerHTML = `<option value="">${t('chapter')}</option>`;
+            book.chapters.forEach((_, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = i + 1;
+                chapterSelect.appendChild(opt);
+            });
+            chapterSelect.value = '0';
+            currentChapter = 0;
+            renderChapter();
+            breadcrumbText.textContent = `${book.name} · ${bibleData.name}`;
+        });
+
+        chapterSelect.addEventListener('change', () => {
+            const idx = chapterSelect.value;
+            if (idx === '') {
+                currentChapter = null;
+                readerContent.innerHTML = `<div class="empty-state">${t('selectChapterHint')}</div>`;
+                return;
+            }
+            currentChapter = parseInt(idx);
+            renderChapter();
+        });
+
+        translationSelect.addEventListener('change', () => {
+            const file = translationSelect.value;
+            if (file) loadTranslation(file, false);
+        });
+
         $('#copyBtn').addEventListener('click', async () => {
             const text = getSelectedText();
             if (!text) return;
-            try {
-                await navigator.clipboard.writeText(text);
-                showToast('Copiado!');
-            } catch {
+            try { await navigator.clipboard.writeText(text); }
+            catch {
                 const ta = document.createElement('textarea');
-                ta.value = text;
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                showToast('Copiado!');
+                ta.value = text; document.body.appendChild(ta);
+                ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
             }
+            showToast(t('copied'));
         });
 
         $('#shareBtn').addEventListener('click', async () => {
             const text = getSelectedText();
             if (!text) return;
-            if (navigator.share) {
-                try {
-                    await navigator.share({ text });
-                } catch {}
-            } else {
-                try {
-                    await navigator.clipboard.writeText(text);
-                    showToast('Copiado! (compartilhamento não disponível)');
-                } catch {
-                    showToast('Não foi possível compartilhar');
-                }
+            if (navigator.share) { try { await navigator.share({ text }); } catch {} }
+            else {
+                try { await navigator.clipboard.writeText(text); showToast(t('shareNotAvailable')); }
+                catch { showToast(t('couldNotShare')); }
             }
         });
 
@@ -926,8 +1345,7 @@
 
         $('#selectAllBtn').addEventListener('click', () => {
             if (!bibleData || currentBook === null || currentChapter === null) return;
-            const chapter = bibleData.books[currentBook].chapters[currentChapter];
-            chapter.forEach(v => selectedVerses.add(v.verse));
+            bibleData.books[currentBook].chapters[currentChapter].forEach(v => selectedVerses.add(v.verse));
             $$('.verse-p').forEach(p => p.classList.add('selected'));
             updateShareBar();
         });
@@ -938,49 +1356,6 @@
             updateShareBar();
         });
 
-        translationSelect.addEventListener('change', () => {
-            const file = translationSelect.value;
-            if (file) loadTranslation(file);
-        });
-
-        bookSelect.addEventListener('change', () => {
-            const idx = bookSelect.value;
-            if (idx === '') {
-                chapterSelect.disabled = true;
-                chapterSelect.innerHTML = '<option value="">Cap.</option>';
-                currentBook = null;
-                currentChapter = null;
-                readerContent.innerHTML = '<div class="empty-state">Selecione um capítulo.</div>';
-                breadcrumbText.textContent = bibleData ? bibleData.name : 'Bíblia';
-                return;
-            }
-            currentBook = parseInt(idx);
-            const book = bibleData.books[currentBook];
-            chapterSelect.disabled = false;
-            chapterSelect.innerHTML = '<option value="">Cap.</option>';
-            book.chapters.forEach((_, i) => {
-                const opt = document.createElement('option');
-                opt.value = i;
-                opt.textContent = i + 1;
-                chapterSelect.appendChild(opt);
-            });
-            currentChapter = null;
-            readerContent.innerHTML = '<div class="empty-state">Selecione um capítulo.</div>';
-            breadcrumbText.textContent = `${book.name} · ${bibleData.name}`;
-        });
-
-        chapterSelect.addEventListener('change', () => {
-            const idx = chapterSelect.value;
-            if (idx === '') {
-                currentChapter = null;
-                readerContent.innerHTML = '<div class="empty-state">Selecione um capítulo.</div>';
-                return;
-            }
-            currentChapter = parseInt(idx);
-            renderChapter();
-        });
-
-        // Font size
         $('#fontDecrease').addEventListener('click', () => {
             if (verseFontSize > 12) {
                 verseFontSize -= 2;
@@ -999,7 +1374,6 @@
             }
         });
 
-        // Theme toggle
         function setTheme(dark) {
             if (dark) {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -1013,42 +1387,67 @@
         }
 
         $('#themeToggle').addEventListener('click', () => {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            setTheme(!isDark);
+            setTheme(document.documentElement.getAttribute('data-theme') !== 'dark');
         });
 
         const savedTheme = localStorage.getItem('bf-theme');
-        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            setTheme(true);
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) setTheme(true);
+
+        $('#focusBtn').addEventListener('click', () => document.body.classList.add('focus-mode'));
+        $('#focusExit').addEventListener('click', () => document.body.classList.remove('focus-mode'));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && document.body.classList.contains('focus-mode'))
+                document.body.classList.remove('focus-mode');
+        });
+
+        langDropdownBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => langDropdown.classList.remove('open'));
+
+        function buildLangMenu() {
+            langDropdownMenu.innerHTML = '';
+            TRANSLATIONS.forEach(tEntry => {
+                const btn = document.createElement('button');
+                btn.className = 'lang-dropdown-item' + (tEntry.lang === uiLang ? ' active' : '');
+                btn.innerHTML = `<span class="flag">${tEntry.flag}</span><span class="name">${tEntry.label}</span>`;
+                btn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    langDropdown.classList.remove('open');
+                    uiLang = tEntry.lang;
+                    localStorage.setItem('bf-ui-lang', uiLang);
+                    translationSelect.value = tEntry.file;
+                    translationSelect.dispatchEvent(new Event('change'));
+                    currentFlag.textContent = tEntry.flag;
+                    applyUI();
+                    buildLangMenu();
+                });
+                langDropdownMenu.appendChild(btn);
+            });
         }
 
-        // Focus mode
-        $('#focusBtn').addEventListener('click', () => {
-            document.body.classList.add('focus-mode');
-        });
-
-        $('#focusExit').addEventListener('click', () => {
-            document.body.classList.remove('focus-mode');
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && document.body.classList.contains('focus-mode')) {
-                document.body.classList.remove('focus-mode');
-            }
-        });
-
-        // Populate translations dropdown
-        TRANSLATIONS.forEach(t => {
+        TRANSLATIONS.forEach(entry => {
             const opt = document.createElement('option');
-            opt.value = t.file;
-            opt.textContent = t.label;
+            opt.value = entry.file;
+            opt.textContent = entry.label;
             translationSelect.appendChild(opt);
         });
-        translationSelect.value = '';
-        translationSelect.innerHTML = '<option value="">Escolha a tradução...</option>' + translationSelect.innerHTML;
-        loadingState.style.display = 'none';
-        readerContent.innerHTML = '<div class="empty-state">Escolha uma tradução para começar.</div>';
 
+        const savedLang = localStorage.getItem('bf-ui-lang');
+        const detectedLang = savedLang || detectBrowserLang();
+        uiLang = detectedLang;
+
+        const matchingTranslation = TRANSLATIONS.find(t => t.lang === uiLang) || TRANSLATIONS[0];
+        uiLang = matchingTranslation.lang;
+        currentFlag.textContent = matchingTranslation.flag;
+        translationSelect.value = matchingTranslation.file;
+
+        applyUI();
+        buildLangMenu();
+        loadingState.style.display = 'none';
+
+        loadTranslation(matchingTranslation.file, true);
     })();
     </script>
 </body>
