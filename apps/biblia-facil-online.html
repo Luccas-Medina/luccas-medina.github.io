@@ -1201,7 +1201,7 @@
                 loadingState.style.display = 'none';
 
                 if (autoSelectGenesis) {
-                    bookSelect.value = '0';
+                    bookSelect.value = '1';
                     bookSelect.dispatchEvent(new Event('change'));
                 } else {
                     readerContent.innerHTML = `<div class="empty-state">${t('selectBookAndChapter')}</div>`;
