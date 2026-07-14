@@ -474,6 +474,56 @@
 
         body.focus-mode::before { display: none; }
 
+        body.focus-mode .chapter-prev { left: 8px; }
+        body.focus-mode .chapter-next { right: 8px; }
+        body.focus-mode .chapter-arrow { background: var(--reader-surface); }
+
+        .focus-btn {
+            width: auto;
+            padding: 0 12px;
+            gap: 6px;
+        }
+
+        .focus-label {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .chapter-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--reader-border);
+            background: var(--reader-dropdown-bg);
+            color: var(--reader-text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .chapter-prev { left: -20px; }
+        .chapter-next { right: -20px; }
+
+        .chapter-arrow:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .chapter-arrow:disabled {
+            opacity: 0.3;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .chapter-arrow .material-symbols-outlined { font-size: 20px; }
+
         .focus-exit {
             position: fixed;
             top: 16px;
@@ -502,13 +552,14 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 2px;
+            gap: 4px;
             height: 36px;
             min-width: 36px;
-            padding: 0 6px;
+            padding: 0 8px;
             border-radius: 10px;
-            border: 1px solid rgba(242, 188, 128, 0.3);
-            background: transparent;
+            border: 1px solid var(--reader-border);
+            background: var(--reader-dropdown-bg);
+            color: var(--reader-text);
             font-size: 18px;
             cursor: pointer;
             transition: all 0.2s;
@@ -517,6 +568,15 @@
 
         .lang-dropdown-btn:hover {
             border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .lang-code {
+            display: none;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .lang-dropdown-btn .chevron {
@@ -581,6 +641,9 @@
             .share-bar { padding: 8px 14px; gap: 8px; }
             .lang-dropdown-menu { right: -10px; }
             .btn-primary span.hide-mobile { display: none; }
+            .chapter-prev { left: 4px; }
+            .chapter-next { right: 4px; }
+            .chapter-arrow { width: 34px; height: 34px; }
         }
     </style>
 </head>
@@ -595,6 +658,7 @@
             <div class="lang-dropdown" id="langDropdown">
                 <button class="lang-dropdown-btn" id="langDropdownBtn" title="Language">
                     <span id="currentFlag">🇧🇷</span>
+                    <span class="lang-code" id="currentLangCode">PT</span>
                     <span class="chevron">▾</span>
                 </button>
                 <div class="lang-dropdown-menu" id="langDropdownMenu"></div>
@@ -630,15 +694,16 @@
             </button>
         </div>
         <div class="controls-divider"></div>
-        <button class="icon-btn" id="focusBtn" data-i18n-title="titleFocus">
+        <button class="icon-btn focus-btn" id="focusBtn" data-i18n-title="titleFocus">
             <span class="material-symbols-outlined">center_focus_strong</span>
+            <span class="focus-label" data-i18n="fullscreen">Tela cheia</span>
         </button>
-        <button class="icon-btn" id="selectAllBtn" data-i18n-title="titleSelectAll">
+        <!-- <button class="icon-btn" id="selectAllBtn" data-i18n-title="titleSelectAll">
             <span class="material-symbols-outlined">select_all</span>
         </button>
         <button class="icon-btn" id="deselectAllBtn" data-i18n-title="titleDeselectAll">
             <span class="material-symbols-outlined">deselect</span>
-        </button>
+        </button> -->
     </div>
 
     <button class="icon-btn focus-exit" id="focusExit" data-i18n-title="titleFocusExit">
@@ -653,6 +718,12 @@
         </div>
 
         <article class="reader-card" id="readerCard">
+            <button class="chapter-arrow chapter-prev" id="prevChapterBtn" data-i18n-title="prevChapter">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="chapter-arrow chapter-next" id="nextChapterBtn" data-i18n-title="nextChapter">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
             <div class="loading-state" id="loadingState">
                 <div class="spinner"></div>
                 <p data-i18n="loadingTranslations">Carregando traduções...</p>
@@ -728,6 +799,9 @@
                 titleSelectAll: 'Selecionar todos',
                 titleDeselectAll: 'Limpar seleção',
                 titleFocusExit: 'Sair do modo foco',
+                fullscreen: 'Tela cheia',
+                prevChapter: 'Capítulo anterior',
+                nextChapter: 'Próximo capítulo',
                 errCors: 'Este page precisa ser servido por um servidor HTTP (ex: GitHub Pages, <code>python3 -m http.server</code>). Abrir diretamente como arquivo não funciona devido a restrições de segurança do navegador.',
                 errGeneric: 'Erro ao carregar. Verifique sua conexão e tente novamente.',
                 privacy: 'Privacidade',
@@ -758,6 +832,9 @@
                 titleSelectAll: 'Select all',
                 titleDeselectAll: 'Clear selection',
                 titleFocusExit: 'Exit focus mode',
+                fullscreen: 'Fullscreen',
+                prevChapter: 'Previous chapter',
+                nextChapter: 'Next chapter',
                 errCors: 'This page must be served by an HTTP server (e.g. GitHub Pages, <code>python3 -m http.server</code>). Opening as a file does not work due to browser security restrictions.',
                 errGeneric: 'Error loading. Check your connection and try again.',
                 privacy: 'Privacy',
@@ -788,6 +865,9 @@
                 titleSelectAll: 'Seleccionar todo',
                 titleDeselectAll: 'Limpiar selección',
                 titleFocusExit: 'Salir del modo enfoque',
+                fullscreen: 'Pantalla completa',
+                prevChapter: 'Capítulo anterior',
+                nextChapter: 'Siguiente capítulo',
                 errCors: 'Esta página debe ser servida por un servidor HTTP (ej: GitHub Pages, <code>python3 -m http.server</code>). Abrir directamente como archivo no funciona por restricciones de seguridad del navegador.',
                 errGeneric: 'Error al cargar. Verifica tu conexión e intenta de nuevo.',
                 privacy: 'Privacidad',
@@ -818,6 +898,9 @@
                 titleSelectAll: 'Tout sélectionner',
                 titleDeselectAll: 'Effacer la sélection',
                 titleFocusExit: 'Quitter le mode focus',
+                fullscreen: 'Plein écran',
+                prevChapter: 'Chapitre précédent',
+                nextChapter: 'Chapitre suivant',
                 errCors: 'Cette page doit être servie par un serveur HTTP (ex: GitHub Pages, <code>python3 -m http.server</code>). L\'ouverture en tant que fichier ne fonctionne pas en raison des restrictions de sécurité du navigateur.',
                 errGeneric: 'Erreur de chargement. Vérifiez votre connexion et réessayez.',
                 privacy: 'Confidentialité',
@@ -848,6 +931,9 @@
                 titleSelectAll: 'Seleziona tutto',
                 titleDeselectAll: 'Cancella selezione',
                 titleFocusExit: 'Esci dalla modalità fuoco',
+                fullscreen: 'Schermo intero',
+                prevChapter: 'Capitolo precedente',
+                nextChapter: 'Capitolo successivo',
                 errCors: 'Questa pagina deve essere servita da un server HTTP (es: GitHub Pages, <code>python3 -m http.server</code>). L\'apertura come file non funziona a causa delle restrizioni di sicurezza del browser.',
                 errGeneric: 'Errore di caricamento. Controlla la connessione e riprova.',
                 privacy: 'Privacy',
@@ -878,6 +964,9 @@
                 titleSelectAll: 'Alle auswählen',
                 titleDeselectAll: 'Auswahl löschen',
                 titleFocusExit: 'Fokusmodus beenden',
+                fullscreen: 'Vollbild',
+                prevChapter: 'Vorheriges Kapitel',
+                nextChapter: 'Nächstes Kapitel',
                 errCors: 'Diese Seite muss über einen HTTP-Server bereitgestellt werden (z.B. GitHub Pages, <code>python3 -m http.server</code>). Das Öffnen als Datei funktioniert wegen Browser-Sicherheitsbeschränkungen nicht.',
                 errGeneric: 'Ladefehler. Überprüfe deine Verbindung und versuche es erneut.',
                 privacy: 'Datenschutz',
@@ -908,6 +997,9 @@
                 titleSelectAll: 'Επιλογή όλων',
                 titleDeselectAll: 'Καθαρισμός επιλογής',
                 titleFocusExit: 'Έξοδος λειτουργίας εστίασης',
+                fullscreen: 'Πλήρης οθόνη',
+                prevChapter: 'Προηγούμενο κεφάλαιο',
+                nextChapter: 'Επόμενο κεφάλαιο',
                 errCors: 'Αυτή η σελίδα πρέπει να σερβιρίζεται από HTTP server (π.χ. GitHub Pages, <code>python3 -m http.server</code>).',
                 errGeneric: 'Σφάλμα φόρτωσης. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.',
                 privacy: 'Απόρρητο',
@@ -938,6 +1030,9 @@
                 titleSelectAll: '모두 선택',
                 titleDeselectAll: '선택 해제',
                 titleFocusExit: '집중 모드 종료',
+                fullscreen: '전체 화면',
+                prevChapter: '이전 장',
+                nextChapter: '다음 장',
                 errCors: '이 페이지는 HTTP 서버(GitHub Pages, <code>python3 -m http.server</code> 등)를 통해 제공되어야 합니다.',
                 errGeneric: '로딩 오류. 연결을 확인하고 다시 시도하세요.',
                 privacy: '개인정보',
@@ -968,6 +1063,9 @@
                 titleSelectAll: 'Valitse kaikki',
                 titleDeselectAll: 'Tyhjennä valinta',
                 titleFocusExit: 'Poistu keskittymistilasta',
+                fullscreen: 'Kokonäyttö',
+                prevChapter: 'Edellinen kappale',
+                nextChapter: 'Seuraava kappale',
                 errCors: 'Tämä sivu on palveliltava HTTP-palvelimen kautta (esim. GitHub Pages, <code>python3 -m http.server</code>).',
                 errGeneric: 'Latausvirhe. Tarkista yhteys ja yritä uudelleen.',
                 privacy: 'Tietosuoja',
@@ -998,6 +1096,9 @@
                 titleSelectAll: 'Zaznacz wszystko',
                 titleDeselectAll: 'Wyczyść zaznaczenie',
                 titleFocusExit: 'Wyjdź z trybu skupienia',
+                fullscreen: 'Pełny ekran',
+                prevChapter: 'Poprzedni rozdział',
+                nextChapter: 'Następny rozdział',
                 errCors: 'Ta strona musi być obsługiwana przez serwer HTTP (np. GitHub Pages, <code>python3 -m http.server</code>).',
                 errGeneric: 'Błąd ładowania. Sprawdź połączenie i spróbuj ponownie.',
                 privacy: 'Prywatność',
@@ -1028,6 +1129,9 @@
                 titleSelectAll: 'Selectează tot',
                 titleDeselectAll: 'Șterge selecția',
                 titleFocusExit: 'Ieși din modul focalizare',
+                fullscreen: 'Ecran complet',
+                prevChapter: 'Capitolul precedent',
+                nextChapter: 'Capitolul următor',
                 errCors: 'Această pagină trebuie servită de un server HTTP (ex: GitHub Pages, <code>python3 -m http.server</code>).',
                 errGeneric: 'Eroare la încărcare. Verifică conexiunea și încearcă din nou.',
                 privacy: 'Confidențialitate',
@@ -1096,6 +1200,7 @@
             $$('.btn-ghost[data-i18n="home"]').forEach(el => el.textContent = t('home'));
             $$('[data-i18n="downloadApp"]').forEach(el => el.textContent = t('downloadApp'));
             $$('[data-i18n="privacy"]').forEach(el => el.textContent = t('privacy'));
+            $$('[data-i18n="fullscreen"]').forEach(el => el.textContent = t('fullscreen'));
 
             const bookOpt = bookSelect.querySelector('option[value=""]');
             if (bookOpt) bookOpt.textContent = t('selectBook');
@@ -1248,6 +1353,34 @@
             html += '</div><div class="end-mark"><span></span></div>';
             readerContent.innerHTML = html;
             breadcrumbText.textContent = `${book.name} ${currentChapter + 1} · ${bibleData.name}`;
+            updateArrowState();
+        }
+
+        function updateArrowState() {
+            const prevBtn = $('#prevChapterBtn');
+            const nextBtn = $('#nextChapterBtn');
+            if (!bibleData || currentBook === null || currentChapter === null) {
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                return;
+            }
+            const book = bibleData.books[currentBook];
+            prevBtn.disabled = currentChapter <= 0;
+            nextBtn.disabled = currentChapter >= book.chapters.length - 1;
+        }
+
+        function prevChapter() {
+            if (!bibleData || currentBook === null || currentChapter === null || currentChapter <= 0) return;
+            chapterSelect.value = currentChapter - 1;
+            chapterSelect.dispatchEvent(new Event('change'));
+        }
+
+        function nextChapter() {
+            if (!bibleData || currentBook === null || currentChapter === null) return;
+            const book = bibleData.books[currentBook];
+            if (currentChapter >= book.chapters.length - 1) return;
+            chapterSelect.value = currentChapter + 1;
+            chapterSelect.dispatchEvent(new Event('change'));
         }
 
         window.__verseClick = function(verseNum) {
@@ -1400,6 +1533,24 @@
                 document.body.classList.remove('focus-mode');
         });
 
+        $('#prevChapterBtn').addEventListener('click', prevChapter);
+        $('#nextChapterBtn').addEventListener('click', nextChapter);
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        readerContent.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+        readerContent.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].screenX - touchStartX;
+            const dy = e.changedTouches[0].screenY - touchStartY;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                if (dx < 0) nextChapter();
+                else prevChapter();
+            }
+        }, { passive: true });
+
         langDropdownBtn.addEventListener('click', e => {
             e.stopPropagation();
             langDropdown.classList.toggle('open');
@@ -1420,10 +1571,21 @@
                     translationSelect.value = tEntry.file;
                     translationSelect.dispatchEvent(new Event('change'));
                     currentFlag.textContent = tEntry.flag;
+                    updateLangCode(tEntry.lang);
                     applyUI();
                     buildLangMenu();
                 });
                 langDropdownMenu.appendChild(btn);
+            });
+        }
+
+        function updateLangCode(lang) {
+            const codeEl = $('#currentLangCode');
+            const flagEl = $('#currentFlag');
+            codeEl.textContent = lang;
+            requestAnimationFrame(() => {
+                const flagWidth = flagEl.getBoundingClientRect().width;
+                codeEl.style.display = (flagWidth > 0 && flagEl.textContent.trim().length > 0) ? 'none' : 'inline';
             });
         }
 
@@ -1442,6 +1604,7 @@
         uiLang = matchingTranslation.lang;
         currentFlag.textContent = matchingTranslation.flag;
         translationSelect.value = matchingTranslation.file;
+        updateLangCode(matchingTranslation.lang);
 
         applyUI();
         buildLangMenu();
