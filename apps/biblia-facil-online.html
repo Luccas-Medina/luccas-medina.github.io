@@ -472,8 +472,8 @@
 
         body.focus-mode::before { display: none; }
 
-        body.focus-mode .chapter-prev { left: 8px; }
-        body.focus-mode .chapter-next { right: 8px; }
+        body.focus-mode .chapter-prev { left: 12px; }
+        body.focus-mode .chapter-next { right: 12px; }
         body.focus-mode .chapter-arrow { background: var(--reader-surface); }
 
         .focus-btn {
@@ -489,7 +489,7 @@
         }
 
         .chapter-arrow {
-            position: absolute;
+            position: fixed;
             top: 50%;
             transform: translateY(-50%);
             width: 38px;
@@ -503,11 +503,11 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
-            z-index: 10;
+            z-index: 90;
         }
 
-        .chapter-prev { left: -20px; }
-        .chapter-next { right: -20px; }
+        .chapter-prev { left: 16px; }
+        .chapter-next { right: 16px; }
 
         .chapter-arrow:hover {
             border-color: var(--accent);
@@ -639,8 +639,8 @@
             .share-bar { padding: 8px 14px; gap: 8px; }
             .lang-dropdown-menu { right: -10px; }
             .btn-primary span.hide-mobile { display: none; }
-            .chapter-prev { left: 4px; }
-            .chapter-next { right: 4px; }
+            .chapter-prev { left: 8px; }
+            .chapter-next { right: 8px; }
             .chapter-arrow { width: 34px; height: 34px; }
         }
     </style>
