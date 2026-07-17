@@ -2,7 +2,6 @@
 // STATE MANAGEMENT
 // ========================================
 const state = {
-    currentGame: 'selection',
     rouletteOptions: [
         { text: 'Opção 1', color: '#FF6B6B' },
         { text: 'Opção 2', color: '#4ECDC4' },
@@ -181,19 +180,6 @@ function initializeApp() {
 // EVENT LISTENERS
 // ========================================
 function setupEventListeners() {
-    // Game selection
-    document.querySelectorAll('.game-card:not(.disabled)').forEach(card => {
-        card.addEventListener('click', () => {
-            const game = card.dataset.game;
-            if (game === 'roleta') {
-                showRouletteGame();
-            }
-        });
-    });
-    
-    // Back button
-    document.getElementById('backToSelection').addEventListener('click', showGameSelection);
-    
     // Title input
     document.getElementById('titleInput').addEventListener('input', (e) => {
         state.rouletteTitle = e.target.value || 'Roleta da Sorte';
@@ -218,26 +204,6 @@ function setupEventListeners() {
     // Preset carousel navigation
     document.getElementById('prevPreset').addEventListener('click', scrollPresetLeft);
     document.getElementById('nextPreset').addEventListener('click', scrollPresetRight);
-}
-
-// ========================================
-// NAVIGATION
-// ========================================
-function showGameSelection() {
-    document.getElementById('gameSelection').style.display = 'block';
-    document.getElementById('rouletteGame').style.display = 'none';
-    state.currentGame = 'selection';
-}
-
-function showRouletteGame() {
-    document.getElementById('gameSelection').style.display = 'none';
-    document.getElementById('rouletteGame').style.display = 'block';
-    state.currentGame = 'roleta';
-    
-    // Redraw roulette to ensure it's visible
-    setTimeout(() => {
-        drawRoulette();
-    }, 100);
 }
 
 // ========================================
@@ -284,10 +250,11 @@ function loadPreset(presetIndex) {
     // Re-render
     renderOptionsPanel();
     drawRoulette();
+    hideResult();
     
     // Scroll to roulette
     setTimeout(() => {
-        document.querySelector('.roulette-container').scrollIntoView({ 
+        document.querySelector('.roulette-display').scrollIntoView({ 
             behavior: 'smooth', 
             block: 'start' 
         });
@@ -324,6 +291,7 @@ function addOption() {
     input.value = '';
     renderOptionsPanel();
     drawRoulette();
+    hideResult();
 }
 
 function deleteOption(index) {
@@ -335,6 +303,7 @@ function deleteOption(index) {
     state.rouletteOptions.splice(index, 1);
     renderOptionsPanel();
     drawRoulette();
+    hideResult();
 }
 
 function updateOptionText(index, newText) {
@@ -357,6 +326,7 @@ function clearAllOptions() {
         colorIndex = 1;
         renderOptionsPanel();
         drawRoulette();
+        hideResult();
     }
 }
 
@@ -372,6 +342,12 @@ function resetToDefault() {
     document.getElementById('rouletteTitle').textContent = state.rouletteTitle;
     renderOptionsPanel();
     drawRoulette();
+    hideResult();
+}
+
+function hideResult() {
+    const resultDisplay = document.getElementById('resultDisplay');
+    if (resultDisplay) resultDisplay.style.display = 'none';
 }
 
 function renderOptionsPanel() {
@@ -578,7 +554,8 @@ function spinRoulette() {
     // Update button state
     spinButton.disabled = true;
     spinButton.classList.add('spinning');
-    spinButton.querySelector('.spin-text').textContent = 'GIRANDO';
+    const spinText = spinButton.querySelector('.spin-text');
+    if (spinText) spinText.textContent = 'GIRANDO';
     
     // Calculate spin parameters (similar to Flutter version)
     const extraRotations = 5 + Math.random() * 3; // 5 to 8 full rotations
@@ -607,11 +584,15 @@ function spinRoulette() {
             // Normalize angle
             state.rotationAngle = state.rotationAngle % (2 * Math.PI);
             
+            // Show result
+            showResult();
+            
             // Reset button
             state.isSpinning = false;
             spinButton.disabled = false;
             spinButton.classList.remove('spinning');
-            spinButton.querySelector('.spin-text').textContent = 'GIRAR';
+            const spinText = spinButton.querySelector('.spin-text');
+            if (spinText) spinText.textContent = 'GIRAR';
         }
     }
     
@@ -619,10 +600,28 @@ function spinRoulette() {
 }
 
 // ========================================
+// RESULT DISPLAY
+// ========================================
+function showResult() {
+    const numOptions = state.rouletteOptions.length;
+    if (numOptions === 0) return;
+    
+    const sweepAngle = (2 * Math.PI) / numOptions;
+    const normalizedAngle = ((state.rotationAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+    const pointerAngle = (3 * Math.PI / 2 - normalizedAngle + 2 * Math.PI) % (2 * Math.PI);
+    const winningIndex = Math.floor(pointerAngle / sweepAngle) % numOptions;
+    
+    const resultDisplay = document.getElementById('resultDisplay');
+    const resultText = document.getElementById('resultText');
+    if (resultDisplay && resultText) {
+        resultText.textContent = state.rouletteOptions[winningIndex].text;
+        resultDisplay.style.display = 'block';
+    }
+}
+
+// ========================================
 // CANVAS RESIZE HANDLER
 // ========================================
 window.addEventListener('resize', () => {
-    if (state.currentGame === 'roleta') {
-        drawRoulette();
-    }
+    drawRoulette();
 });
